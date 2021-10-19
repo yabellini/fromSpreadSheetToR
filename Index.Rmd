@@ -1,0 +1,38 @@
+---
+title: "Welcome!"
+---
+
+### What is this course about?
+
+This course is intended for people who use spreadsheets for data manipulation and analysis but would like to learn how to work with R and have never programmed. So the content starts from the beginning: why use R? and where to start?
+
+At the same time that we propose to work with R, we would like it to be in an orderly and reproducible way. For this reason, we propose to use a workflow that allows those who take this course to apply good programming practices, work collaboratively and present their work in a single document that includes the analysis and the results.
+
+Whenever we can, we will mention how what we propose to solve with R can also be done with spreadsheets and the advantages and disadvantages of each case.
+
+In each section we include exercises and challenges together with the examples, we use some useful data sets for the problem we want to solve. We want these data to be realistic so that anyone can find similarities in their own data and can apply what they have learned to other situations.
+
+You need R and RStudio to work through the workshop.  If you don't have it installed, you can follow [these instructions](instalacion.html or [these videos](ver link) by Danielle Navarro to install both software on your computer.
+
+### Who we are? 
+
+This course was developed by [Paola Corrales](https://paocorrales.github.io/) and [Yanina Bellini Saibene](https://yabellini.netlify.app/) as part of [MetaDocencia](https://www.metadocencia.org/).
+
+#### License
+
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
+All materials in this course are under the license <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+We are inspired and based on the following resources:
+
+* [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/) by The Carpentries
+
+* [R for Excel Users](https://rstudio-conf-2020.github.io/r-for-excel/) by Dr. Julie Stewart Lowndes and Dr. Allison Horst
+
+* [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham
+
+* [de Excel a R](https://paocorrales.github.io/deExcelaR/) by Paola Corrales and Elio Campitelli
+
+* [An Antarctic Tour of the Tidyverse](https://silvia.rbind.io/talk/2020-08-31-tour-of-the-tidyverse/) by Silvia Canelón
+
+The source code for these materials and web page can be found at https://github.com/yabellini/fromSpreadSheetToR.
