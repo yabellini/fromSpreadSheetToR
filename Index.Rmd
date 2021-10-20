@@ -4,7 +4,7 @@ title: "Welcome!"
 
 ### What is this course about?
 
-This course is intended for people who use spreadsheets for data manipulation and analysis but would like to learn how to work with R and have never programmed. So the content starts from the beginning: why use R? and where to start?
+This course is intended for [people](personas.html) who use spreadsheets for data manipulation and analysis but would like to learn how to work with R and have never programmed. So the content starts from the beginning: why use R? and where to start?
 
 At the same time that we propose to work with R, we would like it to be in an orderly and reproducible way. For this reason, we propose to use a workflow that allows those who take this course to apply good programming practices, work collaboratively and present their work in a single document that includes the analysis and the results.
 
