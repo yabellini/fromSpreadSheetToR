@@ -1,0 +1,33 @@
+navbar: 
+  title: from Spreadsheet to R
+  left: 
+  - text: Roadmap
+    href: Roadmap.html
+  - text: Topics
+    menu: 
+      - text: Introduction
+        href: 01-introduction.html
+      - text: Reports
+        href: 02-reports.html
+      - text: Reading data
+        href: 03-reading-data.html
+      - text: Data manipulation
+        href: 04-dplyr.html
+      - text: Plots
+        href: 05-plots.html
+      - text: Tables style
+        href: 06-tables.html
+  - text: Challenges
+    menu:
+      - text: Reading data
+        href: challenge-1.html
+      - text: Analyze data
+        href: challenge-2.html
+      - text: Plot data
+        href: challenge-3.html
+      - text: Report
+        href: challenge-4.html
+output_dir: docs
+output:
+  html_document:
+    theme: flatly
