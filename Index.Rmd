@@ -23,9 +23,9 @@ This is a tentative time table.
 |Duration (minutes) |Topics|
 |:---|----------|
 |55  | [Something](01_intro.html) |
-|5   | Break `r emo::ji("coffee")` |
+|5   | Break |
 |55  | [Something](03_graficado.html) |
-|5   | Break `r emo::ji("coffee")`  |
+|5   | Break |
 |50  | [Something](04_calculos.html) |
 |10 | Q&A and goodbay |
 
