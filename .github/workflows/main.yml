@@ -23,7 +23,6 @@ jobs:
           install.packages("remotes")
           remotes::install_cran("rmarkdown")
           remotes::install_cran("knitr")
-          remotes::install_github("hadley/emo")
         shell: Rscript {0}
      
       - name: Build site
