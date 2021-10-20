@@ -1,0 +1,19 @@
+navbar:
+  title: "From Spreadsheet to R"
+  left: 
+    - text: Before we start
+      href: prepare.html
+    - text: Temp
+      menu:
+        - text: temp
+          href: 01_intro.html
+  right:
+    - text: Repo
+      href: https://https://github.com/yabellini/fromSpreadSheetToR/
+output_dir: "docs"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cosmo
+#    css: style.css
