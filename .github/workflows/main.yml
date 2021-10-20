@@ -1,0 +1,37 @@
+name: Build RMarkdown website
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  render_document:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      
+      - uses: r-lib/actions/setup-pandoc@v1
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v1
+        
+      - name: Install packages
+        run: |
+          install.packages("remotes")
+          remotes::install_cran("rmarkdown")
+          remotes::install_cran("knitr")
+        shell: Rscript {0}
+     
+      - name: Build site
+        run: Rscript -e 'rmarkdown::render_site(encoding = 'UTF-8')'
+        
+      - name: Commit results
+        run: |
+          git config --local user.email "paobcorrales@gmail.com"
+          git config --local user.name "Pao Corrales"
+          git add .
+          git commit -m 'Re-build website' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
