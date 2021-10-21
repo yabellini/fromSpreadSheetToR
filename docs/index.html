@@ -11,7 +11,7 @@
 
 
 
-<title>Before we start</title>
+<title>Welcome!</title>
 
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -360,50 +360,83 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Before we start</h1>
+<h1 class="title toc-ignore">Welcome!</h1>
 
 </div>
 
 
-<p>To participate on the workshop you can either install R (&gt;4.0) and Rstudio (see instructions bellow) or use and instance of R at RStudio Cloud.</p>
-<div id="using-rstudio-cloud" class="section level4">
-<h4>Using RStudio Cloud</h4>
-<p>If you want to use RStudio Cloud you will need a free account. Go to <a href="https://rstudio.cloud/">rstudio.cloud/</a> and follow de instructions. Keep in mind that the free account has a 15 hours per month restrictions and you don’t want to use it all before the workshop.</p>
-<p>We’ll provide a link to a pre-configured RStudio project during the workshop. You don’t have to do anything else.</p>
+<div id="what-is-this-course-about" class="section level3">
+<h3>What is this course about?</h3>
+<p>This course is intended for <a href="personas.html">people</a> who use spreadsheets for data manipulation and analysis but would like to learn how to work with R and have never programmed. So the content starts from the beginning: why use R? and where to start?</p>
+<p>At the same time that we propose to work with R, we would like it to be in an orderly and reproducible way. For this reason, we propose to use a workflow that allows those who take this course to apply good programming practices, work collaboratively and present their work in a single document that includes the analysis and the results.</p>
+<p>Whenever we can, we will mention how what we propose to solve with R can also be done with spreadsheets and the advantages and disadvantages of each case.</p>
+<p>In each section we include exercises and challenges together with the examples, we use some useful data sets for the problem we want to solve. We want these data to be realistic so that anyone can find similarities in their own data and can apply what they have learned to other situations.</p>
 </div>
-<div id="installing-r-and-rstudio" class="section level4">
-<h4>Installing R and RStudio</h4>
-<p>To install R and RStudio you can follow these instructions or <a href="ver%20link">these videos</a> by Danielle Navarro to install both software on your computer.</p>
-<p>When we can everything installed we’ll ask you to install a few packages to work during the workshop.</p>
-<ol style="list-style-type: decimal">
-<li>Open RStudio</li>
-<li>On the console (the panel on the left) type the following commands</li>
-</ol>
-<pre class="r"><code>install.packages(&quot;tidyverse&quot;)</code></pre>
-<pre><code>## Installing package into &#39;/home/runner/work/_temp/Library&#39;
-## (as &#39;lib&#39; is unspecified)</code></pre>
-<pre><code>## also installing the dependencies &#39;colorspace&#39;, &#39;sys&#39;, &#39;bit&#39;, &#39;ps&#39;, &#39;rappdirs&#39;, &#39;rematch&#39;, &#39;farver&#39;, &#39;labeling&#39;, &#39;munsell&#39;, &#39;RColorBrewer&#39;, &#39;viridisLite&#39;, &#39;askpass&#39;, &#39;bit64&#39;, &#39;prettyunits&#39;, &#39;processx&#39;, &#39;backports&#39;, &#39;ellipsis&#39;, &#39;generics&#39;, &#39;assertthat&#39;, &#39;blob&#39;, &#39;DBI&#39;, &#39;lifecycle&#39;, &#39;R6&#39;, &#39;tidyselect&#39;, &#39;vctrs&#39;, &#39;withr&#39;, &#39;data.table&#39;, &#39;gargle&#39;, &#39;uuid&#39;, &#39;cellranger&#39;, &#39;curl&#39;, &#39;ids&#39;, &#39;rematch2&#39;, &#39;gtable&#39;, &#39;isoband&#39;, &#39;scales&#39;, &#39;cpp11&#39;, &#39;pkgconfig&#39;, &#39;mime&#39;, &#39;openssl&#39;, &#39;fansi&#39;, &#39;utf8&#39;, &#39;clipr&#39;, &#39;vroom&#39;, &#39;tzdb&#39;, &#39;Rcpp&#39;, &#39;progress&#39;, &#39;callr&#39;, &#39;fs&#39;, &#39;selectr&#39;, &#39;broom&#39;, &#39;cli&#39;, &#39;crayon&#39;, &#39;dbplyr&#39;, &#39;dplyr&#39;, &#39;dtplyr&#39;, &#39;forcats&#39;, &#39;googledrive&#39;, &#39;googlesheets4&#39;, &#39;ggplot2&#39;, &#39;haven&#39;, &#39;hms&#39;, &#39;httr&#39;, &#39;lubridate&#39;, &#39;modelr&#39;, &#39;pillar&#39;, &#39;purrr&#39;, &#39;readr&#39;, &#39;readxl&#39;, &#39;reprex&#39;, &#39;rstudioapi&#39;, &#39;rvest&#39;, &#39;tibble&#39;, &#39;tidyr&#39;, &#39;xml2&#39;</code></pre>
-<pre><code>## Warning in install.packages(&quot;tidyverse&quot;): installation of package &#39;curl&#39; had
-## non-zero exit status</code></pre>
-<pre><code>## Warning in install.packages(&quot;tidyverse&quot;): installation of package &#39;httr&#39; had
-## non-zero exit status</code></pre>
-<pre><code>## Warning in install.packages(&quot;tidyverse&quot;): installation of package &#39;gargle&#39; had
-## non-zero exit status</code></pre>
-<pre><code>## Warning in install.packages(&quot;tidyverse&quot;): installation of package &#39;rvest&#39; had
-## non-zero exit status</code></pre>
-<pre><code>## Warning in install.packages(&quot;tidyverse&quot;): installation of package &#39;googledrive&#39;
-## had non-zero exit status</code></pre>
-<pre><code>## Warning in install.packages(&quot;tidyverse&quot;): installation of package
-## &#39;googlesheets4&#39; had non-zero exit status</code></pre>
-<pre><code>## Warning in install.packages(&quot;tidyverse&quot;): installation of package &#39;tidyverse&#39;
-## had non-zero exit status</code></pre>
-<pre class="r"><code>install.packages(&quot;palmerpenguins&quot;)</code></pre>
-<pre><code>## Installing package into &#39;/home/runner/work/_temp/Library&#39;
-## (as &#39;lib&#39; is unspecified)</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li><p>Go to File -&gt; New File -&gt; R Markdown. Click on “Ok” to create a new file. RStudio will ask your permission to install several packages. Go ahead and do it.</p></li>
-<li><p>That’s it. You can remove the file you just created.</p></li>
-</ol>
+<div id="before-we-start" class="section level3">
+<h3>Before we start</h3>
+<p>During this workshop we will use R and RStudio. Please follow the instructions to prepare for the workshop.</p>
+</div>
+<div id="schedule" class="section level3">
+<h3>Schedule</h3>
+<p>This is a tentative time table.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Duration (minutes)</th>
+<th>Topics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">55</td>
+<td><a href="01_intro.html">Something</a></td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td>Break</td>
+</tr>
+<tr class="odd">
+<td align="left">55</td>
+<td><a href="03_graficado.html">Something</a></td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td>Break</td>
+</tr>
+<tr class="odd">
+<td align="left">50</td>
+<td><a href="04_calculos.html">Something</a></td>
+</tr>
+<tr class="even">
+<td align="left">10</td>
+<td>Q&amp;A and goodbay</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="who-we-are" class="section level3">
+<h3>Who we are?</h3>
+<p>** Yanina Bellini Saibene**</p>
+<p><img src="img/pao_circle.png" alt="Foto de Yani" width="100" height="100" align="left" style="margin:10px"/></p>
+<p>Yanina Bellini Saibene, MS. She is a tenured researcher at the National Institute of Agricultural Technology (INTA, Argentina). She applies computer and data science skills to bring technological developments to rural and underserved regions of Argentina. She coordinates the National Network of Agroecosystem Modeling at INTA. She also develops software to support research and education. She is a professor at undergraduate and graduate levels in several universities in Argentina and Uruguay, teaching applied Data Science and developed open courses and tutorials to teach technical skills in data management. She is a trainer and instructor for The Carpentries and an RStudio certified instructor. She has trained teachers since 1996 through the Federal Network of Continuous Teacher Training (National Ministry of Education, Argentina). She is co-founder and a Core Team member of MetaDocencia. She is part of the R-Ladies Global team, chair of several international conferences (user! 2021, LatinR, JAIIO), and an international keynote speaker. She also leads and participates in community translation of educational and technical material into Spanish, like Teaching Tech Together, R4DS, and The Carpentries Lessons.</p>
+<p><a href="https://yabellini.netlify.com/">yabellini.netlify.com</a></p>
+<p><strong>Pao Corrales</strong></p>
+<p><img src="img/pao_circle.png" alt="Foto de Pao" width="100" height="100" align="left" style="margin:10px"/> Paola Corrales, MS. She is a Ph.D. student at the University of Buenos Aires. She studies atmospheric sciences applying data assimilation techniques to improve short-term forecasts of severe events in Argentina. She is a trainer and instructor for The Carpentries and an RStudio certified instructor. She has also contributed to translations projects of Carpentries’ materials and the book Teaching Tech Together. She is part of Expedition Science, an Argentina-based NPO, where she leads educational projects such as science camps and workshops for students and K-12 science teachers. She is also on Expedition Science Board since 2013 and serves as its treasurer. She is a teacher assistant at the Atmosphere and Oceans Sciences at Buenos Aires University and a professor at the Data Sciences degree and postgraduate courses at Guillermo Brown University. She is co-founder and a Core Team member of MetaDocencia. She also develops openly licensed materials to teach and learn R from scratch.</p>
+<p><a href="https://github.com/paocorrales">paobcorrales.github.io</a> | <a href="https://twitter.com/PaobCorrales">@paobcorrales</a></p>
+<p>This course was developed by <a href="https://paocorrales.github.io/">Paola Corrales</a> and <a href="https://yabellini.netlify.app/">Yanina Bellini Saibene</a> as part of <a href="https://www.metadocencia.org/">MetaDocencia</a>.</p>
+<div id="license" class="section level4">
+<h4>License</h4>
+<p><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /> All materials in this course are under the license <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p>We are inspired and based on the following resources:</p>
+<ul>
+<li><p><a href="https://swcarpentry.github.io/r-novice-gapminder/">R for Reproducible Scientific Analysis</a> by The Carpentries</p></li>
+<li><p><a href="https://rstudio-conf-2020.github.io/r-for-excel/">R for Excel Users</a> by Dr. Julie Stewart Lowndes and Dr. Allison Horst</p></li>
+<li><p><a href="https://r4ds.had.co.nz/">R for Data Science</a> by Hadley Wickham</p></li>
+<li><p><a href="https://paocorrales.github.io/deExcelaR/">de Excel a R</a> by Paola Corrales and Elio Campitelli</p></li>
+<li><p><a href="https://silvia.rbind.io/talk/2020-08-31-tour-of-the-tidyverse/">An Antarctic Tour of the Tidyverse</a> by Silvia Canelón</p></li>
+</ul>
+<p>The source code for these materials and web page can be found at <a href="https://github.com/yabellini/fromSpreadSheetToR" class="uri">https://github.com/yabellini/fromSpreadSheetToR</a>.</p>
+</div>
 </div>
 
 
