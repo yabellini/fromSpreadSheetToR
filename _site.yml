@@ -19,7 +19,7 @@ navbar:
           href: 06-tables.html
   right:
     - text: Repo
-      href: https://https://github.com/yabellini/fromSpreadSheetToR/
+      href: https://github.com/yabellini/fromSpreadSheetToR
 output_dir: "docs"
 output:
   html_document:
