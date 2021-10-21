@@ -22,11 +22,11 @@ This is a tentative time table.
 
 |Duration (minutes) |Topics|
 |:---|----------|
-|55  | [Something](01_intro.html) |
+|55  | [Introduction, reports, workflows](01-introduction.html) |
 |5   | Break |
-|55  | [Something](03_graficado.html) |
+|55  | [reading and plotting](02-reading-data.html) |
 |5   | Break |
-|50  | [Something](04_calculos.html) |
+|50  | [data manipulation](03-data-manipulation.html) |
 |10 | Q&A and goodbay |
 
 ### Who are we? 
