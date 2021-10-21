@@ -3,10 +3,20 @@ navbar:
   left: 
     - text: Before we start
       href: prepare.html
-    - text: Temp
-      menu:
-        - text: temp
-          href: 01_intro.html
+    - text: Topics
+      menu: 
+        - text: Introduction
+          href: 01-introduction.html
+        - text: Reports
+          href: 02-reports.html
+        - text: Reading data
+          href: 03-reading-data.html
+        - text: Data manipulation
+          href: 04-dplyr.html
+        - text: Plots
+          href: 05-plots.html
+        - text: Tables style
+          href: 06-tables.html
   right:
     - text: Repo
       href: https://https://github.com/yabellini/fromSpreadSheetToR/
