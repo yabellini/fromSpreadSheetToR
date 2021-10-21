@@ -12,9 +12,9 @@ We'll provide a link to a pre-configured RStudio project during the workshop. Yo
 
 #### Installing R and RStudio
 
-To install R and RStudio you can follow these instructions or [these videos](ver link) by Danielle Navarro to install both software on your computer.
+To install R and RStudio you can follow these instructions or [these videos](https://www.youtube.com/playlist?list=PLRPB0ZzEYegOZivdelOuEn-R-XUN-DOjd by Danielle Navarro to install both software on your computer.
 
-When we can everything installed we'll ask you to install a few packages to work during the workshop. 
+When we have everything installed we'll ask you to install a few packages to work during the workshop. 
 
 1. Open RStudio
 2. On the console (the panel on the left) type the following commands

@@ -14,7 +14,7 @@ In each section we include exercises and challenges together with the examples, 
 
 ### Before we start
 
-During this workshop we will use R and RStudio. Please follow the instructions to prepare for the workshop.
+During this workshop we will use R and RStudio. Please [follow the instructions to prepare for the workshop](prepare.html).
 
 ### Schedule
 
@@ -33,7 +33,7 @@ This is a tentative time table.
 
 **Yanina Bellini Saibene**
 
-<img src="img/pao_circle.png" alt="Foto de Yani" width="100" height="100" align="left" style="margin:10px"/>
+<img src="img/yani_circle.png" alt="Foto de Yani" width="100" height="100" align="left" style="margin:10px"/>
 
 Yanina Bellini Saibene, MS. She is a tenured researcher at the National Institute of Agricultural Technology (INTA, Argentina). She applies computer and data science skills to bring technological developments to rural and underserved regions of Argentina. She coordinates the National Network of Agroecosystem Modeling at INTA. She also develops software to support research and education. She is a professor at undergraduate and graduate levels in several universities in Argentina and Uruguay, teaching applied Data Science and developed open courses and tutorials to teach technical skills in data management. She is a trainer and instructor for [The Carpentries](https://carpentries.org/) and an [RStudio](https://education.rstudio.com/trainers/people/bellini_saibene+yanina/) certified instructor. She has trained teachers since 1996 through the Federal Network of Continuous Teacher Training (National Ministry of Education, Argentina). She is co-founder and a Core Team member of [MetaDocencia](http://metadocencia.org/). She is part of the R-Ladies Global team, chair of several international conferences (user! 2021, LatinR, JAIIO), and an international keynote speaker. She also leads and participates in community translation of educational and technical material into Spanish, like Teaching Tech Together, R4DS, and The Carpentries Lessons. 
 
