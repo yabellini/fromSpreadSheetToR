@@ -1,5 +1,8 @@
 ---
 title: "Learner personas for the course"
+output:
+  html_document:
+    toc: false
 ---
 
 _from Spreadsheet to R_ is intended for people who usespreadsheeets (Excel, Google sheets) for data manipulation and analysis but would like to learn how to use R. In particular we are thinking of:

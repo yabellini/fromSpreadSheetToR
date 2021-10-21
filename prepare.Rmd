@@ -4,10 +4,26 @@ title: "Before we start"
 
 To participate on the workshop you can either install R (>4.0) and Rstudio (see instructions bellow) or use and instance of R at RStudio Cloud.
 
-## Using RStudio Cloud
+#### Using RStudio Cloud
 
 If you want to use RStudio Cloud you will need a free account. Go to [rstudio.cloud/](https://rstudio.cloud/) and follow de instructions. Keep in mind that the free account has a 15 hours per month restrictions and you don't want to use it all before the workshop.
 
-## Installing R and RStudio
+We'll provide a link to a pre-configured RStudio project during the workshop. You don't have to do anything else. 
+
+#### Installing R and RStudio
 
 To install R and RStudio you can follow these instructions or [these videos](ver link) by Danielle Navarro to install both software on your computer.
+
+When we can everything installed we'll ask you to install a few packages to work during the workshop. 
+
+1. Open RStudio
+2. On the console (the panel on the left) type the following commands
+
+```{r}
+install.packages("tidyverse")
+install.packages("palmerpenguins")
+```
+
+4. Go to File -> New File -> R Markdown. Click on "Ok" to create a new file. RStudio will ask your permission to install several packages. Go ahead and do it. 
+
+5. That's it. You can remove the file you just created.
