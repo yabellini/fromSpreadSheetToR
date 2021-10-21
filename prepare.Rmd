@@ -19,7 +19,7 @@ When we can everything installed we'll ask you to install a few packages to work
 1. Open RStudio
 2. On the console (the panel on the left) type the following commands
 
-```{r}
+```{r, eval=FALSE}
 install.packages("tidyverse")
 install.packages("palmerpenguins")
 ```
