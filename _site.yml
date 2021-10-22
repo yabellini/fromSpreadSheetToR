@@ -20,4 +20,4 @@ output:
     toc: true
     toc_float: true
     theme: flatly
-#    css: style.css
+    css: learnr_metadocencia.css
