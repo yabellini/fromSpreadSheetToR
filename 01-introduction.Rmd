@@ -23,6 +23,8 @@ We are going to use R as a language and RStudio as an IDE, a Integrated Developm
 
 To launch RStudio, double-click on the RStudio icon. Launching RStudio also launches R, and you will probably never open R by itself.
 
+> Agregar una captura de pantalla de RStudio y de RStudio Cloud
+
 Notice the default panes:
 
   * Console (entire left)
@@ -31,14 +33,22 @@ Notice the default panes:
 
 We won’t click through this all immediately but we will become familiar with more of the options and capabilities throughout the workshop.
 
-We are going to have our first experience with R through RMarkdown, so let’s see what an RMarkdown document is.  We prepare [this example report](penguins_report.Rmd) for you, please open in RStudio or in the RStudio Cloud.
+We are going to have our first experience with R through RMarkdown, so let’s see what an RMarkdown document is.  We prepare [this example report](penguins_report.Rmd) for you, please open in RStudio or in the RStudio Cloud.  A four panel will open with the file and the console panel will move to bottom left.
 
 ## RMarkdown
 
 An RMarkdown file is a plain text file, with some rules and sintaxis, that allow us to write code and text together, and when it is “knit,” the code will be evaluated and executed and the text formatted so that it creates a reproducible report or document that is nice to read as a human.
 
-This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word or Power Point or Google Slides, redoing the analysis, re-saving, re-pasting, etc.
+This is really critical to reproducibility, and it also saves time and can help with automation task. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word or Power Point or Google Slides, redoing the analysis, re-saving, re-pasting, etc.
 
 Now let’s see how our Penguin Reports looks like.
+
+* The top part has the Title and the output type as an HTML document.
+* There are _white_ and _grey_ sections. These are the two main languages that make up an RMarkdown file:
+      * Grey sections are R code
+      * White sections are Markdown text
+* There is black, blue text and green text.
+
+> Agregar una captura de pantalla del informe
 
 
