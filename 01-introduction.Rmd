@@ -51,4 +51,21 @@ Now let’s see how our Penguin Reports looks like.
 
 > Agregar una captura de pantalla del informe
 
+Let’s go ahead and “Knit” by clicking the blue yarn at the top of the RMarkdown file.  We’ve just made an html file. This is a single webpage that we are viewing locally on our own computers. Knitting this RMarkdown document has formatted the markdown text and run the R code.
 
+> Agregar captura de pantalla del rmarkdown compilado
+
+### Markdown text
+
+You can get a guide to rmarkdown [in this](add link) cheat sheet, but here is a minimum sintaxis we should know:
+
+* headers with # or ##
+* bold with **
+* italic with _
+
+### R Code
+
+R code it is writing inside chunks.  Each of them start with three backticks and {r label} that signify there will be R code following. The code finished with three backticks.
+
+
+> Acá les pedimos que cambien cosas y vuelvan a hacer knit??
