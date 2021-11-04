@@ -1,0 +1,18 @@
+---
+title: "Reading and plotting"
+# date: "01/11/2021"
+output: 
+  html_document:
+    code_download: true
+    toc: true
+    toc_float: false
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# About {palmerpenguins}
+- [{palmerpenguins} Documentation](https://allisonhorst.github.io/palmerpenguins/)
+- [Allison Horst's GitHub repo for Palmer Penguins dataset](https://github.com/allisonhorst/palmerpenguins)
