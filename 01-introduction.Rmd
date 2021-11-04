@@ -1,0 +1,44 @@
+---
+title: "Introducción"
+# date: "01/11/2021"
+output: 
+  html_document:
+    code_download: true
+    toc: true
+    toc_float: false
+    highlight: tango
+---
+
+## Why R?
+
+Spreadsheets are an admirable software. They are great for data entry, for viewing raw data and for making quick charts. If you have been using it for a long time, you must have learned a lot of tricks to get the most out of it, you must have learned to use formulas, pivot tables, and even macros. But surely you also suffered from its limitations. 
+
+In a spreadsheet there is no clear boundary between data and analysis. Overwriting data is a very real danger and complicated analyses are very hard to understand, especially if you open a spreadsheet put together by someone else (who may be you from the past). Also, repeating the analysis on different data or changing some parameter can become very cumbersome. 
+
+If what you need are frequent and automatic reports, and data analysis with many moving parts, it would be nice to be able to write a step-by-step recipe and have the computer run everything automatically every time you ask it to. To be able to do that, that step-by-step has to be written in a language that the computer can understand, that language is R.
+
+## How are we going to work?
+
+We are going to use R as a language and RStudio as an IDE, a Integrated Development Environment.  If you don't have these intalled on your computer don't worry, we have this [RStudio Cloud project]() for you to work.
+
+To launch RStudio, double-click on the RStudio icon. Launching RStudio also launches R, and you will probably never open R by itself.
+
+Notice the default panes:
+
+  * Console (entire left)
+  * Environment/History (tabbed in upper right)
+  * Files/Plots/Packages/Help (tabbed in lower right)
+
+We won’t click through this all immediately but we will become familiar with more of the options and capabilities throughout the workshop.
+
+We are going to have our first experience with R through RMarkdown, so let’s see what an RMarkdown document is.  We prepare [this example report](penguins_report.Rmd) for you, please open in RStudio or in the RStudio Cloud.
+
+## RMarkdown
+
+An RMarkdown file is a plain text file, with some rules and sintaxis, that allow us to write code and text together, and when it is “knit,” the code will be evaluated and executed and the text formatted so that it creates a reproducible report or document that is nice to read as a human.
+
+This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word or Power Point or Google Slides, redoing the analysis, re-saving, re-pasting, etc.
+
+Now let’s see how our Penguin Reports looks like.
+
+
