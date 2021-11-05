@@ -9,7 +9,45 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+
+library(tidyverse)
+penguins <- read_csv("data/penguins.csv")
 ```
 
-## About palmerpenguins
+## Creating summary tables
+
+In spreadsheet pivot tables or dinamic tables are powerful tools for summarizing data in different ways. We can create these tables using the `group_by` and `summarize` functions from the Tidyverse. 
+
+Let's take a look to our report, right after we read the data, we create a summary with the number of cases and the average body mass for each specie in our dataset.
+
+We can use `group_by()` to group our data by **species** and `summarize()` to calculate the number of cases and the average **body_mass_g** for each grouping.
+
+```{r}
+
+penguins %>% 
+  group_by(species) %>% 
+  summarise(count = n(),
+            mean_body_mass = mean(body_mass_g, na.rm = TRUE))
+
+```
+The function `n()` return the number of cases and the function `mean` calculate the average. The parameter `na.rm = TRUE` tells the function that remove the empty values, the `NA` values.
+
+
+> Question: What if you don’t group_by first? Let’s try it and discuss what’s going on.
+
+```{r}
+penguins %>% 
+  summarise(count = n(),
+            mean_body_mass = mean(body_mass_g, na.rm = TRUE))
+```
+
+So if we don’t group_by first, we will get a single summary statistic (n and mean in this case) for the whole dataset.
+
+
+
+We will also learn how to format tables
