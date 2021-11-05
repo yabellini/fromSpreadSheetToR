@@ -24,10 +24,11 @@ This is a tentative time table.
 |:---|----------|
 |55  | [Introduction, reports, workflows](01-introduction.html) |
 |5   | Break |
-|55  | [Reading and plotting](02-reading-data.html) |
+|55  | [Reading](02-reading-data.html) and [Plotting](03-plotting-data.html) |
 |5   | Break |
-|50  | [Data manipulation](03-data-manipulation.html) |
-|10 | Q&A and goodbay |
+|30  | [Data manipulation](04-data-manipulation.html) |
+|20  | [Reporting your work](05-reports.html) |
+|10 | Q&A and goodbye |
 
 ### Who are we? 
 
