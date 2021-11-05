@@ -47,7 +47,7 @@ x <-2 + 2
 
 That little arrow is the *assignation operator* and works as an `=`. Now, the results goes directly to the Environment and we won't see it on the console. 
 
-This is great when we are trying code to see if it works but we'll lose everything when we close RStudio. To save the code that generates your analysis and results we use R Scrits and RMarkdown files. 
+This is great when we are trying code to see if it works but we'll lose everything when we close RStudio. To save the code that generates your analysis and results we use R Scripts and RMarkdown files. 
 
 We are going to have our first experience with R through RMarkdown, so let’s see what an RMarkdown document is. We prepared [this example report](penguins_report.Rmd) for you, please open it on RStudio or in the RStudio Cloud.  A fourth panel will open with the file and the console panel will move to bottom left.
 
