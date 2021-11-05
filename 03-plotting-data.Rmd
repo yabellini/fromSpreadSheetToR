@@ -9,11 +9,14 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
 library(tidyverse)
 
-pinguins <- read_csv("data/penguins.csv")
+penguins <- read_csv("data/penguins.csv")
 ```
 
 Visualizing data is useful explore the data and identify the relationship between different variables but also to communicate the analysis of the data and results. The **ggplot2** package allows you to generate high quality plots in just a few steps. Any ggplot plot will have at least 3 components: the **data**, a **coordinate system** and a **geometry** (the visual representation of the data) and will be built in layers.
