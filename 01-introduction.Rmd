@@ -18,7 +18,7 @@ If what you need are frequent and automatic reports, and data analysis with many
 
 ## How are we going to work?
 
-We are going to use R as a language and RStudio as an IDE, a Integrated Development Environment. If you don't have these installed on your computer don't worry, we have this [RStudio Cloud project]() for you to work.
+We are going to use R as a language and RStudio as an IDE, a Integrated Development Environment. If you don't have these installed on your computer don't worry, we have this [RStudio Cloud project](https://rstudio.cloud/project/3174865) for you to work.
 
 To launch RStudio, double-click on the RStudio icon. Launching RStudio also launches R, actually you will probably never open R by itself.
 
