@@ -19,9 +19,9 @@ If what you need are frequent and automatic reports, and data analysis with many
 
 ## How are we going to work?
 
-We are going to use R as a language and RStudio as an IDE, a Integrated Development Environment.  If you don't have these intalled on your computer don't worry, we have this [RStudio Cloud project]() for you to work.
+We are going to use R as a language and RStudio as an IDE, a Integrated Development Environment. If you don't have these installed on your computer don't worry, we have this [RStudio Cloud project]() for you to work.
 
-To launch RStudio, double-click on the RStudio icon. Launching RStudio also launches R, and you will probably never open R by itself.
+To launch RStudio, double-click on the RStudio icon. Launching RStudio also launches R, actually you will probably never open R by itself.
 
 > Agregar una captura de pantalla de RStudio y de RStudio Cloud
 
@@ -33,39 +33,60 @@ Notice the default panes:
 
 We won’t click through this all immediately but we will become familiar with more of the options and capabilities throughout the workshop.
 
-We are going to have our first experience with R through RMarkdown, so let’s see what an RMarkdown document is.  We prepare [this example report](penguins_report.Rmd) for you, please open in RStudio or in the RStudio Cloud.  A four panel will open with the file and the console panel will move to bottom left.
+We could write code, that is, instructions to be executed by R on the Console. For example we could calculate `2+2`.
+
+```{r}
+2 + 2
+```
+
+The results appears next. We could also save that result to an object, in this case called `x`.
+
+```{r}
+x <-2 + 2 
+```
+
+That little arrow is the *assignation operator* and works as an `=`. Now, the results goes directly to the Environment and we won't see it on the console. 
+
+This is great when we are trying code to see if it works but we'll lose everything when we close RStudio. To save the code that generates your analysis and results we use R Scripts and RMarkdown files. 
+
+We are going to have our first experience with R through RMarkdown, so let’s see what an RMarkdown document is. We prepared [this example report](penguins_report.Rmd) for you, please open it on RStudio or in the RStudio Cloud.  A fourth panel will open with the file and the console panel will move to bottom left.
 
 ## RMarkdown
 
-An RMarkdown file is a plain text file, with some rules and sintaxis, that allow us to write code and text together, and when it is “knit,” the code will be evaluated and executed and the text formatted so that it creates a reproducible report or document that is nice to read as a human.
+An RMarkdown file is a plain text file, with some rules and sintaxis, that allow us to write code and text together. When it is “knited,” the code will be evaluated and executed and the text formatted so that it creates a reproducible report or document that is nice to read and contains all your work.
 
-This is really critical to reproducibility, and it also saves time and can help with automation task. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word or Power Point or Google Slides, redoing the analysis, re-saving, re-pasting, etc.
+This is really critical to reproducibility. It also saves us time and can help with automation task. This document will recreate your figures for you in the same document where you are writing the text that explain them. So no more doing analysis, saving a plot, pasting that plot into Word or Power Point or Google Slides, redoing the analysis, re-saving, re-pasting, etc.
 
-Now let’s see how our Penguin Reports looks like.
+Now let’s see how our Penguins Reports looks like.
 
 * The top part has the Title and the output type as an HTML document.
-* There are _white_ and _grey_ sections. These are the two main languages that make up an RMarkdown file:
+* There are _white_ and _grey_ sections. These are the two main sections that make up an RMarkdown file:
       * Grey sections are R code
       * White sections are Markdown text
 * There is black, blue text and green text.
 
 > Agregar una captura de pantalla del informe
 
-Let’s go ahead and “Knit” by clicking the blue yarn at the top of the RMarkdown file.  We’ve just made an html file. This is a single webpage that we are viewing locally on our own computers. Knitting this RMarkdown document has formatted the markdown text and run the R code.
+> Let’s go ahead and “Knit” the document by clicking the blue yarn at the top of the RMarkdown file.  
+
+We’ve just made an html file. This is a single webpage that we are viewing locally on our own computers. By knitting this RMarkdown document, R has formatted the markdown text and run the R code.
 
 > Agregar captura de pantalla del rmarkdown compilado
 
 ### Markdown text
 
-You can get a guide to rmarkdown [in this](add link) cheat sheet, but here is a minimum sintaxis we should know:
+You can get a guide to rmarkdown [in this](add link) cheat sheet, but here is a minimum sintaxis to get you started:
 
-* headers with # or ##
-* bold with **
-* italic with _
+* headers starts with # or ## and so on. 
+* bold words are formatted with **
+* and italics with _
 
 ### R Code
 
-R code it is writing inside chunks.  Each of them start with three backticks and {r label} that signify there will be R code following. The code finished with three backticks.
+The R code it is writing inside code chunks. Each of them start with three backticks and `{r label}` that signify there will be R code following. The chunk finished with three more backticks.
 
+The report shows information about the Gentoo penguins but we could change a few code lines to see the same analysis for the other two species, Adelie and Chinstrap.
 
-> Acá les pedimos que cambien cosas y vuelvan a hacer knit??
+> Now is your turne. Go ahead and look at the code, if you find any mention of "gentoo"  change it for one of the other species. 
+
+This task is a bit cumbersome i you have to change many things any time we want to re-run the analysis for different species. But don't worry, we'll learn how to make everything more automatic by the end of the workshop. 
