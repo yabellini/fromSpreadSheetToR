@@ -23,6 +23,8 @@ jobs:
           install.packages("remotes")
           remotes::install_cran("rmarkdown")
           remotes::install_cran("knitr")
+          remotes::install_cran("tidyverse")
+          remotes::install_cran("readxl")
         shell: Rscript {0}
      
       - name: Build site
