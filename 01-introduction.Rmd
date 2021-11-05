@@ -68,14 +68,11 @@ Now let’s see how our Penguins Reports looks like.
       * White sections are Markdown text
 * There is black, blue text and green text.
 
-<img src="img/markdown-knit.png" alt="Rmarkdown in the left. Knit document on the rigth" width="100" height="100" align="left" style="margin:10px"/>
-
-
 > Let’s go ahead and “Knit” the document by clicking the blue yarn at the top of the RMarkdown file.  
 
 We’ve just made an html file. This is a single webpage that we are viewing locally on our own computers. By knitting this RMarkdown document, R has formatted the markdown text and run the R code.
 
-> Agregar captura de pantalla del rmarkdown compilado
+<img src="img/markdown-knit.png" alt="Rmarkdown in the left. Knit document on the rigth" width="100" height="100" align="left" style="margin:10px"/>
 
 ### Markdown text
 
