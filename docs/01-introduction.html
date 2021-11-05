@@ -11,9 +11,10 @@
 
 
 
-<title>Introducción</title>
+<title>Introduction and Reports</title>
 
-<script src="site_libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -31,7 +32,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -43,6 +43,100 @@
     </style>
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -254,12 +348,21 @@ $(document).ready(function () {
       <a href="01-introduction.html">Introduction and Reports</a>
     </li>
     <li>
-      <a href="02-reading-data.html">Reading and plotting data</a>
+      <a href="02-reading-data.html">Reading Data</a>
     </li>
     <li>
-      <a href="03-data-manipulation.html">Data manipulation</a>
+      <a href="03-plotting-data.html">Plotting Data</a>
+    </li>
+    <li>
+      <a href="04-data-manipulation.html">Data manipulation</a>
+    </li>
+    <li>
+      <a href="05-reports.html">Reporting your work</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="penguins_report.html">Example</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -282,7 +385,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Introducción</h1>
+<h1 class="title toc-ignore">Introduction and Reports</h1>
 
 </div>
 
@@ -290,7 +393,8 @@ $(document).ready(function () {
 <ul>
 <li><a href="#why-r">Why R?</a></li>
 <li><a href="#how-are-we-going-to-work">How are we going to work?</a></li>
-<li><a href="#rmarkdown">RMarkdown</a><ul>
+<li><a href="#rmarkdown">RMarkdown</a>
+<ul>
 <li><a href="#markdown-text">Markdown text</a></li>
 <li><a href="#r-code">R Code</a></li>
 </ul></li>
@@ -305,11 +409,10 @@ $(document).ready(function () {
 </div>
 <div id="how-are-we-going-to-work" class="section level2">
 <h2>How are we going to work?</h2>
-<p>We are going to use R as a language and RStudio as an IDE, a Integrated Development Environment. If you don’t have these intalled on your computer don’t worry, we have this <a href="">RStudio Cloud project</a> for you to work.</p>
-<p>To launch RStudio, double-click on the RStudio icon. Launching RStudio also launches R, and you will probably never open R by itself.</p>
-<blockquote>
-<p>Agregar una captura de pantalla de RStudio y de RStudio Cloud</p>
-</blockquote>
+<p>We are going to use R as a language and RStudio as an IDE, a Integrated Development Environment. If you don’t have these installed on your computer don’t worry, we have this <a href="">RStudio Cloud project</a> for you to work.</p>
+<p>To launch RStudio, double-click on the RStudio icon. Launching RStudio also launches R, actually you will probably never open R by itself.</p>
+<p><img src="img/rstudio-principal.png" alt="RStudio main screen. Console, enviroment and Files panels" width="100" height="100" align="left" style="margin:10px"/></p>
+<p><img src="img/rstudio-cloud-principal.png" alt="RStudio Cloud main screen. Console, enviroment and Files panels" width="100" height="100" align="left" style="margin:10px"/></p>
 <p>Notice the default panes:</p>
 <ul>
 <li>Console (entire left)</li>
@@ -317,44 +420,51 @@ $(document).ready(function () {
 <li>Files/Plots/Packages/Help (tabbed in lower right)</li>
 </ul>
 <p>We won’t click through this all immediately but we will become familiar with more of the options and capabilities throughout the workshop.</p>
-<p>We are going to have our first experience with R through RMarkdown, so let’s see what an RMarkdown document is. We prepare <a href="penguins_report.Rmd">this example report</a> for you, please open in RStudio or in the RStudio Cloud. A four panel will open with the file and the console panel will move to bottom left.</p>
+<p>We could write code, that is, instructions to be executed by R on the Console. For example we could calculate <code>2+2</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>The results appears next. We could also save that result to an object, in this case called <code>x</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> </span></code></pre></div>
+<p>That little arrow is the <em>assignation operator</em> and works as an <code>=</code>. Now, the results goes directly to the Environment and we won’t see it on the console.</p>
+<p>This is great when we are trying code to see if it works but we’ll lose everything when we close RStudio. To save the code that generates your analysis and results we use R Scripts and RMarkdown files.</p>
+<p>We are going to have our first experience with R through RMarkdown, so let’s see what an RMarkdown document is. We prepared <a href="penguins_report.Rmd">this example report</a> for you, please open it on RStudio or in the RStudio Cloud. A fourth panel will open with the file and the console panel will move to bottom left.</p>
 </div>
 <div id="rmarkdown" class="section level2">
 <h2>RMarkdown</h2>
-<p>An RMarkdown file is a plain text file, with some rules and sintaxis, that allow us to write code and text together, and when it is “knit,” the code will be evaluated and executed and the text formatted so that it creates a reproducible report or document that is nice to read as a human.</p>
-<p>This is really critical to reproducibility, and it also saves time and can help with automation task. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word or Power Point or Google Slides, redoing the analysis, re-saving, re-pasting, etc.</p>
-<p>Now let’s see how our Penguin Reports looks like.</p>
+<p>An RMarkdown file is a plain text file, with some rules and sintaxis, that allow us to write code and text together. When it is “knited,” the code will be evaluated and executed and the text formatted so that it creates a reproducible report or document that is nice to read and contains all your work.</p>
+<p>This is really critical to reproducibility. It also saves us time and can help with automation task. This document will recreate your figures for you in the same document where you are writing the text that explain them. So no more doing analysis, saving a plot, pasting that plot into Word or Power Point or Google Slides, redoing the analysis, re-saving, re-pasting, etc.</p>
+<p>Now let’s see how our Penguins Reports looks like.</p>
 <ul>
 <li>The top part has the Title and the output type as an HTML document.</li>
-<li>There are <em>white</em> and <em>grey</em> sections. These are the two main languages that make up an RMarkdown file: * Grey sections are R code * White sections are Markdown text</li>
+<li>There are <em>white</em> and <em>grey</em> sections. These are the two main sections that make up an RMarkdown file: * Grey sections are R code * White sections are Markdown text</li>
 <li>There is black, blue text and green text.</li>
 </ul>
 <blockquote>
-<p>Agregar una captura de pantalla del informe</p>
+<p>Let’s go ahead and “Knit” the document by clicking the blue yarn at the top of the RMarkdown file.</p>
 </blockquote>
-<p>Let’s go ahead and “Knit” by clicking the blue yarn at the top of the RMarkdown file. We’ve just made an html file. This is a single webpage that we are viewing locally on our own computers. Knitting this RMarkdown document has formatted the markdown text and run the R code.</p>
-<blockquote>
-<p>Agregar captura de pantalla del rmarkdown compilado</p>
-</blockquote>
+<p>We’ve just made an html file. This is a single webpage that we are viewing locally on our own computers. By knitting this RMarkdown document, R has formatted the markdown text and run the R code.</p>
+<p><img src="img/markdown-knit.png" alt="Rmarkdown in the left. Knit document on the rigth" width="100" height="100" align="left" style="margin:10px"/></p>
 <div id="markdown-text" class="section level3">
 <h3>Markdown text</h3>
-<p>You can get a guide to rmarkdown <a href="add%20link">in this</a> cheat sheet, but here is a minimum sintaxis we should know:</p>
+<p>You can get a guide to rmarkdown <a href="add%20link">in this</a> cheat sheet, but here is a minimum sintaxis to get you started:</p>
 <ul>
-<li>headers with # or ##</li>
-<li>bold with **</li>
-<li>italic with _</li>
+<li>headers starts with # or ## and so on.</li>
+<li>bold words are formatted with **</li>
+<li>and italics with _</li>
 </ul>
 </div>
 <div id="r-code" class="section level3">
 <h3>R Code</h3>
-<p>R code it is writing inside chunks. Each of them start with three backticks and {r label} that signify there will be R code following. The code finished with three backticks.</p>
+<p>The R code it is writing inside code chunks. Each of them start with three backticks and <code>{r label}</code> that signify there will be R code following. The chunk finished with three more backticks.</p>
+<p>The report shows information about the Gentoo penguins but we could change a few code lines to see the same analysis for the other two species, Adelie and Chinstrap.</p>
 <blockquote>
-<p>Acá les pedimos que cambien cosas y vuelvan a hacer knit??</p>
+<p>Now is your turn. Go ahead and look at the code, if you find any mention of “gentoo” change it for one of the other species.</p>
 </blockquote>
+<p>This task is a bit cumbersome i you have to change many things any time we want to re-run the analysis for different species. But don’t worry, we’ll learn how to make everything more automatic by the end of the workshop.</p>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkludHJvZHVjY2nDs24iDQojIGRhdGU6ICIwMS8xMS8yMDIxIg0Kb3V0cHV0OiANCiAgaHRtbF9kb2N1bWVudDoNCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlDQogICAgdG9jOiB0cnVlDQogICAgdG9jX2Zsb2F0OiBmYWxzZQ0KICAgIGhpZ2hsaWdodDogdGFuZ28NCi0tLQ0KDQojIyBXaHkgUj8NCg0KU3ByZWFkc2hlZXRzIGFyZSBhbiBhZG1pcmFibGUgc29mdHdhcmUuIFRoZXkgYXJlIGdyZWF0IGZvciBkYXRhIGVudHJ5LCBmb3Igdmlld2luZyByYXcgZGF0YSBhbmQgZm9yIG1ha2luZyBxdWljayBjaGFydHMuIElmIHlvdSBoYXZlIGJlZW4gdXNpbmcgaXQgZm9yIGEgbG9uZyB0aW1lLCB5b3UgbXVzdCBoYXZlIGxlYXJuZWQgYSBsb3Qgb2YgdHJpY2tzIHRvIGdldCB0aGUgbW9zdCBvdXQgb2YgaXQsIHlvdSBtdXN0IGhhdmUgbGVhcm5lZCB0byB1c2UgZm9ybXVsYXMsIHBpdm90IHRhYmxlcywgYW5kIGV2ZW4gbWFjcm9zLiBCdXQgc3VyZWx5IHlvdSBhbHNvIHN1ZmZlcmVkIGZyb20gaXRzIGxpbWl0YXRpb25zLiANCg0KSW4gYSBzcHJlYWRzaGVldCB0aGVyZSBpcyBubyBjbGVhciBib3VuZGFyeSBiZXR3ZWVuIGRhdGEgYW5kIGFuYWx5c2lzLiBPdmVyd3JpdGluZyBkYXRhIGlzIGEgdmVyeSByZWFsIGRhbmdlciBhbmQgY29tcGxpY2F0ZWQgYW5hbHlzZXMgYXJlIHZlcnkgaGFyZCB0byB1bmRlcnN0YW5kLCBlc3BlY2lhbGx5IGlmIHlvdSBvcGVuIGEgc3ByZWFkc2hlZXQgcHV0IHRvZ2V0aGVyIGJ5IHNvbWVvbmUgZWxzZSAod2hvIG1heSBiZSB5b3UgZnJvbSB0aGUgcGFzdCkuIEFsc28sIHJlcGVhdGluZyB0aGUgYW5hbHlzaXMgb24gZGlmZmVyZW50IGRhdGEgb3IgY2hhbmdpbmcgc29tZSBwYXJhbWV0ZXIgY2FuIGJlY29tZSB2ZXJ5IGN1bWJlcnNvbWUuIA0KDQpJZiB3aGF0IHlvdSBuZWVkIGFyZSBmcmVxdWVudCBhbmQgYXV0b21hdGljIHJlcG9ydHMsIGFuZCBkYXRhIGFuYWx5c2lzIHdpdGggbWFueSBtb3ZpbmcgcGFydHMsIGl0IHdvdWxkIGJlIG5pY2UgdG8gYmUgYWJsZSB0byB3cml0ZSBhIHN0ZXAtYnktc3RlcCByZWNpcGUgYW5kIGhhdmUgdGhlIGNvbXB1dGVyIHJ1biBldmVyeXRoaW5nIGF1dG9tYXRpY2FsbHkgZXZlcnkgdGltZSB5b3UgYXNrIGl0IHRvLiBUbyBiZSBhYmxlIHRvIGRvIHRoYXQsIHRoYXQgc3RlcC1ieS1zdGVwIGhhcyB0byBiZSB3cml0dGVuIGluIGEgbGFuZ3VhZ2UgdGhhdCB0aGUgY29tcHV0ZXIgY2FuIHVuZGVyc3RhbmQsIHRoYXQgbGFuZ3VhZ2UgaXMgUi4NCg0KIyMgSG93IGFyZSB3ZSBnb2luZyB0byB3b3JrPw0KDQpXZSBhcmUgZ29pbmcgdG8gdXNlIFIgYXMgYSBsYW5ndWFnZSBhbmQgUlN0dWRpbyBhcyBhbiBJREUsIGEgSW50ZWdyYXRlZCBEZXZlbG9wbWVudCBFbnZpcm9ubWVudC4gIElmIHlvdSBkb24ndCBoYXZlIHRoZXNlIGludGFsbGVkIG9uIHlvdXIgY29tcHV0ZXIgZG9uJ3Qgd29ycnksIHdlIGhhdmUgdGhpcyBbUlN0dWRpbyBDbG91ZCBwcm9qZWN0XSgpIGZvciB5b3UgdG8gd29yay4NCg0KVG8gbGF1bmNoIFJTdHVkaW8sIGRvdWJsZS1jbGljayBvbiB0aGUgUlN0dWRpbyBpY29uLiBMYXVuY2hpbmcgUlN0dWRpbyBhbHNvIGxhdW5jaGVzIFIsIGFuZCB5b3Ugd2lsbCBwcm9iYWJseSBuZXZlciBvcGVuIFIgYnkgaXRzZWxmLg0KDQo+IEFncmVnYXIgdW5hIGNhcHR1cmEgZGUgcGFudGFsbGEgZGUgUlN0dWRpbyB5IGRlIFJTdHVkaW8gQ2xvdWQNCg0KTm90aWNlIHRoZSBkZWZhdWx0IHBhbmVzOg0KDQogICogQ29uc29sZSAoZW50aXJlIGxlZnQpDQogICogRW52aXJvbm1lbnQvSGlzdG9yeSAodGFiYmVkIGluIHVwcGVyIHJpZ2h0KQ0KICAqIEZpbGVzL1Bsb3RzL1BhY2thZ2VzL0hlbHAgKHRhYmJlZCBpbiBsb3dlciByaWdodCkNCg0KV2Ugd29u4oCZdCBjbGljayB0aHJvdWdoIHRoaXMgYWxsIGltbWVkaWF0ZWx5IGJ1dCB3ZSB3aWxsIGJlY29tZSBmYW1pbGlhciB3aXRoIG1vcmUgb2YgdGhlIG9wdGlvbnMgYW5kIGNhcGFiaWxpdGllcyB0aHJvdWdob3V0IHRoZSB3b3Jrc2hvcC4NCg0KV2UgYXJlIGdvaW5nIHRvIGhhdmUgb3VyIGZpcnN0IGV4cGVyaWVuY2Ugd2l0aCBSIHRocm91Z2ggUk1hcmtkb3duLCBzbyBsZXTigJlzIHNlZSB3aGF0IGFuIFJNYXJrZG93biBkb2N1bWVudCBpcy4gIFdlIHByZXBhcmUgW3RoaXMgZXhhbXBsZSByZXBvcnRdKHBlbmd1aW5zX3JlcG9ydC5SbWQpIGZvciB5b3UsIHBsZWFzZSBvcGVuIGluIFJTdHVkaW8gb3IgaW4gdGhlIFJTdHVkaW8gQ2xvdWQuICBBIGZvdXIgcGFuZWwgd2lsbCBvcGVuIHdpdGggdGhlIGZpbGUgYW5kIHRoZSBjb25zb2xlIHBhbmVsIHdpbGwgbW92ZSB0byBib3R0b20gbGVmdC4NCg0KIyMgUk1hcmtkb3duDQoNCkFuIFJNYXJrZG93biBmaWxlIGlzIGEgcGxhaW4gdGV4dCBmaWxlLCB3aXRoIHNvbWUgcnVsZXMgYW5kIHNpbnRheGlzLCB0aGF0IGFsbG93IHVzIHRvIHdyaXRlIGNvZGUgYW5kIHRleHQgdG9nZXRoZXIsIGFuZCB3aGVuIGl0IGlzIOKAnGtuaXQs4oCdIHRoZSBjb2RlIHdpbGwgYmUgZXZhbHVhdGVkIGFuZCBleGVjdXRlZCBhbmQgdGhlIHRleHQgZm9ybWF0dGVkIHNvIHRoYXQgaXQgY3JlYXRlcyBhIHJlcHJvZHVjaWJsZSByZXBvcnQgb3IgZG9jdW1lbnQgdGhhdCBpcyBuaWNlIHRvIHJlYWQgYXMgYSBodW1hbi4NCg0KVGhpcyBpcyByZWFsbHkgY3JpdGljYWwgdG8gcmVwcm9kdWNpYmlsaXR5LCBhbmQgaXQgYWxzbyBzYXZlcyB0aW1lIGFuZCBjYW4gaGVscCB3aXRoIGF1dG9tYXRpb24gdGFzay4gVGhpcyBkb2N1bWVudCB3aWxsIHJlY3JlYXRlIHlvdXIgZmlndXJlcyBmb3IgeW91IGluIHRoZSBzYW1lIGRvY3VtZW50IHdoZXJlIHlvdSBhcmUgd3JpdGluZyB0ZXh0LiBTbyBubyBtb3JlIGRvaW5nIGFuYWx5c2lzLCBzYXZpbmcgYSBwbG90LCBwYXN0aW5nIHRoYXQgcGxvdCBpbnRvIFdvcmQgb3IgUG93ZXIgUG9pbnQgb3IgR29vZ2xlIFNsaWRlcywgcmVkb2luZyB0aGUgYW5hbHlzaXMsIHJlLXNhdmluZywgcmUtcGFzdGluZywgZXRjLg0KDQpOb3cgbGV04oCZcyBzZWUgaG93IG91ciBQZW5ndWluIFJlcG9ydHMgbG9va3MgbGlrZS4NCg0KKiBUaGUgdG9wIHBhcnQgaGFzIHRoZSBUaXRsZSBhbmQgdGhlIG91dHB1dCB0eXBlIGFzIGFuIEhUTUwgZG9jdW1lbnQuDQoqIFRoZXJlIGFyZSBfd2hpdGVfIGFuZCBfZ3JleV8gc2VjdGlvbnMuIFRoZXNlIGFyZSB0aGUgdHdvIG1haW4gbGFuZ3VhZ2VzIHRoYXQgbWFrZSB1cCBhbiBSTWFya2Rvd24gZmlsZToNCiAgICAgICogR3JleSBzZWN0aW9ucyBhcmUgUiBjb2RlDQogICAgICAqIFdoaXRlIHNlY3Rpb25zIGFyZSBNYXJrZG93biB0ZXh0DQoqIFRoZXJlIGlzIGJsYWNrLCBibHVlIHRleHQgYW5kIGdyZWVuIHRleHQuDQoNCj4gQWdyZWdhciB1bmEgY2FwdHVyYSBkZSBwYW50YWxsYSBkZWwgaW5mb3JtZQ0KDQpMZXTigJlzIGdvIGFoZWFkIGFuZCDigJxLbml04oCdIGJ5IGNsaWNraW5nIHRoZSBibHVlIHlhcm4gYXQgdGhlIHRvcCBvZiB0aGUgUk1hcmtkb3duIGZpbGUuICBXZeKAmXZlIGp1c3QgbWFkZSBhbiBodG1sIGZpbGUuIFRoaXMgaXMgYSBzaW5nbGUgd2VicGFnZSB0aGF0IHdlIGFyZSB2aWV3aW5nIGxvY2FsbHkgb24gb3VyIG93biBjb21wdXRlcnMuIEtuaXR0aW5nIHRoaXMgUk1hcmtkb3duIGRvY3VtZW50IGhhcyBmb3JtYXR0ZWQgdGhlIG1hcmtkb3duIHRleHQgYW5kIHJ1biB0aGUgUiBjb2RlLg0KDQo+IEFncmVnYXIgY2FwdHVyYSBkZSBwYW50YWxsYSBkZWwgcm1hcmtkb3duIGNvbXBpbGFkbw0KDQojIyMgTWFya2Rvd24gdGV4dA0KDQpZb3UgY2FuIGdldCBhIGd1aWRlIHRvIHJtYXJrZG93biBbaW4gdGhpc10oYWRkIGxpbmspIGNoZWF0IHNoZWV0LCBidXQgaGVyZSBpcyBhIG1pbmltdW0gc2ludGF4aXMgd2Ugc2hvdWxkIGtub3c6DQoNCiogaGVhZGVycyB3aXRoICMgb3IgIyMNCiogYm9sZCB3aXRoICoqDQoqIGl0YWxpYyB3aXRoIF8NCg0KIyMjIFIgQ29kZQ0KDQpSIGNvZGUgaXQgaXMgd3JpdGluZyBpbnNpZGUgY2h1bmtzLiAgRWFjaCBvZiB0aGVtIHN0YXJ0IHdpdGggdGhyZWUgYmFja3RpY2tzIGFuZCB7ciBsYWJlbH0gdGhhdCBzaWduaWZ5IHRoZXJlIHdpbGwgYmUgUiBjb2RlIGZvbGxvd2luZy4gVGhlIGNvZGUgZmluaXNoZWQgd2l0aCB0aHJlZSBiYWNrdGlja3MuDQoNCg0KPiBBY8OhIGxlcyBwZWRpbW9zIHF1ZSBjYW1iaWVuIGNvc2FzIHkgdnVlbHZhbiBhIGhhY2VyIGtuaXQ/Pw0K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW50cm9kdWN0aW9uIGFuZCBSZXBvcnRzIgpvdXRwdXQ6IAogIGh0bWxfZG9jdW1lbnQ6CiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlCiAgICB0b2M6IHRydWUKICAgIHRvY19mbG9hdDogZmFsc2UKICAgIGhpZ2hsaWdodDogdGFuZ28KLS0tCgojIyBXaHkgUj8KClNwcmVhZHNoZWV0cyBhcmUgYW4gYWRtaXJhYmxlIHNvZnR3YXJlLiBUaGV5IGFyZSBncmVhdCBmb3IgZGF0YSBlbnRyeSwgZm9yIHZpZXdpbmcgcmF3IGRhdGEgYW5kIGZvciBtYWtpbmcgcXVpY2sgY2hhcnRzLiBJZiB5b3UgaGF2ZSBiZWVuIHVzaW5nIGl0IGZvciBhIGxvbmcgdGltZSwgeW91IG11c3QgaGF2ZSBsZWFybmVkIGEgbG90IG9mIHRyaWNrcyB0byBnZXQgdGhlIG1vc3Qgb3V0IG9mIGl0LCB5b3UgbXVzdCBoYXZlIGxlYXJuZWQgdG8gdXNlIGZvcm11bGFzLCBwaXZvdCB0YWJsZXMsIGFuZCBldmVuIG1hY3Jvcy4gQnV0IHN1cmVseSB5b3UgYWxzbyBzdWZmZXJlZCBmcm9tIGl0cyBsaW1pdGF0aW9ucy4gCgpJbiBhIHNwcmVhZHNoZWV0IHRoZXJlIGlzIG5vIGNsZWFyIGJvdW5kYXJ5IGJldHdlZW4gZGF0YSBhbmQgYW5hbHlzaXMuIE92ZXJ3cml0aW5nIGRhdGEgaXMgYSB2ZXJ5IHJlYWwgZGFuZ2VyIGFuZCBjb21wbGljYXRlZCBhbmFseXNlcyBhcmUgdmVyeSBoYXJkIHRvIHVuZGVyc3RhbmQsIGVzcGVjaWFsbHkgaWYgeW91IG9wZW4gYSBzcHJlYWRzaGVldCBwdXQgdG9nZXRoZXIgYnkgc29tZW9uZSBlbHNlICh3aG8gbWF5IGJlIHlvdSBmcm9tIHRoZSBwYXN0KS4gQWxzbywgcmVwZWF0aW5nIHRoZSBhbmFseXNpcyBvbiBkaWZmZXJlbnQgZGF0YSBvciBjaGFuZ2luZyBzb21lIHBhcmFtZXRlciBjYW4gYmVjb21lIHZlcnkgY3VtYmVyc29tZS4gCgpJZiB3aGF0IHlvdSBuZWVkIGFyZSBmcmVxdWVudCBhbmQgYXV0b21hdGljIHJlcG9ydHMsIGFuZCBkYXRhIGFuYWx5c2lzIHdpdGggbWFueSBtb3ZpbmcgcGFydHMsIGl0IHdvdWxkIGJlIG5pY2UgdG8gYmUgYWJsZSB0byB3cml0ZSBhIHN0ZXAtYnktc3RlcCByZWNpcGUgYW5kIGhhdmUgdGhlIGNvbXB1dGVyIHJ1biBldmVyeXRoaW5nIGF1dG9tYXRpY2FsbHkgZXZlcnkgdGltZSB5b3UgYXNrIGl0IHRvLiBUbyBiZSBhYmxlIHRvIGRvIHRoYXQsIHRoYXQgc3RlcC1ieS1zdGVwIGhhcyB0byBiZSB3cml0dGVuIGluIGEgbGFuZ3VhZ2UgdGhhdCB0aGUgY29tcHV0ZXIgY2FuIHVuZGVyc3RhbmQsIHRoYXQgbGFuZ3VhZ2UgaXMgUi4KCiMjIEhvdyBhcmUgd2UgZ29pbmcgdG8gd29yaz8KCldlIGFyZSBnb2luZyB0byB1c2UgUiBhcyBhIGxhbmd1YWdlIGFuZCBSU3R1ZGlvIGFzIGFuIElERSwgYSBJbnRlZ3JhdGVkIERldmVsb3BtZW50IEVudmlyb25tZW50LiBJZiB5b3UgZG9uJ3QgaGF2ZSB0aGVzZSBpbnN0YWxsZWQgb24geW91ciBjb21wdXRlciBkb24ndCB3b3JyeSwgd2UgaGF2ZSB0aGlzIFtSU3R1ZGlvIENsb3VkIHByb2plY3RdKCkgZm9yIHlvdSB0byB3b3JrLgoKVG8gbGF1bmNoIFJTdHVkaW8sIGRvdWJsZS1jbGljayBvbiB0aGUgUlN0dWRpbyBpY29uLiBMYXVuY2hpbmcgUlN0dWRpbyBhbHNvIGxhdW5jaGVzIFIsIGFjdHVhbGx5IHlvdSB3aWxsIHByb2JhYmx5IG5ldmVyIG9wZW4gUiBieSBpdHNlbGYuCgoKPGltZyBzcmM9ImltZy9yc3R1ZGlvLXByaW5jaXBhbC5wbmciIGFsdD0iUlN0dWRpbyBtYWluIHNjcmVlbi4gQ29uc29sZSwgZW52aXJvbWVudCBhbmQgRmlsZXMgcGFuZWxzIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgYWxpZ249ImxlZnQiIHN0eWxlPSJtYXJnaW46MTBweCIvPgoKPGltZyBzcmM9ImltZy9yc3R1ZGlvLWNsb3VkLXByaW5jaXBhbC5wbmciIGFsdD0iUlN0dWRpbyBDbG91ZCBtYWluIHNjcmVlbi4gQ29uc29sZSwgZW52aXJvbWVudCBhbmQgRmlsZXMgcGFuZWxzIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgYWxpZ249ImxlZnQiIHN0eWxlPSJtYXJnaW46MTBweCIvPgoKTm90aWNlIHRoZSBkZWZhdWx0IHBhbmVzOgoKICAqIENvbnNvbGUgKGVudGlyZSBsZWZ0KQogICogRW52aXJvbm1lbnQvSGlzdG9yeSAodGFiYmVkIGluIHVwcGVyIHJpZ2h0KQogICogRmlsZXMvUGxvdHMvUGFja2FnZXMvSGVscCAodGFiYmVkIGluIGxvd2VyIHJpZ2h0KQoKV2Ugd29u4oCZdCBjbGljayB0aHJvdWdoIHRoaXMgYWxsIGltbWVkaWF0ZWx5IGJ1dCB3ZSB3aWxsIGJlY29tZSBmYW1pbGlhciB3aXRoIG1vcmUgb2YgdGhlIG9wdGlvbnMgYW5kIGNhcGFiaWxpdGllcyB0aHJvdWdob3V0IHRoZSB3b3Jrc2hvcC4KCldlIGNvdWxkIHdyaXRlIGNvZGUsIHRoYXQgaXMsIGluc3RydWN0aW9ucyB0byBiZSBleGVjdXRlZCBieSBSIG9uIHRoZSBDb25zb2xlLiBGb3IgZXhhbXBsZSB3ZSBjb3VsZCBjYWxjdWxhdGUgYDIrMmAuCgpgYGB7cn0KMiArIDIKYGBgCgpUaGUgcmVzdWx0cyBhcHBlYXJzIG5leHQuIFdlIGNvdWxkIGFsc28gc2F2ZSB0aGF0IHJlc3VsdCB0byBhbiBvYmplY3QsIGluIHRoaXMgY2FzZSBjYWxsZWQgYHhgLgoKYGBge3J9CnggPC0yICsgMiAKYGBgCgpUaGF0IGxpdHRsZSBhcnJvdyBpcyB0aGUgKmFzc2lnbmF0aW9uIG9wZXJhdG9yKiBhbmQgd29ya3MgYXMgYW4gYD1gLiBOb3csIHRoZSByZXN1bHRzIGdvZXMgZGlyZWN0bHkgdG8gdGhlIEVudmlyb25tZW50IGFuZCB3ZSB3b24ndCBzZWUgaXQgb24gdGhlIGNvbnNvbGUuIAoKVGhpcyBpcyBncmVhdCB3aGVuIHdlIGFyZSB0cnlpbmcgY29kZSB0byBzZWUgaWYgaXQgd29ya3MgYnV0IHdlJ2xsIGxvc2UgZXZlcnl0aGluZyB3aGVuIHdlIGNsb3NlIFJTdHVkaW8uIFRvIHNhdmUgdGhlIGNvZGUgdGhhdCBnZW5lcmF0ZXMgeW91ciBhbmFseXNpcyBhbmQgcmVzdWx0cyB3ZSB1c2UgUiBTY3JpcHRzIGFuZCBSTWFya2Rvd24gZmlsZXMuIAoKV2UgYXJlIGdvaW5nIHRvIGhhdmUgb3VyIGZpcnN0IGV4cGVyaWVuY2Ugd2l0aCBSIHRocm91Z2ggUk1hcmtkb3duLCBzbyBsZXTigJlzIHNlZSB3aGF0IGFuIFJNYXJrZG93biBkb2N1bWVudCBpcy4gV2UgcHJlcGFyZWQgW3RoaXMgZXhhbXBsZSByZXBvcnRdKHBlbmd1aW5zX3JlcG9ydC5SbWQpIGZvciB5b3UsIHBsZWFzZSBvcGVuIGl0IG9uIFJTdHVkaW8gb3IgaW4gdGhlIFJTdHVkaW8gQ2xvdWQuICBBIGZvdXJ0aCBwYW5lbCB3aWxsIG9wZW4gd2l0aCB0aGUgZmlsZSBhbmQgdGhlIGNvbnNvbGUgcGFuZWwgd2lsbCBtb3ZlIHRvIGJvdHRvbSBsZWZ0LgoKIyMgUk1hcmtkb3duCgpBbiBSTWFya2Rvd24gZmlsZSBpcyBhIHBsYWluIHRleHQgZmlsZSwgd2l0aCBzb21lIHJ1bGVzIGFuZCBzaW50YXhpcywgdGhhdCBhbGxvdyB1cyB0byB3cml0ZSBjb2RlIGFuZCB0ZXh0IHRvZ2V0aGVyLiBXaGVuIGl0IGlzIOKAnGtuaXRlZCzigJ0gdGhlIGNvZGUgd2lsbCBiZSBldmFsdWF0ZWQgYW5kIGV4ZWN1dGVkIGFuZCB0aGUgdGV4dCBmb3JtYXR0ZWQgc28gdGhhdCBpdCBjcmVhdGVzIGEgcmVwcm9kdWNpYmxlIHJlcG9ydCBvciBkb2N1bWVudCB0aGF0IGlzIG5pY2UgdG8gcmVhZCBhbmQgY29udGFpbnMgYWxsIHlvdXIgd29yay4KClRoaXMgaXMgcmVhbGx5IGNyaXRpY2FsIHRvIHJlcHJvZHVjaWJpbGl0eS4gSXQgYWxzbyBzYXZlcyB1cyB0aW1lIGFuZCBjYW4gaGVscCB3aXRoIGF1dG9tYXRpb24gdGFzay4gVGhpcyBkb2N1bWVudCB3aWxsIHJlY3JlYXRlIHlvdXIgZmlndXJlcyBmb3IgeW91IGluIHRoZSBzYW1lIGRvY3VtZW50IHdoZXJlIHlvdSBhcmUgd3JpdGluZyB0aGUgdGV4dCB0aGF0IGV4cGxhaW4gdGhlbS4gU28gbm8gbW9yZSBkb2luZyBhbmFseXNpcywgc2F2aW5nIGEgcGxvdCwgcGFzdGluZyB0aGF0IHBsb3QgaW50byBXb3JkIG9yIFBvd2VyIFBvaW50IG9yIEdvb2dsZSBTbGlkZXMsIHJlZG9pbmcgdGhlIGFuYWx5c2lzLCByZS1zYXZpbmcsIHJlLXBhc3RpbmcsIGV0Yy4KCk5vdyBsZXTigJlzIHNlZSBob3cgb3VyIFBlbmd1aW5zIFJlcG9ydHMgbG9va3MgbGlrZS4KCiogVGhlIHRvcCBwYXJ0IGhhcyB0aGUgVGl0bGUgYW5kIHRoZSBvdXRwdXQgdHlwZSBhcyBhbiBIVE1MIGRvY3VtZW50LgoqIFRoZXJlIGFyZSBfd2hpdGVfIGFuZCBfZ3JleV8gc2VjdGlvbnMuIFRoZXNlIGFyZSB0aGUgdHdvIG1haW4gc2VjdGlvbnMgdGhhdCBtYWtlIHVwIGFuIFJNYXJrZG93biBmaWxlOgogICAgICAqIEdyZXkgc2VjdGlvbnMgYXJlIFIgY29kZQogICAgICAqIFdoaXRlIHNlY3Rpb25zIGFyZSBNYXJrZG93biB0ZXh0CiogVGhlcmUgaXMgYmxhY2ssIGJsdWUgdGV4dCBhbmQgZ3JlZW4gdGV4dC4KCj4gTGV04oCZcyBnbyBhaGVhZCBhbmQg4oCcS25pdOKAnSB0aGUgZG9jdW1lbnQgYnkgY2xpY2tpbmcgdGhlIGJsdWUgeWFybiBhdCB0aGUgdG9wIG9mIHRoZSBSTWFya2Rvd24gZmlsZS4gIAoKV2XigJl2ZSBqdXN0IG1hZGUgYW4gaHRtbCBmaWxlLiBUaGlzIGlzIGEgc2luZ2xlIHdlYnBhZ2UgdGhhdCB3ZSBhcmUgdmlld2luZyBsb2NhbGx5IG9uIG91ciBvd24gY29tcHV0ZXJzLiBCeSBrbml0dGluZyB0aGlzIFJNYXJrZG93biBkb2N1bWVudCwgUiBoYXMgZm9ybWF0dGVkIHRoZSBtYXJrZG93biB0ZXh0IGFuZCBydW4gdGhlIFIgY29kZS4KCjxpbWcgc3JjPSJpbWcvbWFya2Rvd24ta25pdC5wbmciIGFsdD0iUm1hcmtkb3duIGluIHRoZSBsZWZ0LiBLbml0IGRvY3VtZW50IG9uIHRoZSByaWd0aCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGFsaWduPSJsZWZ0IiBzdHlsZT0ibWFyZ2luOjEwcHgiLz4KCiMjIyBNYXJrZG93biB0ZXh0CgpZb3UgY2FuIGdldCBhIGd1aWRlIHRvIHJtYXJrZG93biBbaW4gdGhpc10oYWRkIGxpbmspIGNoZWF0IHNoZWV0LCBidXQgaGVyZSBpcyBhIG1pbmltdW0gc2ludGF4aXMgdG8gZ2V0IHlvdSBzdGFydGVkOgoKKiBoZWFkZXJzIHN0YXJ0cyB3aXRoICMgb3IgIyMgYW5kIHNvIG9uLiAKKiBib2xkIHdvcmRzIGFyZSBmb3JtYXR0ZWQgd2l0aCAqKgoqIGFuZCBpdGFsaWNzIHdpdGggXwoKIyMjIFIgQ29kZQoKVGhlIFIgY29kZSBpdCBpcyB3cml0aW5nIGluc2lkZSBjb2RlIGNodW5rcy4gRWFjaCBvZiB0aGVtIHN0YXJ0IHdpdGggdGhyZWUgYmFja3RpY2tzIGFuZCBge3IgbGFiZWx9YCB0aGF0IHNpZ25pZnkgdGhlcmUgd2lsbCBiZSBSIGNvZGUgZm9sbG93aW5nLiBUaGUgY2h1bmsgZmluaXNoZWQgd2l0aCB0aHJlZSBtb3JlIGJhY2t0aWNrcy4KClRoZSByZXBvcnQgc2hvd3MgaW5mb3JtYXRpb24gYWJvdXQgdGhlIEdlbnRvbyBwZW5ndWlucyBidXQgd2UgY291bGQgY2hhbmdlIGEgZmV3IGNvZGUgbGluZXMgdG8gc2VlIHRoZSBzYW1lIGFuYWx5c2lzIGZvciB0aGUgb3RoZXIgdHdvIHNwZWNpZXMsIEFkZWxpZSBhbmQgQ2hpbnN0cmFwLgoKPiBOb3cgaXMgeW91ciB0dXJuLiBHbyBhaGVhZCBhbmQgbG9vayBhdCB0aGUgY29kZSwgaWYgeW91IGZpbmQgYW55IG1lbnRpb24gb2YgImdlbnRvbyIgIGNoYW5nZSBpdCBmb3Igb25lIG9mIHRoZSBvdGhlciBzcGVjaWVzLiAKClRoaXMgdGFzayBpcyBhIGJpdCBjdW1iZXJzb21lIGkgeW91IGhhdmUgdG8gY2hhbmdlIG1hbnkgdGhpbmdzIGFueSB0aW1lIHdlIHdhbnQgdG8gcmUtcnVuIHRoZSBhbmFseXNpcyBmb3IgZGlmZmVyZW50IHNwZWNpZXMuIEJ1dCBkb24ndCB3b3JyeSwgd2UnbGwgbGVhcm4gaG93IHRvIG1ha2UgZXZlcnl0aGluZyBtb3JlIGF1dG9tYXRpYyBieSB0aGUgZW5kIG9mIHRoZSB3b3Jrc2hvcC4gCg==</div>
 
 
 

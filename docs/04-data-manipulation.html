@@ -11,7 +11,7 @@
 
 
 
-<title>Before we start</title>
+<title>Data manipulation</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,12 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -45,19 +42,14 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
 }
-</script>
-
-
-
+</style>
 
 
 <link rel="stylesheet" href="learnr_metadocencia.css" type="text/css" />
@@ -219,70 +211,10 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-
-
-
 <style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
+.code-folding-btn { margin-bottom: 4px; }
 </style>
+
 
 
 
@@ -292,16 +224,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -360,39 +282,32 @@ div.tocify {
 
 <div id="header">
 
-
-
-<h1 class="title toc-ignore">Before we start</h1>
-
-</div>
-
-
-<p>To participate on the workshop you can either install R (&gt;4.0) and Rstudio (see instructions bellow) or use and instance of R at RStudio Cloud.</p>
-<div id="using-rstudio-cloud" class="section level4">
-<h4>Using RStudio Cloud</h4>
-<p>If you want to use RStudio Cloud you will need a free account. Go to <a href="https://rstudio.cloud/">rstudio.cloud/</a> and follow de instructions. Keep in mind that the free account has a 15 hours per month restrictions and you don’t want to use it all before the workshop.</p>
-<p>We’ll provide a link to a pre-configured RStudio project during the workshop. You don’t have to do anything else.</p>
-</div>
-<div id="installing-r-and-rstudio" class="section level4">
-<h4>Installing R and RStudio</h4>
-<p>To install R and RStudio you can follow these instructions or <a href="https://www.youtube.com/playlist?list=PLRPB0ZzEYegOZivdelOuEn-R-XUN-DOjd">these videos</a> by Danielle Navarro to install both software on your computer.</p>
-<p>When we have everything installed we’ll ask you to install a few packages to work during the workshop.</p>
-<ol style="list-style-type: decimal">
-<li>Open RStudio</li>
-<li>On the console (the panel on the left) type the following commands</li>
-</ol>
-<pre class="r"><code>install.packages(&quot;tidyverse&quot;)
-install.packages(&quot;palmerpenguins&quot;)</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li><p>Go to File -&gt; New File -&gt; R Markdown. Click on “Ok” to create a new file. RStudio will ask your permission to install several packages. Go ahead and do it.</p></li>
-<li><p>That’s it. You can remove the file you just created.</p></li>
-</ol>
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
 </div>
 
 
 
+<h1 class="title toc-ignore">Data manipulation</h1>
+
 </div>
+
+<div id="TOC">
+<ul>
+<li><a href="#about-palmerpenguins">About palmerpenguins</a></li>
+</ul>
 </div>
+
+<div id="about-palmerpenguins" class="section level2">
+<h2>About palmerpenguins</h2>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBtYW5pcHVsYXRpb24iCm91dHB1dDogCiAgaHRtbF9kb2N1bWVudDoKICAgIGNvZGVfZG93bmxvYWQ6IHRydWUKICAgIHRvYzogdHJ1ZQogICAgdG9jX2Zsb2F0OiBmYWxzZQogICAgaGlnaGxpZ2h0OiB0YW5nbwotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKIyMgQWJvdXQgcGFsbWVycGVuZ3VpbnM=</div>
+
+
 
 </div>
 
@@ -424,36 +339,12 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-
 <script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
+$(document).ready(function () {
+  window.initializeSourceEmbed("04-data-manipulation.Rmd");
 });
 </script>
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

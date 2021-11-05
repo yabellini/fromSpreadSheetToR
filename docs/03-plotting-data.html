@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Plotting Data</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="learnr_metadocencia.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">From Spreadsheet to R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="prepare.html">Before we start</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Topics
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="01-introduction.html">Introduction and Reports</a>
+    </li>
+    <li>
+      <a href="02-reading-data.html">Reading Data</a>
+    </li>
+    <li>
+      <a href="03-plotting-data.html">Plotting Data</a>
+    </li>
+    <li>
+      <a href="04-data-manipulation.html">Data manipulation</a>
+    </li>
+    <li>
+      <a href="05-reports.html">Reporting your work</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="penguins_report.html">Example</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/yabellini/fromSpreadSheetToR">Repo</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Plotting Data</h1>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#first-layer-the-area-of-the-graphic">First layer: the area of the graphic</a></li>
+<li><a href="#second-layer-geometries">Second layer: geometries</a></li>
+<li><a href="#adding-geometries">Adding geometries</a></li>
+<li><a href="#lets-talk-about-the-look-of-the-plot">Let’s talk about the look of the plot</a></li>
+</ul>
+</div>
+
+<p>Visualizing data is useful explore the data and identify the relationship between different variables but also to communicate the analysis of the data and results. The <strong>ggplot2</strong> package allows you to generate high quality plots in just a few steps. Any ggplot plot will have at least 3 components: the <strong>data</strong>, a <strong>coordinate system</strong> and a <strong>geometry</strong> (the visual representation of the data) and will be built in layers.</p>
+<p>Let’s start by making plots!</p>
+<div id="first-layer-the-area-of-the-graphic" class="section level2">
+<h2>First layer: the area of the graphic</h2>
+<p>The main function of ggplot2 is precisely <code>ggplot()</code> that allows us to start the graph and also define the global characteristics. The first argument of this function will be the data we want to visualize, always in a data.frame. In this case we use <code>penguins</code>.</p>
+<p>The second argument is called mapping precisely because it maps or draws the axes of the graph and is always accompanied by the <code>aes()</code> function. The <code>aes()</code> function receives the aesthetic properties of the graph from the variables (or columns) of the data.frame we are using. In this case we indicate that in the x-axis we want to plot the variable <code>bill_length_mm</code> and in the y-axis the variable <code>bill_depth_mm</code>.</p>
+<p>But this function alone is not enough, it only generates the first layer: the area of the graph.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) </span></code></pre></div>
+<p><img src="03-plotting-data_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="second-layer-geometries" class="section level2">
+<h2>Second layer: geometries</h2>
+<p>We need to add a new layer to our chart, the geometric elements or “geoms” that will represent the data. To do this we add a geom function, for example if we want to represent the data with points we will use <code>geom_point()</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="03-plotting-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>We have our first!</p>
+<p>You may have noticed that the dots are arranged almost like in groups. Perhaps some other variable explains this behavior.</p>
+<p>To include information from other variables in our plot we can take advantage of the aesthetic characteristics of the geometries. In this case, we can “paint” the points according to the penguin species.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species))</span></code></pre></div>
+<p><img src="03-plotting-data_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Again, we use the <code>aes()</code> functions to map a variable in our data to an element of the plot. And aha! Each species of penguins has different characteristics!</p>
+</div>
+<div id="adding-geometries" class="section level2">
+<h2>Adding geometries</h2>
+<p>Very often it is not enough to look at the raw data to identify the relationship between variables; it is necessary to use some statistical transformation to highlight those relationships, either by fitting a model or calculating some statistics.</p>
+<p>To solve this, ggplot2 has geoms that calculates and plot some common statistical transformations. Let’s try with <code>geom_smoth()</code> to fit a linear model to each specie.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<p><img src="03-plotting-data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>By default geom_smooth() fits the data using the loess method (local linear regression) when there are less than 1000 data. But it is very common that you want to fit a global linear regression. In that case, you have to set method = “lm”.</p>
+</div>
+<div id="lets-talk-about-the-look-of-the-plot" class="section level2">
+<h2>Let’s talk about the look of the plot</h2>
+<p>For now we used the default ggplot looks. We could change the looks of your plot to use the style of the institution where we work, of the journal where we are going to publish it or simply to make it more eye-catching.</p>
+<p>Let’s start with the color. To change the aesthetic appearance of a plot element, we add a new layer with the <code>scale_*</code> function. In this case we’ll use <code>scale_color_manual()</code> to choose the colors of the points manually. We could also use previously defined color palettes as Viridis or Color Brewer.</p>
+<p>We’ll need 3 colors for the 3 species, let’s use “darkorange”, “purple” and “cyan4” following the beautiful visualizations made by Allison Horst.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>,<span class="st">&quot;purple&quot;</span>,<span class="st">&quot;cyan4&quot;</span>)) </span></code></pre></div>
+<p><img src="03-plotting-data_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>We are getting there! Now, let’s add some text elements with a new ggplot layer: <code>labs()</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>,<span class="st">&quot;purple&quot;</span>,<span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Penguin bill dimensions&quot;</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Bill length and depth for Adelie, Chinstrap and Gentoo,  Penguins at Palmer Station LTER&quot;</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Penguin species&quot;</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="st">&quot;Penguin species&quot;</span>) </span></code></pre></div>
+<p><img src="03-plotting-data_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Now the axes labels are more legible and we have a title and subtitle that explains what is the plot about.</p>
+<p>We could keep changing this endlessly but we’ll finish with the general look of your plot.</p>
+<p>The overall look of a plot is defined by its theme. ggplot2 has many themes available and for all tastes. But there are also other packages that extend the possibilities, for example ggthemes. By default ggplot2 uses <code>theme_grey()</code>, let’s try <code>theme_minimal()</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>,<span class="st">&quot;purple&quot;</span>,<span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Penguin bill dimensions&quot;</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Bill length and depth for Adelie, Chinstrap and Gentoo,  Penguins at Palmer Station LTER&quot;</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Penguin species&quot;</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="st">&quot;Penguin species&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="03-plotting-data_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<blockquote>
+<p>Now it’s your turn. Choose a theme you like and try it out. Also, if you can think of a better title modify it!</p>
+</blockquote>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUGxvdHRpbmcgRGF0YSIKb3V0cHV0OiAKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9kb3dubG9hZDogdHJ1ZQogICAgdG9jOiB0cnVlCiAgICB0b2NfZmxvYXQ6IGZhbHNlCiAgICBoaWdobGlnaHQ6IHRhbmdvCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldCgKCWVjaG8gPSBUUlVFLAoJbWVzc2FnZSA9IEZBTFNFLAoJd2FybmluZyA9IEZBTFNFCikKbGlicmFyeSh0aWR5dmVyc2UpCgpwZW5ndWlucyA8LSByZWFkX2NzdigiZGF0YS9wZW5ndWlucy5jc3YiKQpgYGAKClZpc3VhbGl6aW5nIGRhdGEgaXMgdXNlZnVsIGV4cGxvcmUgdGhlIGRhdGEgYW5kIGlkZW50aWZ5IHRoZSByZWxhdGlvbnNoaXAgYmV0d2VlbiBkaWZmZXJlbnQgdmFyaWFibGVzIGJ1dCBhbHNvIHRvIGNvbW11bmljYXRlIHRoZSBhbmFseXNpcyBvZiB0aGUgZGF0YSBhbmQgcmVzdWx0cy4gVGhlICoqZ2dwbG90MioqIHBhY2thZ2UgYWxsb3dzIHlvdSB0byBnZW5lcmF0ZSBoaWdoIHF1YWxpdHkgcGxvdHMgaW4ganVzdCBhIGZldyBzdGVwcy4gQW55IGdncGxvdCBwbG90IHdpbGwgaGF2ZSBhdCBsZWFzdCAzIGNvbXBvbmVudHM6IHRoZSAqKmRhdGEqKiwgYSAqKmNvb3JkaW5hdGUgc3lzdGVtKiogYW5kIGEgKipnZW9tZXRyeSoqICh0aGUgdmlzdWFsIHJlcHJlc2VudGF0aW9uIG9mIHRoZSBkYXRhKSBhbmQgd2lsbCBiZSBidWlsdCBpbiBsYXllcnMuCgpMZXQncyBzdGFydCBieSBtYWtpbmcgcGxvdHMhCgojIyBGaXJzdCBsYXllcjogdGhlIGFyZWEgb2YgdGhlIGdyYXBoaWMKClRoZSBtYWluIGZ1bmN0aW9uIG9mIGdncGxvdDIgaXMgcHJlY2lzZWx5IGBnZ3Bsb3QoKWAgdGhhdCBhbGxvd3MgdXMgdG8gc3RhcnQgdGhlIGdyYXBoIGFuZCBhbHNvIGRlZmluZSB0aGUgZ2xvYmFsIGNoYXJhY3RlcmlzdGljcy4gVGhlIGZpcnN0IGFyZ3VtZW50IG9mIHRoaXMgZnVuY3Rpb24gd2lsbCBiZSB0aGUgZGF0YSB3ZSB3YW50IHRvIHZpc3VhbGl6ZSwgYWx3YXlzIGluIGEgZGF0YS5mcmFtZS4gSW4gdGhpcyBjYXNlIHdlIHVzZSBgcGVuZ3VpbnNgLgoKVGhlIHNlY29uZCBhcmd1bWVudCBpcyBjYWxsZWQgbWFwcGluZyBwcmVjaXNlbHkgYmVjYXVzZSBpdCBtYXBzIG9yIGRyYXdzIHRoZSBheGVzIG9mIHRoZSBncmFwaCBhbmQgaXMgYWx3YXlzIGFjY29tcGFuaWVkIGJ5IHRoZSBgYWVzKClgIGZ1bmN0aW9uLiBUaGUgYGFlcygpYCBmdW5jdGlvbiByZWNlaXZlcyB0aGUgYWVzdGhldGljIHByb3BlcnRpZXMgb2YgdGhlIGdyYXBoIGZyb20gdGhlIHZhcmlhYmxlcyAob3IgY29sdW1ucykgb2YgdGhlIGRhdGEuZnJhbWUgd2UgYXJlIHVzaW5nLiBJbiB0aGlzIGNhc2Ugd2UgaW5kaWNhdGUgdGhhdCBpbiB0aGUgeC1heGlzIHdlIHdhbnQgdG8gcGxvdCB0aGUgdmFyaWFibGUgYGJpbGxfbGVuZ3RoX21tYCBhbmQgaW4gdGhlIHktYXhpcyB0aGUgdmFyaWFibGUgYGJpbGxfZGVwdGhfbW1gLgoKQnV0IHRoaXMgZnVuY3Rpb24gYWxvbmUgaXMgbm90IGVub3VnaCwgaXQgb25seSBnZW5lcmF0ZXMgdGhlIGZpcnN0IGxheWVyOiB0aGUgYXJlYSBvZiB0aGUgZ3JhcGguCgpgYGB7cn0KZ2dwbG90KGRhdGEgPSBwZW5ndWlucywgbWFwcGluZyA9IGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tKSkgCmBgYAoKIyMgU2Vjb25kIGxheWVyOiBnZW9tZXRyaWVzCgpXZSBuZWVkIHRvIGFkZCBhIG5ldyBsYXllciB0byBvdXIgY2hhcnQsIHRoZSBnZW9tZXRyaWMgZWxlbWVudHMgb3IgImdlb21zIiB0aGF0IHdpbGwgcmVwcmVzZW50IHRoZSBkYXRhLiBUbyBkbyB0aGlzIHdlIGFkZCBhIGdlb20gZnVuY3Rpb24sIGZvciBleGFtcGxlIGlmIHdlIHdhbnQgdG8gcmVwcmVzZW50IHRoZSBkYXRhIHdpdGggcG9pbnRzIHdlIHdpbGwgdXNlIGBnZW9tX3BvaW50KClgLgoKYGBge3J9CmdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpICsKICBnZW9tX3BvaW50KCkKYGBgCgpXZSBoYXZlIG91ciBmaXJzdCEgCgpZb3UgbWF5IGhhdmUgbm90aWNlZCB0aGF0IHRoZSBkb3RzIGFyZSBhcnJhbmdlZCBhbG1vc3QgbGlrZSBpbiBncm91cHMuIFBlcmhhcHMgc29tZSBvdGhlciB2YXJpYWJsZSBleHBsYWlucyB0aGlzIGJlaGF2aW9yLiAKClRvIGluY2x1ZGUgaW5mb3JtYXRpb24gZnJvbSBvdGhlciB2YXJpYWJsZXMgaW4gb3VyIHBsb3Qgd2UgY2FuIHRha2UgYWR2YW50YWdlIG9mIHRoZSBhZXN0aGV0aWMgY2hhcmFjdGVyaXN0aWNzIG9mIHRoZSBnZW9tZXRyaWVzLiBJbiB0aGlzIGNhc2UsIHdlIGNhbiAicGFpbnQiIHRoZSBwb2ludHMgYWNjb3JkaW5nIHRvIHRoZSBwZW5ndWluIHNwZWNpZXMuIAoKYGBge3J9CmdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpICsKICBnZW9tX3BvaW50KGFlcyhjb2xvciA9IHNwZWNpZXMpKQpgYGAKCkFnYWluLCB3ZSB1c2UgdGhlIGBhZXMoKWAgZnVuY3Rpb25zIHRvIG1hcCBhIHZhcmlhYmxlIGluIG91ciBkYXRhIHRvIGFuIGVsZW1lbnQgb2YgdGhlIHBsb3QuIEFuZCBhaGEhIEVhY2ggc3BlY2llcyBvZiBwZW5ndWlucyBoYXMgZGlmZmVyZW50IGNoYXJhY3RlcmlzdGljcyEKCiMjIEFkZGluZyBnZW9tZXRyaWVzCgpWZXJ5IG9mdGVuIGl0IGlzIG5vdCBlbm91Z2ggdG8gbG9vayBhdCB0aGUgcmF3IGRhdGEgdG8gaWRlbnRpZnkgdGhlIHJlbGF0aW9uc2hpcCBiZXR3ZWVuIHZhcmlhYmxlczsgaXQgaXMgbmVjZXNzYXJ5IHRvIHVzZSBzb21lIHN0YXRpc3RpY2FsIHRyYW5zZm9ybWF0aW9uIHRvIGhpZ2hsaWdodCB0aG9zZSByZWxhdGlvbnNoaXBzLCBlaXRoZXIgYnkgZml0dGluZyBhIG1vZGVsIG9yIGNhbGN1bGF0aW5nIHNvbWUgc3RhdGlzdGljcy4gCgpUbyBzb2x2ZSB0aGlzLCBnZ3Bsb3QyIGhhcyBnZW9tcyB0aGF0IGNhbGN1bGF0ZXMgYW5kIHBsb3Qgc29tZSBjb21tb24gc3RhdGlzdGljYWwgdHJhbnNmb3JtYXRpb25zLiBMZXQncyB0cnkgd2l0aCBgZ2VvbV9zbW90aCgpYCB0byBmaXQgYSBsaW5lYXIgbW9kZWwgdG8gZWFjaCBzcGVjaWUuIAoKYGBge3J9CmdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpICsKICBnZW9tX3BvaW50KGFlcyhjb2xvciA9IHNwZWNpZXMpKSArCiAgZ2VvbV9zbW9vdGgoYWVzKGNvbG9yID0gc3BlY2llcyksIG1ldGhvZCA9ICJsbSIpCmBgYAoKQnkgZGVmYXVsdCBnZW9tX3Ntb290aCgpIGZpdHMgdGhlIGRhdGEgdXNpbmcgdGhlIGxvZXNzIG1ldGhvZCAobG9jYWwgbGluZWFyIHJlZ3Jlc3Npb24pIHdoZW4gdGhlcmUgYXJlIGxlc3MgdGhhbiAxMDAwIGRhdGEuIEJ1dCBpdCBpcyB2ZXJ5IGNvbW1vbiB0aGF0IHlvdSB3YW50IHRvIGZpdCBhIGdsb2JhbCBsaW5lYXIgcmVncmVzc2lvbi4gSW4gdGhhdCBjYXNlLCB5b3UgaGF2ZSB0byBzZXQgbWV0aG9kID0gImxtIi4KCiMjIExldCdzIHRhbGsgYWJvdXQgdGhlIGxvb2sgb2YgdGhlIHBsb3QgIAoKRm9yIG5vdyB3ZSB1c2VkIHRoZSBkZWZhdWx0IGdncGxvdCBsb29rcy4gV2UgY291bGQgY2hhbmdlIHRoZSBsb29rcyBvZiB5b3VyIHBsb3QgdG8gdXNlIHRoZSBzdHlsZSBvZiB0aGUgaW5zdGl0dXRpb24gd2hlcmUgd2Ugd29yaywgb2YgdGhlIGpvdXJuYWwgd2hlcmUgd2UgYXJlIGdvaW5nIHRvIHB1Ymxpc2ggaXQgb3Igc2ltcGx5IHRvIG1ha2UgaXQgbW9yZSBleWUtY2F0Y2hpbmcuIAoKTGV0J3Mgc3RhcnQgd2l0aCB0aGUgY29sb3IuIFRvIGNoYW5nZSB0aGUgYWVzdGhldGljIGFwcGVhcmFuY2Ugb2YgYSBwbG90IGVsZW1lbnQsIHdlIGFkZCBhIG5ldyBsYXllciB3aXRoIHRoZSBgc2NhbGVfKmAgZnVuY3Rpb24uIEluIHRoaXMgY2FzZSB3ZSdsbCB1c2UgYHNjYWxlX2NvbG9yX21hbnVhbCgpYCB0byBjaG9vc2UgdGhlIGNvbG9ycyBvZiB0aGUgcG9pbnRzIG1hbnVhbGx5LiBXZSBjb3VsZCBhbHNvIHVzZSBwcmV2aW91c2x5IGRlZmluZWQgY29sb3IgcGFsZXR0ZXMgYXMgVmlyaWRpcyBvciBDb2xvciBCcmV3ZXIuIAoKV2UnbGwgbmVlZCAzIGNvbG9ycyBmb3IgdGhlIDMgc3BlY2llcywgbGV0J3MgdXNlICJkYXJrb3JhbmdlIiwgInB1cnBsZSIgYW5kICJjeWFuNCIgZm9sbG93aW5nIHRoZSBiZWF1dGlmdWwgdmlzdWFsaXphdGlvbnMgbWFkZSBieSBBbGxpc29uIEhvcnN0LgoKYGBge3J9CmdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpICsKICBnZW9tX3BvaW50KGFlcyhjb2xvciA9IHNwZWNpZXMpKSArCiAgZ2VvbV9zbW9vdGgoYWVzKGNvbG9yID0gc3BlY2llcyksIG1ldGhvZCA9ICJsbSIpICsKICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gYygiZGFya29yYW5nZSIsInB1cnBsZSIsImN5YW40IikpIApgYGAKCldlIGFyZSBnZXR0aW5nIHRoZXJlISBOb3csIGxldCdzIGFkZCBzb21lIHRleHQgZWxlbWVudHMgd2l0aCBhIG5ldyBnZ3Bsb3QgbGF5ZXI6IGBsYWJzKClgLgoKYGBge3J9CmdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpICsKICBnZW9tX3BvaW50KGFlcyhjb2xvciA9IHNwZWNpZXMpKSArCiAgZ2VvbV9zbW9vdGgoYWVzKGNvbG9yID0gc3BlY2llcyksIG1ldGhvZCA9ICJsbSIpICsKICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gYygiZGFya29yYW5nZSIsInB1cnBsZSIsImN5YW40IikpICsKICBsYWJzKHRpdGxlID0gIlBlbmd1aW4gYmlsbCBkaW1lbnNpb25zIiwKICAgICAgIHN1YnRpdGxlID0gIkJpbGwgbGVuZ3RoIGFuZCBkZXB0aCBmb3IgQWRlbGllLCBDaGluc3RyYXAgYW5kIEdlbnRvbywgIFBlbmd1aW5zIGF0IFBhbG1lciBTdGF0aW9uIExURVIiLAogICAgICAgeCA9ICJCaWxsIGxlbmd0aCAobW0pIiwKICAgICAgIHkgPSAiQmlsbCBkZXB0aCAobW0pIiwKICAgICAgIGNvbG9yID0gIlBlbmd1aW4gc3BlY2llcyIsCiAgICAgICBzaGFwZSA9ICJQZW5ndWluIHNwZWNpZXMiKSAKYGBgCgpOb3cgdGhlIGF4ZXMgbGFiZWxzIGFyZSBtb3JlIGxlZ2libGUgYW5kIHdlIGhhdmUgYSB0aXRsZSBhbmQgc3VidGl0bGUgdGhhdCBleHBsYWlucyB3aGF0IGlzIHRoZSBwbG90IGFib3V0LiAKCldlIGNvdWxkIGtlZXAgY2hhbmdpbmcgdGhpcyBlbmRsZXNzbHkgYnV0IHdlJ2xsIGZpbmlzaCB3aXRoIHRoZSBnZW5lcmFsIGxvb2sgb2YgeW91ciBwbG90LiAKClRoZSBvdmVyYWxsIGxvb2sgb2YgYSBwbG90IGlzIGRlZmluZWQgYnkgaXRzIHRoZW1lLiBnZ3Bsb3QyIGhhcyBtYW55IHRoZW1lcyBhdmFpbGFibGUgYW5kIGZvciBhbGwgdGFzdGVzLiBCdXQgdGhlcmUgYXJlIGFsc28gb3RoZXIgcGFja2FnZXMgdGhhdCBleHRlbmQgdGhlIHBvc3NpYmlsaXRpZXMsIGZvciBleGFtcGxlIGdndGhlbWVzLiBCeSBkZWZhdWx0IGdncGxvdDIgdXNlcyBgdGhlbWVfZ3JleSgpYCwgbGV0J3MgdHJ5IGB0aGVtZV9taW5pbWFsKClgOgoKYGBge3J9CmdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpICsKICBnZW9tX3BvaW50KGFlcyhjb2xvciA9IHNwZWNpZXMpKSArCiAgZ2VvbV9zbW9vdGgoYWVzKGNvbG9yID0gc3BlY2llcyksIG1ldGhvZCA9ICJsbSIpICsKICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzID0gYygiZGFya29yYW5nZSIsInB1cnBsZSIsImN5YW40IikpICsKICBsYWJzKHRpdGxlID0gIlBlbmd1aW4gYmlsbCBkaW1lbnNpb25zIiwKICAgICAgIHN1YnRpdGxlID0gIkJpbGwgbGVuZ3RoIGFuZCBkZXB0aCBmb3IgQWRlbGllLCBDaGluc3RyYXAgYW5kIEdlbnRvbywgIFBlbmd1aW5zIGF0IFBhbG1lciBTdGF0aW9uIExURVIiLAogICAgICAgeCA9ICJCaWxsIGxlbmd0aCAobW0pIiwKICAgICAgIHkgPSAiQmlsbCBkZXB0aCAobW0pIiwKICAgICAgIGNvbG9yID0gIlBlbmd1aW4gc3BlY2llcyIsCiAgICAgICBzaGFwZSA9ICJQZW5ndWluIHNwZWNpZXMiKSArCiAgdGhlbWVfbWluaW1hbCgpCmBgYAoKPiBOb3cgaXQncyB5b3VyIHR1cm4uIENob29zZSBhIHRoZW1lIHlvdSBsaWtlIGFuZCB0cnkgaXQgb3V0LiBBbHNvLCBpZiB5b3UgY2FuIHRoaW5rIG9mIGEgYmV0dGVyIHRpdGxlIG1vZGlmeSBpdCEK</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("03-plotting-data.Rmd");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
