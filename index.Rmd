@@ -45,6 +45,11 @@ Yanina Bellini Saibene, MS. She is a tenured researcher at the National Institut
 
 [paobcorrales.github.io](https://github.com/paocorrales) | [\@paobcorrales](https://twitter.com/PaobCorrales)
 
+<img src="img/hex_metadocencia.png" alt="Logo Metadocencia" width="100" height="110" align="left" style="margin:10px"/> Yani and Pao are part of MetaDocencia, a non-profit organization that nurtures a community of Spanish-speaking educators by teaching concrete, evidence-based, and student-centered educational methods. MetaDocencia collaboratively develops open, reusable, and accessible resources to foster effective training practices.
+
+[MetaDocencia.org](https://www.metadocencia.org/en/)
+
+___
 
 #### License
 
