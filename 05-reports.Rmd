@@ -1,0 +1,13 @@
+---
+title: "Reporting your work"
+output: 
+  html_document:
+    code_download: true
+    toc: true
+    toc_float: false
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
