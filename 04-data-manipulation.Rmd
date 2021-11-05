@@ -35,7 +35,7 @@ penguins %>%
             mean_body_mass = mean(body_mass_g, na.rm = TRUE))
 
 ```
-The function `n()` return the number of cases and the function `mean` calculate the average. The parameter `na.rm = TRUE` tells the function that remove the empty values, the `NA` values.
+The function `n()` return the number of cases and the function `mean` calculate the average. The parameter `na.rm = TRUE` tells the function that remove the empty values, the `NA` values before made the calculation.
 
 
 > Question: What if you don’t group_by first? Let’s try it and discuss what’s going on.
@@ -48,6 +48,38 @@ penguins %>%
 
 So if we don’t group_by first, we will get a single summary statistic (n and mean in this case) for the whole dataset.
 
+Now, we want to have the average of the body mass in kilograms and with two decimals.  We can change our summarise to get that calculation.  
 
+```{r}
+penguins %>% 
+  group_by(species) %>% 
+  summarise(count = n(),
+            mean_body_mass = round(mean(body_mass_g/1000, na.rm = TRUE), 2))
+```
 
-We will also learn how to format tables
+First we divide body mass by 1000 to transform from grams to kilograms and then we use the function `round` to get only two decimals.
+
+Now we are at the point where we actually want to save this summary information as a variable so we can use it in further analyses and formatting.
+
+So let’s add a variable assignment to that first line:
+
+```{r}
+summary <- penguins %>% 
+  group_by(species) %>% 
+  summarise(count = n(),
+            mean_body_mass = round(mean(body_mass_g/1000, na.rm = TRUE), 2))
+```
+
+## Formatig the table
+
+To make our table look better in a report, we have to change some of its elements. For example, the name of the variables should be informative for a person (at the moment they are useful names for a computer), we can add a title to it and change the alignment of the data.
+
+We can do that with the `kable` function.
+
+```{r}
+summary %>% 
+  knitr::kable(col.names = c("Specie", "Count", "Mean Body Mass"),
+               align = "lcc",
+               caption = "Summary of penguins on the data set by specie.")
+```
+
