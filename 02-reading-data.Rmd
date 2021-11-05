@@ -28,7 +28,9 @@ library(tidyverse)
 penguins <- read_csv("data/penguins.csv")
 ```
 
-The data goes directly to the penguins data frame and it's ready to be used. But sometimes our data is no so friendly and we need to give more information to the function to be able to read the data properly. You can found these many options by looking into the function's documentation. 
+In Excel or Google Sheets, data are stored in the spreadsheet organized in cells. In R, they are stored in objects. When we read csv file, the data goes directly to the penguins data frame and it's ready to be used. In the Environment panel we can see the penguins object, if we click that object the data will open in a new tab and we can look at the data.
+
+Sometimes our data is no so friendly and we need to give more information to the function to be able to read the data properly. You can found these many options by looking into the function's documentation. 
 
 > Go ahead and write ?read_csv() on the console. What is the name of the option to change the default delimitator?
 
