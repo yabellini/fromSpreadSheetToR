@@ -13,6 +13,36 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# About {palmerpenguins}
-- [{palmerpenguins} Documentation](https://allisonhorst.github.io/palmerpenguins/)
-- [Allison Horst's GitHub repo for Palmer Penguins dataset](https://github.com/allisonhorst/palmerpenguins)
+## About palmerpenguins
+
+It's time to present the data set we are using. The **Palmer Penguins** data were collected and made available by Dr. Kristen Gorman and the [Palmer Station, Antarctica LTER](https://pal.lternet.edu/), a member of the Long Term Ecological Research Network. The data set includes several caracteristics from Adelie, Chinstrap and Gentoo pinguins. You can read more about it on the [palmerpenguins Documentation](https://allisonhorst.github.io/palmerpenguins/). 
+
+You could install an R package to use the data but here we'll learn how to read csv and xls files into R. 
+
+## Reading csv files
+
+We'll start calling to the **tidyverse** package that gave us access to dozens of functions to work with. For know we'll use the `read_csv()` to read a csv file that is stored on the data directory. 
+
+```{r}
+library(tidyverse)
+
+pinguins <- read_csv("data/penguins.csv")
+```
+
+The data goes directly to the penguins data frame and it's ready to be used. But sometimes our data is no so friendly and we need to give more information to the function to be able to read the data properly. You can found these many options by looking into the function's documentation. 
+
+> Go ahead and write ?read_csv() on the console. What is the name of the option to change the default delimitator?
+
+## Reading xls files
+
+What about xls files? For that we'll need another R package, **readxl** that is already installed on the RStudio Cloud project. In this case the function is called `read_excel()`
+
+```{r}
+library(readxl)
+
+pinguins_xls <- read_excel("data/penguins.xlsx")
+```
+
+And that's it, we've read xls files. Of course, we sometimes have to work with files with multiple sheets or data that is no very organize. The good news is that this functions comes with several options or arguments to read specifics sheets (`sheet = <name os the sheet>`) or specific an specific range (`range = C1:E7`) and others. 
+
+Now that we have the data read into R, it's time to do some analysis. 
