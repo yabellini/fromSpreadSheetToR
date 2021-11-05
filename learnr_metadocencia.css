@@ -12,7 +12,7 @@ em {
 
 h1, h2 {
   color: #C83737;
-  background-color: #f7f7f7;
+/*  background-color: #f7f7f7; */  /* esto no queda bien con el padding */
   padding: .5em;
 }
 
