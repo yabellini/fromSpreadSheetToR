@@ -142,9 +142,17 @@ code {
   color: #fff;
 }
 
-.dropdown-menu {
+.dropdown-menu { 
   background-color: #C83737;
   color: #fff;
+}
+
+.dropdown-menu a {
+  color: #fff !important;  
+}
+
+.dropdown-menu:hover {
+  color: #fff !important;
 }
 
 .dropdown-toggle {
