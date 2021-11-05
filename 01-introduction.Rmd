@@ -1,6 +1,5 @@
 ---
 title: "Introduction and Reports"
-# date: "01/11/2021"
 output: 
   html_document:
     code_download: true
@@ -87,6 +86,6 @@ The R code it is writing inside code chunks. Each of them start with three backt
 
 The report shows information about the Gentoo penguins but we could change a few code lines to see the same analysis for the other two species, Adelie and Chinstrap.
 
-> Now is your turne. Go ahead and look at the code, if you find any mention of "gentoo"  change it for one of the other species. 
+> Now is your turn. Go ahead and look at the code, if you find any mention of "gentoo"  change it for one of the other species. 
 
 This task is a bit cumbersome i you have to change many things any time we want to re-run the analysis for different species. But don't worry, we'll learn how to make everything more automatic by the end of the workshop. 
