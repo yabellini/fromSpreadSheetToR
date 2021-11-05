@@ -110,6 +110,10 @@ code {
   color: #fff;
 }
 
+.navbar a {
+  color: #fff !important;
+}
+
 .tocify{
   background-color: #C83737;
   color: #fff;
