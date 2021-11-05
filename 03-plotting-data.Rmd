@@ -10,4 +10,112 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
+pinguins <- read_csv("data/penguins.csv")
 ```
+
+Visualizing data is useful explore the data and identify the relationship between different variables but also to communicate the analysis of the data and results. The **ggplot2** package allows you to generate high quality plots in just a few steps. Any ggplot plot will have at least 3 components: the **data**, a **coordinate system** and a **geometry** (the visual representation of the data) and will be built in layers.
+
+Let's start by making plots!
+
+## First layer: the area of the graphic
+
+The main function of ggplot2 is precisely `ggplot()` that allows us to start the graph and also define the global characteristics. The first argument of this function will be the data we want to visualize, always in a data.frame. In this case we use `penguins`.
+
+The second argument is called mapping precisely because it maps or draws the axes of the graph and is always accompanied by the `aes()` function. The `aes()` function receives the aesthetic properties of the graph from the variables (or columns) of the data.frame we are using. In this case we indicate that in the x-axis we want to plot the variable `bill_length_mm` and in the y-axis the variable `bill_depth_mm`.
+
+But this function alone is not enough, it only generates the first layer: the area of the graph.
+
+```{r}
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) 
+```
+
+## Second layer: geometries
+
+We need to add a new layer to our chart, the geometric elements or "geoms" that will represent the data. To do this we add a geom function, for example if we want to represent the data with points we will use `geom_point()`.
+
+```{r}
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point()
+```
+
+We have our first! 
+
+You may have noticed that the dots are arranged almost like in groups. Perhaps some other variable explains this behavior. 
+
+To include information from other variables in our plot we can take advantage of the aesthetic characteristics of the geometries. In this case, we can "paint" the points according to the penguin species. 
+
+```{r}
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species))
+```
+
+Again, we use the `aes()` functions to map a variable in our data to an element of the plot. And aha! Each species of penguins has different characteristics!
+
+## Adding geometries
+
+Very often it is not enough to look at the raw data to identify the relationship between variables; it is necessary to use some statistical transformation to highlight those relationships, either by fitting a model or calculating some statistics. 
+
+To solve this, ggplot2 has geoms that calculates and plot some common statistical transformations. Let's try with `geom_smoth()` to fit a linear model to each specie. 
+
+```{r}
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(color = species), method = "lm")
+```
+
+By default geom_smooth() fits the data using the loess method (local linear regression) when there are less than 1000 data. But it is very common that you want to fit a global linear regression. In that case, you have to set method = "lm".
+
+## Let's talk about the look of the plot  
+
+For now we used the default ggplot looks. We could change the looks of your plot to use the style of the institution where we work, of the journal where we are going to publish it or simply to make it more eye-catching. 
+
+Let's start with the color. To change the aesthetic appearance of a plot element, we add a new layer with the `scale_*` function. In this case we'll use `scale_color_manual()` to choose the colors of the points manually. We could also use previously defined color palettes as Viridis or Color Brewer. 
+
+We'll need 3 colors for the 3 species, let's use "darkorange", "purple" and "cyan4" following the beautiful visualizations made by Allison Horst.
+
+```{r}
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(color = species), method = "lm") +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) 
+```
+
+We are getting there! Now, let's add some text elements with a new ggplot layer: `labs()`.
+
+```{r}
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(color = species), method = "lm") +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(title = "Penguin bill dimensions",
+       subtitle = "Bill length and depth for Adelie, Chinstrap and Gentoo,  Penguins at Palmer Station LTER",
+       x = "Bill length (mm)",
+       y = "Bill depth (mm)",
+       color = "Penguin species",
+       shape = "Penguin species") 
+```
+
+Now the axes labels are more legible and we have a title and subtitle that explains what is the plot about. 
+
+We could keep changing this endlessly but we'll finish with the general look of your plot. 
+
+The overall look of a plot is defined by its theme. ggplot2 has many themes available and for all tastes. But there are also other packages that extend the possibilities, for example ggthemes. By default ggplot2 uses `theme_grey()`, let's try `theme_minimal()`:
+
+```{r}
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(color = species), method = "lm") +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(title = "Penguin bill dimensions",
+       subtitle = "Bill length and depth for Adelie, Chinstrap and Gentoo,  Penguins at Palmer Station LTER",
+       x = "Bill length (mm)",
+       y = "Bill depth (mm)",
+       color = "Penguin species",
+       shape = "Penguin species") +
+  theme_minimal()
+```
+
+> Now it's your turn. Choose a theme you like and try it out. Also, if you can think of a better title modify it!

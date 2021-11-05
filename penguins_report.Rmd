@@ -47,8 +47,7 @@ penguins %>%
        subtitle = "Bill length and depth for Gentoo Penguins at Palmer Station LTER",
        x = "Bill length (mm)",
        y = "Bill depth (mm)",
-       color = "Penguin species",
-       shape = "Penguin species") 
+       color = "Penguin species") 
 ```
 The body mass for female and male penguins is different, in general male penguins are bigger than females. 
 
