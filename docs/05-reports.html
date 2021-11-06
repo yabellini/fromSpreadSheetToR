@@ -43,6 +43,100 @@
     </style>
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -295,10 +389,76 @@ $(document).ready(function () {
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#code-control">Code control</a></li>
+<li><a href="#automatization">Automatization</a></li>
+</ul>
+</div>
 
+<p>The first example we saw resulted in an html file, but surely a word file or a pdf file will be more useful for sharing your work. RMarkdown, and a whole ecosystem of other packages, allows you to generate documents in multiple formats using the same plain text file.</p>
+<p>You could generate other output files by changing the option on the yaml.</p>
+<blockquote>
+<p>Go back to the example report and find the line that starts with <code>output:</code>. Change <code>html_document</code> for <code>pdf_document</code>.</p>
+</blockquote>
+<p>You can also use the “knit” button, clicking on the little arrow on the right to see all the options.</p>
+<blockquote>
+<p>Now se the button to generate a word document. What changes do you see on the heather of the file?</p>
+</blockquote>
+<div id="code-control" class="section level2">
+<h2>Code control</h2>
+<p>Our example looks tidy, we’ve hided all the code and R messages so you can concentrate your attention on the table and figures. But this is not the default behavior of an Rmd file. Usually you’ll see everything and this is ok when you or the person that will read the report wants to see the code that generates those results. It’s up to you to decide if you want to show the code or not.</p>
+<p>To change the options of a chunk code, all you have to do is list the options inside the square brackets. For example:</p>
+<pre><code>```{r nombre-del-chunk, echo = FALSE, message = FALSE}
 
+```</code></pre>
+<p>A particularly important set of options is the one that controls whether the code is executed and whether the result of the code will remain in the report or not:</p>
+<ul>
+<li><p><code>eval = FALSE</code> prevents the chunk code from being run, so it will not display results either. It is useful for displaying example code if you are writing, for example, a document to teach R.</p></li>
+<li><p><code>echo = FALSE</code> runs the chunk code and displays the results, but hides the code in the report. This is useful for writing reports for people who do not need to see the R code that generated the graph or table.</p></li>
+<li><p><code>include = FALSE</code> runs the code but hides both the code and the results. It is useful to use in general configuration chunks where you load libraries.</p></li>
+</ul>
+<p>If you are writing a report where you don’t want any code to be shown, adding <code>echo = FALSE</code> to each new chunk becomes tedious. The solution is to change the option globally so that it applies to all chunks. This is done by the <code>knitr::opts_chunk$set()</code> function, which sets the global options of the chunks that follow it. You’ll find this function on the first “setup” chunk.</p>
+<pre><code>```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                  message = FALSE,
+                  warning = FALSE)
+```</code></pre>
+<blockquote>
+<p>Curious about how the options works? Change on at a time and knit the file again.</p>
+</blockquote>
+</div>
+<div id="automatization" class="section level2">
+<h2>Automatization</h2>
+<p>At the beginning of this workshop we ask you to change the penguin species in the example report. The task is not easy because “Gentoo” appears many times and it is easy to make a mistake. Parameterizing a report allows us to change parameters" in one place and get different analyses from the same file.</p>
+<p>To generate a parameterized report you have to add an element called <code>params</code> to the header with the list of parameters and their default values.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">params</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">specie</span><span class="kw">:</span><span class="at"> gentoo</span></span></code></pre></div>
+<p>From now on, you’ll have access to a variable called <code>params</code> which is a list containing the parameters and their value. To access the value of each parameter you use the <code>$</code> operator as follows:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>params<span class="sc">$</span>specie</span></code></pre></div>
+<pre><code>## [1] &quot;Gentoo&quot;</code></pre>
+<p>In this way, the original code can be modified to use the value of the specie stored in <code>params$specie</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> params<span class="sc">$</span>specie) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkorange&quot;</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;darkorange&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Penguin bill dimensions&quot;</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Bill length and depth for&quot;</span>, params<span class="sc">$</span>specie, <span class="st">&quot;Penguins at Palmer Station LTER&quot;</span>),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Penguin species&quot;</span>) </span></code></pre></div>
+<p>Here we changed the subtitle to concatenate words with the value stored in <code>params$specie</code>, this way we can construct the subtitle pragmatically.</p>
+<p>Now the report is ready to function as a parameterized report!</p>
+<blockquote>
+<p>Finally, change “Gentoo” on the yaml to generate a new report for one of the other species.</p>
+</blockquote>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUmVwb3J0aW5nIHlvdXIgd29yayIKb3V0cHV0OiAKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9kb3dubG9hZDogdHJ1ZQogICAgdG9jOiB0cnVlCiAgICB0b2NfZmxvYXQ6IGZhbHNlCiAgICBoaWdobGlnaHQ6IHRhbmdvCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKYGBg</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUmVwb3J0aW5nIHlvdXIgd29yayIKb3V0cHV0OiAKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9kb3dubG9hZDogdHJ1ZQogICAgdG9jOiB0cnVlCiAgICB0b2NfZmxvYXQ6IGZhbHNlCiAgICBoaWdobGlnaHQ6IHRhbmdvCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKCmNodW5rIDwtICJgYGAiCmBgYAoKClRoZSBmaXJzdCBleGFtcGxlIHdlIHNhdyByZXN1bHRlZCBpbiBhbiBodG1sIGZpbGUsIGJ1dCBzdXJlbHkgYSB3b3JkIGZpbGUgb3IgYSBwZGYgZmlsZSB3aWxsIGJlIG1vcmUgdXNlZnVsIGZvciBzaGFyaW5nIHlvdXIgd29yay4gUk1hcmtkb3duLCBhbmQgYSB3aG9sZSBlY29zeXN0ZW0gb2Ygb3RoZXIgcGFja2FnZXMsIGFsbG93cyB5b3UgdG8gZ2VuZXJhdGUgZG9jdW1lbnRzIGluIG11bHRpcGxlIGZvcm1hdHMgdXNpbmcgdGhlIHNhbWUgcGxhaW4gdGV4dCBmaWxlLgoKWW91IGNvdWxkIGdlbmVyYXRlIG90aGVyIG91dHB1dCBmaWxlcyBieSBjaGFuZ2luZyB0aGUgb3B0aW9uIG9uIHRoZSB5YW1sLiAKCj4gR28gYmFjayB0byB0aGUgZXhhbXBsZSByZXBvcnQgYW5kIGZpbmQgdGhlIGxpbmUgdGhhdCBzdGFydHMgd2l0aCBgb3V0cHV0OmAuIENoYW5nZSBgaHRtbF9kb2N1bWVudGAgZm9yIGBwZGZfZG9jdW1lbnRgLgoKWW91IGNhbiBhbHNvIHVzZSB0aGUgImtuaXQiIGJ1dHRvbiwgY2xpY2tpbmcgb24gdGhlIGxpdHRsZSBhcnJvdyBvbiB0aGUgcmlnaHQgdG8gc2VlIGFsbCB0aGUgb3B0aW9ucy4gCgo+IE5vdyBzZSB0aGUgYnV0dG9uIHRvIGdlbmVyYXRlIGEgd29yZCBkb2N1bWVudC4gV2hhdCBjaGFuZ2VzIGRvIHlvdSBzZWUgb24gdGhlIGhlYXRoZXIgb2YgdGhlIGZpbGU/CgojIyBDb2RlIGNvbnRyb2wKCk91ciBleGFtcGxlIGxvb2tzIHRpZHksIHdlJ3ZlIGhpZGVkIGFsbCB0aGUgY29kZSBhbmQgUiBtZXNzYWdlcyBzbyB5b3UgY2FuIGNvbmNlbnRyYXRlIHlvdXIgYXR0ZW50aW9uIG9uIHRoZSB0YWJsZSBhbmQgZmlndXJlcy4gQnV0IHRoaXMgaXMgbm90IHRoZSBkZWZhdWx0IGJlaGF2aW9yIG9mIGFuIFJtZCBmaWxlLiBVc3VhbGx5IHlvdSdsbCBzZWUgZXZlcnl0aGluZyBhbmQgdGhpcyBpcyBvayB3aGVuIHlvdSBvciB0aGUgcGVyc29uIHRoYXQgd2lsbCByZWFkIHRoZSByZXBvcnQgd2FudHMgdG8gc2VlIHRoZSBjb2RlIHRoYXQgZ2VuZXJhdGVzIHRob3NlIHJlc3VsdHMuIEl0J3MgdXAgdG8geW91IHRvIGRlY2lkZSBpZiB5b3Ugd2FudCB0byBzaG93IHRoZSBjb2RlIG9yIG5vdC4gCgpUbyBjaGFuZ2UgdGhlIG9wdGlvbnMgb2YgYSBjaHVuayBjb2RlLCBhbGwgeW91IGhhdmUgdG8gZG8gaXMgbGlzdCB0aGUgb3B0aW9ucyBpbnNpZGUgdGhlIHNxdWFyZSBicmFja2V0cy4gRm9yIGV4YW1wbGU6CgogICAgYHIgY2h1bmtge3Igbm9tYnJlLWRlbC1jaHVuaywgZWNobyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0V9CiAgICAKICAgIGByIGNodW5rYAoKQSBwYXJ0aWN1bGFybHkgaW1wb3J0YW50IHNldCBvZiBvcHRpb25zIGlzIHRoZSBvbmUgdGhhdCBjb250cm9scyB3aGV0aGVyIHRoZSBjb2RlIGlzIGV4ZWN1dGVkIGFuZCB3aGV0aGVyIHRoZSByZXN1bHQgb2YgdGhlIGNvZGUgd2lsbCByZW1haW4gaW4gdGhlIHJlcG9ydCBvciBub3Q6CgoqIGBldmFsID0gRkFMU0VgIHByZXZlbnRzIHRoZSBjaHVuayBjb2RlIGZyb20gYmVpbmcgcnVuLCBzbyBpdCB3aWxsIG5vdCBkaXNwbGF5IHJlc3VsdHMgZWl0aGVyLiBJdCBpcyB1c2VmdWwgZm9yIGRpc3BsYXlpbmcgZXhhbXBsZSBjb2RlIGlmIHlvdSBhcmUgd3JpdGluZywgZm9yIGV4YW1wbGUsIGEgZG9jdW1lbnQgdG8gdGVhY2ggUi4KCiogYGVjaG8gPSBGQUxTRWAgcnVucyB0aGUgY2h1bmsgY29kZSBhbmQgZGlzcGxheXMgdGhlIHJlc3VsdHMsIGJ1dCBoaWRlcyB0aGUgY29kZSBpbiB0aGUgcmVwb3J0LiBUaGlzIGlzIHVzZWZ1bCBmb3Igd3JpdGluZyByZXBvcnRzIGZvciBwZW9wbGUgd2hvIGRvIG5vdCBuZWVkIHRvIHNlZSB0aGUgUiBjb2RlIHRoYXQgZ2VuZXJhdGVkIHRoZSBncmFwaCBvciB0YWJsZS4KCiogYGluY2x1ZGUgPSBGQUxTRWAgcnVucyB0aGUgY29kZSBidXQgaGlkZXMgYm90aCB0aGUgY29kZSBhbmQgdGhlIHJlc3VsdHMuIEl0IGlzIHVzZWZ1bCB0byB1c2UgaW4gZ2VuZXJhbCBjb25maWd1cmF0aW9uIGNodW5rcyB3aGVyZSB5b3UgbG9hZCBsaWJyYXJpZXMuCgpJZiB5b3UgYXJlIHdyaXRpbmcgYSByZXBvcnQgd2hlcmUgeW91IGRvbid0IHdhbnQgYW55IGNvZGUgdG8gYmUgc2hvd24sIGFkZGluZyBgZWNobyA9IEZBTFNFYCB0byBlYWNoIG5ldyBjaHVuayBiZWNvbWVzIHRlZGlvdXMuIFRoZSBzb2x1dGlvbiBpcyB0byBjaGFuZ2UgdGhlIG9wdGlvbiBnbG9iYWxseSBzbyB0aGF0IGl0IGFwcGxpZXMgdG8gYWxsIGNodW5rcy4gVGhpcyBpcyBkb25lIGJ5IHRoZSBga25pdHI6Om9wdHNfY2h1bmskc2V0KClgIGZ1bmN0aW9uLCB3aGljaCBzZXRzIHRoZSBnbG9iYWwgb3B0aW9ucyBvZiB0aGUgY2h1bmtzIHRoYXQgZm9sbG93IGl0LiBZb3UnbGwgZmluZCB0aGlzIGZ1bmN0aW9uIG9uIHRoZSBmaXJzdCAic2V0dXAiIGNodW5rLgoKICAgIGByIGNodW5rYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CiAgICBrbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IEZBTFNFLCAKICAgICAgICAgICAgICAgICAgICAgIG1lc3NhZ2UgPSBGQUxTRSwKICAgICAgICAgICAgICAgICAgICAgIHdhcm5pbmcgPSBGQUxTRSkKICAgIGByIGNodW5rYAogICAgCj4gQ3VyaW91cyBhYm91dCBob3cgdGhlIG9wdGlvbnMgd29ya3M/IENoYW5nZSBvbiBhdCBhIHRpbWUgYW5kIGtuaXQgdGhlIGZpbGUgYWdhaW4uIAoKIyMgQXV0b21hdGl6YXRpb24KCkF0IHRoZSBiZWdpbm5pbmcgb2YgdGhpcyB3b3Jrc2hvcCB3ZSBhc2sgeW91IHRvIGNoYW5nZSB0aGUgcGVuZ3VpbiBzcGVjaWVzIGluIHRoZSBleGFtcGxlIHJlcG9ydC4gVGhlIHRhc2sgaXMgbm90IGVhc3kgYmVjYXVzZSAiR2VudG9vIiBhcHBlYXJzIG1hbnkgdGltZXMgYW5kIGl0IGlzIGVhc3kgdG8gbWFrZSBhIG1pc3Rha2UuIFBhcmFtZXRlcml6aW5nIGEgcmVwb3J0IGFsbG93cyB1cyB0byBjaGFuZ2UgcGFyYW1ldGVycyIgaW4gb25lIHBsYWNlIGFuZCBnZXQgZGlmZmVyZW50IGFuYWx5c2VzIGZyb20gdGhlIHNhbWUgZmlsZS4gCgpUbyBnZW5lcmF0ZSBhIHBhcmFtZXRlcml6ZWQgcmVwb3J0IHlvdSBoYXZlIHRvIGFkZCBhbiBlbGVtZW50IGNhbGxlZCBgcGFyYW1zYCB0byB0aGUgaGVhZGVyIHdpdGggdGhlIGxpc3Qgb2YgcGFyYW1ldGVycyBhbmQgdGhlaXIgZGVmYXVsdCB2YWx1ZXMuCgpgYGB5YW1sCnBhcmFtczoKICBzcGVjaWU6IGdlbnRvbwpgYGAKCmBgYHtyLCBpbmNsdWRlPUZBTFNFfQpwYXJhbXMgPC0gbGlzdChzcGVjaWUgPSAiR2VudG9vIikKYGBgCgpGcm9tIG5vdyBvbiwgeW91J2xsIGhhdmUgYWNjZXNzIHRvIGEgdmFyaWFibGUgY2FsbGVkIGBwYXJhbXNgIHdoaWNoIGlzIGEgbGlzdCBjb250YWluaW5nIHRoZSBwYXJhbWV0ZXJzIGFuZCB0aGVpciB2YWx1ZS4gVG8gYWNjZXNzIHRoZSB2YWx1ZSBvZiBlYWNoIHBhcmFtZXRlciB5b3UgdXNlIHRoZSBgJGAgb3BlcmF0b3IgYXMgZm9sbG93czoKCmBgYHtyfQpwYXJhbXMkc3BlY2llCmBgYAoKSW4gdGhpcyB3YXksIHRoZSBvcmlnaW5hbCBjb2RlIGNhbiBiZSBtb2RpZmllZCB0byB1c2UgdGhlIHZhbHVlIG9mIHRoZSBzcGVjaWUgc3RvcmVkIGluIGBwYXJhbXMkc3BlY2llYC4KCmBgYHtyIGV2YWw9RkFMU0V9CnBlbmd1aW5zICU+JSAKICBmaWx0ZXIoc3BlY2llcyA9PSBwYXJhbXMkc3BlY2llKSAlPiUgCiAgZ2dwbG90KGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tKSkgKwogIGdlb21fcG9pbnQoY29sb3IgPSAiZGFya29yYW5nZSIsCiAgICAgICAgICAgICBzaXplID0gMywKICAgICAgICAgICAgIGFscGhhID0gMC44KSArCiAgZ2VvbV9zbW9vdGgobWV0aG9kID0gImxtIiwgc2UgPSBGQUxTRSwgY29sb3IgPSAiZGFya29yYW5nZSIpICsKICB0aGVtZV9taW5pbWFsKCkgKwogIGxhYnModGl0bGUgPSAiUGVuZ3VpbiBiaWxsIGRpbWVuc2lvbnMiLAogICAgICAgc3VidGl0bGUgPSBwYXN0ZSgiQmlsbCBsZW5ndGggYW5kIGRlcHRoIGZvciIsIHBhcmFtcyRzcGVjaWUsICJQZW5ndWlucyBhdCBQYWxtZXIgU3RhdGlvbiBMVEVSIiksCiAgICAgICB4ID0gIkJpbGwgbGVuZ3RoIChtbSkiLAogICAgICAgeSA9ICJCaWxsIGRlcHRoIChtbSkiLAogICAgICAgY29sb3IgPSAiUGVuZ3VpbiBzcGVjaWVzIikgCmBgYAoKSGVyZSB3ZSBjaGFuZ2VkIHRoZSBzdWJ0aXRsZSB0byBjb25jYXRlbmF0ZSB3b3JkcyB3aXRoIHRoZSB2YWx1ZSBzdG9yZWQgaW4gYHBhcmFtcyRzcGVjaWVgLCB0aGlzIHdheSB3ZSBjYW4gY29uc3RydWN0IHRoZSBzdWJ0aXRsZSBwcmFnbWF0aWNhbGx5LgoKTm93IHRoZSByZXBvcnQgaXMgcmVhZHkgdG8gZnVuY3Rpb24gYXMgYSBwYXJhbWV0ZXJpemVkIHJlcG9ydCEKCj4gRmluYWxseSwgY2hhbmdlICJHZW50b28iIG9uIHRoZSB5YW1sIHRvIGdlbmVyYXRlIGEgbmV3IHJlcG9ydCBmb3Igb25lIG9mIHRoZSBvdGhlciBzcGVjaWVzLiA=</div>
 
 
 
