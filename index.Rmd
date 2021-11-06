@@ -4,17 +4,17 @@ title: "Welcome!"
 
 ### What is this course about?
 
-This course is intended for [people](personas.html) who use spreadsheets for data manipulation and analysis but would like to learn how to work with R and have never programmed. So the content starts from the beginning: why use R? and where to start?
+This course is intended for [people](personas.html) who use spreadsheets for data manipulation and have never programmed, but would like to learn how to work with R. Therefore its starts from the beginning: why use R? and where to start?
 
-At the same time that we propose to work with R, we would like it to be in an orderly and reproducible way. For this reason, we propose to use a workflow that allows those who take this course to apply good programming practices, work collaboratively and present their work in a single document that includes the analysis and the results.
+We propose to work with R in an orderly and reproducible way. For this reason, we present a workflow that allows those who take this course to apply good programming practices, work collaboratively and present their work in a single document that includes the analysis and the results.
 
-Whenever we can, we will mention how what we propose to solve with R can also be done with spreadsheets and the advantages and disadvantages of each case.
+Whenever we can, we will mention how what we propose to solve with R can also be done with spreadsheets and the advantages and disadvantages of each approach.
 
-In each section we include exercises and challenges together with the examples, we use some useful data sets for the problem we want to solve. We want these data to be realistic so that anyone can find similarities in their own data and can apply what they have learned to other situations.
+In each section we include exercises and challenges along with examples. We make use various data sets for the problems we want to solve. We want these data to be realistic so that anyone can find similarities in their own data and can apply what they have learned to other situations.
 
 ### Before we start
 
-During this workshop we will use R and RStudio. Please [follow the instructions to prepare for the workshop](prepare.html).
+During this workshop we will use R and RStudio. Please [follow these instructions to prepare for the workshop](prepare.html).
 
 ### Schedule
 

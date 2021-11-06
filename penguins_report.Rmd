@@ -14,7 +14,7 @@ library(readxl)
 
 ## About the data
 
-The **Palmer Penguins** data were collected and made available by Dr. Kristen Gorman and the [Palmer Station, Antarctica LTER](https://pal.lternet.edu/), a member of the Long Term Ecological Research Network. The data set includes several caracteristics from Adelie, Chinstrap and Gentoo pinguins. 
+The **Palmer Penguins** data were collected and made available by Dr. Kristen Gorman and the [Palmer Station, Antarctica LTER](https://pal.lternet.edu/), a member of the Long Term Ecological Research Network. The data set includes several characteristics from Adelie, Chinstrap and Gentoo penguins. 
 
 ```{r read}
 penguins <- read_csv("data/penguins.csv")
@@ -27,12 +27,12 @@ summary <- penguins %>%
 summary %>% 
   knitr::kable(col.names = c("Specie", "Count", "Mean Body Mass"),
                align = "lcc",
-               caption = "Summary of penguins on the data set by specie.")
+               caption = "Summary of penguins on the data set by species.")
 ```
 
 ### Gentoo penguins
 
-On this section we focus the analysis on the Gentoo specie. The bill length and depth shows a positive relationship, if the bill penguin is big, the depth is also big. 
+On this section we focus the analysis on the Gentoo species. The bill length is positively correlated with bill depth, penguins with longer bills usually have deeper bills.
 
 ```{r}
 penguins %>% 
@@ -49,12 +49,13 @@ penguins %>%
        y = "Bill depth (mm)",
        color = "Penguin species") 
 ```
-The body mass for female and male penguins is different, in general male penguins are bigger than females. 
+
+Female and male penguins have differnet body mass. Male penguins generally are bigger than females. 
 
 ```{r}
 penguins %>% 
   filter(species == "Gentoo") %>% 
- ggplot(aes(x = body_mass_g)) +
+  ggplot(aes(x = body_mass_g)) +
   geom_histogram(aes(fill = sex),
                  alpha = 0.5,
                  position = "identity") +

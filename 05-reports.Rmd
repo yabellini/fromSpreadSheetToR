@@ -15,11 +15,11 @@ chunk <- "```"
 ```
 
 
-The first example we saw resulted in an html file, but surely a word file or a pdf file will be more useful for sharing your work. RMarkdown, and a whole ecosystem of other packages, allows you to generate documents in multiple formats using the same plain text file.
+The first example report we saw was rendered into an html file. But what about Word or PDF files, which can be more usefull or expected in some situations?. RMarkdown, and a whole ecosystem of other packages, allows you to generate documents in multiple formats using the same plain text file.
 
-You could generate other output files by changing the option on the yaml. 
+The way you generate the output file format is by changing the `output` option on the header.
 
-> Go back to the example report and find the line that starts with `output:`. Change `html_document` for `pdf_document`.
+> Go back to the example report and find the line that starts with `output:`. Change `html_document` to `pdf_document`.
 
 You can also use the "knit" button, clicking on the little arrow on the right to see all the options. 
 
@@ -27,7 +27,7 @@ You can also use the "knit" button, clicking on the little arrow on the right to
 
 ## Code control
 
-Our example looks tidy, we've hided all the code and R messages so you can concentrate your attention on the table and figures. But this is not the default behavior of an Rmd file. Usually you'll see everything and this is ok when you or the person that will read the report wants to see the code that generates those results. It's up to you to decide if you want to show the code or not. 
+Our example looks quite tidy. We've hidden all the code and R messages so you can concentrate your attention on the table and figures. But this is not the default behaviour of an Rmd file. Usually the output will have both code and output, which is fine when you or the person that will read the report wants to see the code that generates those results, but it might not be what the final audience of the report might need. It's up to you to decide if you want to show the code or not. 
 
 To change the options of a chunk code, all you have to do is list the options inside the square brackets. For example:
 
@@ -35,7 +35,7 @@ To change the options of a chunk code, all you have to do is list the options in
     
     `r chunk`
 
-A particularly important set of options is the one that controls whether the code is executed and whether the result of the code will remain in the report or not:
+A particularly important set of options are the ones that control whether the code is executed and whether the result of the code will remain in the report or not:
 
 * `eval = FALSE` prevents the chunk code from being run, so it will not display results either. It is useful for displaying example code if you are writing, for example, a document to teach R.
 
@@ -51,34 +51,34 @@ If you are writing a report where you don't want any code to be shown, adding `e
                       warning = FALSE)
     `r chunk`
     
-> Curious about how the options works? Change on at a time and knit the file again. 
+> Curious about how the options works? Change them one at a time and knit the file each time to see what changes.
 
-## Automatization
+## Automatisation
 
-At the beginning of this workshop we ask you to change the penguin species in the example report. The task is not easy because "Gentoo" appears many times and it is easy to make a mistake. Parameterizing a report allows us to change parameters" in one place and get different analyses from the same file. 
+At the beginning of this workshop we asked you to change the penguin species in the example report. The task was not easy because "Gentoo" appears several times and it is easy to make a mistake. Parameterising a report allows us to define those kind of parameters in just one place and get different analyses from the same file. 
 
-To generate a parameterized report you have to add an element called `params` to the header with the list of parameters and their default values.
+To generate a parameterised report you have to add an element called `params` to the header with the list of parameters and their default values.
 
 ```yaml
 params:
-  specie: gentoo
+  species: gentoo
 ```
 
 ```{r, include=FALSE}
-params <- list(specie = "Gentoo")
+params <- list(species = "Gentoo")
 ```
 
 From now on, you'll have access to a variable called `params` which is a list containing the parameters and their value. To access the value of each parameter you use the `$` operator as follows:
 
 ```{r}
-params$specie
+params$species
 ```
 
-In this way, the original code can be modified to use the value of the specie stored in `params$specie`.
+In this way, the original code can be modified to use the value of the specie stored in `params$species`.
 
 ```{r eval=FALSE}
 penguins %>% 
-  filter(species == params$specie) %>% 
+  filter(species == params$species) %>% 
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(color = "darkorange",
              size = 3,
@@ -92,8 +92,8 @@ penguins %>%
        color = "Penguin species") 
 ```
 
-Here we changed the subtitle to concatenate words with the value stored in `params$specie`, this way we can construct the subtitle pragmatically.
+Here we changed the subtitle to concatenate words with the value stored in `params$species`, this way we can construct the subtitle pragmatically.
 
-Now the report is ready to function as a parameterized report!
+Now the report is ready to function as a parameterised report!
 
 > Finally, change "Gentoo" on the yaml to generate a new report for one of the other species. 
