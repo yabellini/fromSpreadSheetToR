@@ -114,3 +114,4 @@ penguins %>%
 > Activity: Write a sentence to filter all the penguins in the Torgersen island.
 
 > Activity: Now write the code to filter all the penguins wich flipper lenght is greater than that 200
+
