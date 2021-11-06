@@ -23,7 +23,7 @@ We are going to use R as a language and RStudio as an IDE, a Integrated Developm
 To launch RStudio, double-click on the RStudio icon. Launching RStudio also launches R, actually you will probably never open R by itself.
 
 
-<img src="img/rstudio-principal.png" alt="RStudio main screen. Console, enviroment and Files panels" width="100" />
+<img src="img/rstudio-principal.png" alt="RStudio main screen. Console, enviroment and Files panels" />
 
 <img src="img/rstudio-cloud-principal.png" alt="RStudio Cloud main screen. Console, enviroment and Files panels" />
 
