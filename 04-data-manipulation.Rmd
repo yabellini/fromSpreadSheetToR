@@ -83,3 +83,34 @@ summary %>%
                caption = "Summary of penguins on the data set by specie.")
 ```
 
+We can do a lot more action with functions or verbs of the tidyverse.  Let's see a couple more
+
+## Creating new variables
+
+There are a lot of times where we want to operate beyond the original data. This is often done by adding a column. We do this with the `mutate()` function.
+
+We can add to our counting example by using `mutate()` to create a new variable **prop**, which represents the proportion of penguins of each **species**
+
+```{r}
+penguins %>% 
+  group_by(species) %>% 
+  summarise(count = n(),
+            mean_body_mass = round(mean(body_mass_g/1000, na.rm = TRUE), 2)) %>%
+  mutate(prop = count/nrow(penguins))
+
+```
+
+## Filtering data
+
+In our report we make plot by species. To do this we need to keep only the data of the specie we want to analyze.  We use the `filter` function to subset data frames, this functions return the rows that satisfy variable conditions.
+
+We use expected operators (>, <, >=, <=, ==) to set conditions for a numeric variable when filtering.  This operwtor are also useful for date and character types of data.  Look at the code to see a condition for text type of data.
+
+```{r}
+penguins %>% 
+  filter(species == "Gentoo")
+```
+
+> Activity: Write a sentence to filter all the penguins in the Torgersen island.
+
+> Activity: Now write the code to filter all the penguins wich flipper lenght is greater than that 200
