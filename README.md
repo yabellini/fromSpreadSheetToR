@@ -2,7 +2,7 @@
 
 Yanina Bellini Saibene y Paola Corrales
 
-This course is intended for [people](personas.html) who use spreadsheets for data manipulation and analysis but would like to learn how to work with R and have never programmed. The first version of this course was developed in the frame of [MetaDocencia](https://www.metadocencia.org/) for the [Research Software Camp: Beyond the spreadsheet](https://www.software.ac.uk/RSCamp-beyond-spreadsheet).
+This course is intended for [people](personas.html) who use spreadsheets for data manipulation and analysis but would like to learn how to work with R and have never programmed. The first version of this course was developed by [MetaDocencia's](https://www.metadocencia.org/) Team for the [Research Software Camp: Beyond the spreadsheet](https://www.software.ac.uk/RSCamp-beyond-spreadsheet).
 
 
 ## License
