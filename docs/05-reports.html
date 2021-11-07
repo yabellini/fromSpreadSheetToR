@@ -13,8 +13,7 @@
 
 <title>Reporting your work</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -32,6 +31,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -52,19 +52,19 @@
   }
 </style>
 <style type="text/css" data-origin="pandoc">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +84,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {  background-color: #f8f8f8; }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -392,14 +392,14 @@ $(document).ready(function () {
 <div id="TOC">
 <ul>
 <li><a href="#code-control">Code control</a></li>
-<li><a href="#automatization">Automatization</a></li>
+<li><a href="#automatisation">Automatisation</a></li>
 </ul>
 </div>
 
-<p>The first example we saw resulted in an html file, but surely a word file or a pdf file will be more useful for sharing your work. RMarkdown, and a whole ecosystem of other packages, allows you to generate documents in multiple formats using the same plain text file.</p>
-<p>You could generate other output files by changing the option on the yaml.</p>
+<p>The first example report we saw was rendered into an html file. But what about Word or PDF files, which can be more usefull or expected in some situations?. RMarkdown, and a whole ecosystem of other packages, allows you to generate documents in multiple formats using the same plain text file.</p>
+<p>The way you generate the output file format is by changing the <code>output</code> option on the header.</p>
 <blockquote>
-<p>Go back to the example report and find the line that starts with <code>output:</code>. Change <code>html_document</code> for <code>pdf_document</code>.</p>
+<p>Go back to the example report and find the line that starts with <code>output:</code>. Change <code>html_document</code> to <code>pdf_document</code>.</p>
 </blockquote>
 <p>You can also use the “knit” button, clicking on the little arrow on the right to see all the options.</p>
 <blockquote>
@@ -407,12 +407,12 @@ $(document).ready(function () {
 </blockquote>
 <div id="code-control" class="section level2">
 <h2>Code control</h2>
-<p>Our example looks tidy, we’ve hided all the code and R messages so you can concentrate your attention on the table and figures. But this is not the default behavior of an Rmd file. Usually you’ll see everything and this is ok when you or the person that will read the report wants to see the code that generates those results. It’s up to you to decide if you want to show the code or not.</p>
+<p>Our example looks quite tidy. We’ve hidden all the code and R messages so you can concentrate your attention on the table and figures. But this is not the default behaviour of an Rmd file. Usually the output will have both code and output, which is fine when you or the person that will read the report wants to see the code that generates those results, but it might not be what the final audience of the report might need. It’s up to you to decide if you want to show the code or not.</p>
 <p>To change the options of a chunk code, all you have to do is list the options inside the square brackets. For example:</p>
 <pre><code>```{r nombre-del-chunk, echo = FALSE, message = FALSE}
 
 ```</code></pre>
-<p>A particularly important set of options is the one that controls whether the code is executed and whether the result of the code will remain in the report or not:</p>
+<p>A particularly important set of options are the ones that control whether the code is executed and whether the result of the code will remain in the report or not:</p>
 <ul>
 <li><p><code>eval = FALSE</code> prevents the chunk code from being run, so it will not display results either. It is useful for displaying example code if you are writing, for example, a document to teach R.</p></li>
 <li><p><code>echo = FALSE</code> runs the chunk code and displays the results, but hides the code in the report. This is useful for writing reports for people who do not need to see the R code that generated the graph or table.</p></li>
@@ -425,40 +425,40 @@ knitr::opts_chunk$set(echo = FALSE,
                   warning = FALSE)
 ```</code></pre>
 <blockquote>
-<p>Curious about how the options works? Change on at a time and knit the file again.</p>
+<p>Curious about how the options works? Change them one at a time and knit the file each time to see what changes.</p>
 </blockquote>
 </div>
-<div id="automatization" class="section level2">
-<h2>Automatization</h2>
-<p>At the beginning of this workshop we ask you to change the penguin species in the example report. The task is not easy because “Gentoo” appears many times and it is easy to make a mistake. Parameterizing a report allows us to change parameters" in one place and get different analyses from the same file.</p>
-<p>To generate a parameterized report you have to add an element called <code>params</code> to the header with the list of parameters and their default values.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">params</span><span class="kw">:</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">specie</span><span class="kw">:</span><span class="at"> gentoo</span></span></code></pre></div>
+<div id="automatisation" class="section level2">
+<h2>Automatisation</h2>
+<p>At the beginning of this workshop we asked you to change the penguin species in the example report. The task was not easy because “Gentoo” appears several times and it is easy to make a mistake. Parameterising a report allows us to define those kind of parameters in just one place and get different analyses from the same file.</p>
+<p>To generate a parameterised report you have to add an element called <code>params</code> to the header with the list of parameters and their default values.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">params</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="at">  </span><span class="fu">species</span><span class="kw">:</span><span class="at"> gentoo</span></span></code></pre></div>
 <p>From now on, you’ll have access to a variable called <code>params</code> which is a list containing the parameters and their value. To access the value of each parameter you use the <code>$</code> operator as follows:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>params<span class="sc">$</span>specie</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>params<span class="op">$</span>species</span></code></pre></div>
 <pre><code>## [1] &quot;Gentoo&quot;</code></pre>
-<p>In this way, the original code can be modified to use the value of the specie stored in <code>params$specie</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> params<span class="sc">$</span>specie) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkorange&quot;</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;darkorange&quot;</span>) <span class="sc">+</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Penguin bill dimensions&quot;</span>,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Bill length and depth for&quot;</span>, params<span class="sc">$</span>specie, <span class="st">&quot;Penguins at Palmer Station LTER&quot;</span>),</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>,</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Penguin species&quot;</span>) </span></code></pre></div>
-<p>Here we changed the subtitle to concatenate words with the value stored in <code>params$specie</code>, this way we can construct the subtitle pragmatically.</p>
-<p>Now the report is ready to function as a parameterized report!</p>
+<p>In this way, the original code can be modified to use the value of the specie stored in <code>params$species</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>penguins <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw">filter</span>(species <span class="op">==</span><span class="st"> </span>params<span class="op">$</span>species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> bill_length_mm, <span class="dt">y =</span> bill_depth_mm)) <span class="op">+</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;darkorange&quot;</span>,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>             <span class="dt">size =</span> <span class="dv">3</span>,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>             <span class="dt">alpha =</span> <span class="fl">0.8</span>) <span class="op">+</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">color =</span> <span class="st">&quot;darkorange&quot;</span>) <span class="op">+</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Penguin bill dimensions&quot;</span>,</span>
+<span id="cb6-10"><a href="#cb6-10"></a>       <span class="dt">subtitle =</span> <span class="kw">paste</span>(<span class="st">&quot;Bill length and depth for&quot;</span>, params<span class="op">$</span>specie, <span class="st">&quot;Penguins at Palmer Station LTER&quot;</span>),</span>
+<span id="cb6-11"><a href="#cb6-11"></a>       <span class="dt">x =</span> <span class="st">&quot;Bill length (mm)&quot;</span>,</span>
+<span id="cb6-12"><a href="#cb6-12"></a>       <span class="dt">y =</span> <span class="st">&quot;Bill depth (mm)&quot;</span>,</span>
+<span id="cb6-13"><a href="#cb6-13"></a>       <span class="dt">color =</span> <span class="st">&quot;Penguin species&quot;</span>) </span></code></pre></div>
+<p>Here we changed the subtitle to concatenate words with the value stored in <code>params$species</code>, this way we can construct the subtitle pragmatically.</p>
+<p>Now the report is ready to function as a parameterised report!</p>
 <blockquote>
 <p>Finally, change “Gentoo” on the yaml to generate a new report for one of the other species.</p>
 </blockquote>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUmVwb3J0aW5nIHlvdXIgd29yayIKb3V0cHV0OiAKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9kb3dubG9hZDogdHJ1ZQogICAgdG9jOiB0cnVlCiAgICB0b2NfZmxvYXQ6IGZhbHNlCiAgICBoaWdobGlnaHQ6IHRhbmdvCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKCmNodW5rIDwtICJgYGAiCmBgYAoKClRoZSBmaXJzdCBleGFtcGxlIHdlIHNhdyByZXN1bHRlZCBpbiBhbiBodG1sIGZpbGUsIGJ1dCBzdXJlbHkgYSB3b3JkIGZpbGUgb3IgYSBwZGYgZmlsZSB3aWxsIGJlIG1vcmUgdXNlZnVsIGZvciBzaGFyaW5nIHlvdXIgd29yay4gUk1hcmtkb3duLCBhbmQgYSB3aG9sZSBlY29zeXN0ZW0gb2Ygb3RoZXIgcGFja2FnZXMsIGFsbG93cyB5b3UgdG8gZ2VuZXJhdGUgZG9jdW1lbnRzIGluIG11bHRpcGxlIGZvcm1hdHMgdXNpbmcgdGhlIHNhbWUgcGxhaW4gdGV4dCBmaWxlLgoKWW91IGNvdWxkIGdlbmVyYXRlIG90aGVyIG91dHB1dCBmaWxlcyBieSBjaGFuZ2luZyB0aGUgb3B0aW9uIG9uIHRoZSB5YW1sLiAKCj4gR28gYmFjayB0byB0aGUgZXhhbXBsZSByZXBvcnQgYW5kIGZpbmQgdGhlIGxpbmUgdGhhdCBzdGFydHMgd2l0aCBgb3V0cHV0OmAuIENoYW5nZSBgaHRtbF9kb2N1bWVudGAgZm9yIGBwZGZfZG9jdW1lbnRgLgoKWW91IGNhbiBhbHNvIHVzZSB0aGUgImtuaXQiIGJ1dHRvbiwgY2xpY2tpbmcgb24gdGhlIGxpdHRsZSBhcnJvdyBvbiB0aGUgcmlnaHQgdG8gc2VlIGFsbCB0aGUgb3B0aW9ucy4gCgo+IE5vdyBzZSB0aGUgYnV0dG9uIHRvIGdlbmVyYXRlIGEgd29yZCBkb2N1bWVudC4gV2hhdCBjaGFuZ2VzIGRvIHlvdSBzZWUgb24gdGhlIGhlYXRoZXIgb2YgdGhlIGZpbGU/CgojIyBDb2RlIGNvbnRyb2wKCk91ciBleGFtcGxlIGxvb2tzIHRpZHksIHdlJ3ZlIGhpZGVkIGFsbCB0aGUgY29kZSBhbmQgUiBtZXNzYWdlcyBzbyB5b3UgY2FuIGNvbmNlbnRyYXRlIHlvdXIgYXR0ZW50aW9uIG9uIHRoZSB0YWJsZSBhbmQgZmlndXJlcy4gQnV0IHRoaXMgaXMgbm90IHRoZSBkZWZhdWx0IGJlaGF2aW9yIG9mIGFuIFJtZCBmaWxlLiBVc3VhbGx5IHlvdSdsbCBzZWUgZXZlcnl0aGluZyBhbmQgdGhpcyBpcyBvayB3aGVuIHlvdSBvciB0aGUgcGVyc29uIHRoYXQgd2lsbCByZWFkIHRoZSByZXBvcnQgd2FudHMgdG8gc2VlIHRoZSBjb2RlIHRoYXQgZ2VuZXJhdGVzIHRob3NlIHJlc3VsdHMuIEl0J3MgdXAgdG8geW91IHRvIGRlY2lkZSBpZiB5b3Ugd2FudCB0byBzaG93IHRoZSBjb2RlIG9yIG5vdC4gCgpUbyBjaGFuZ2UgdGhlIG9wdGlvbnMgb2YgYSBjaHVuayBjb2RlLCBhbGwgeW91IGhhdmUgdG8gZG8gaXMgbGlzdCB0aGUgb3B0aW9ucyBpbnNpZGUgdGhlIHNxdWFyZSBicmFja2V0cy4gRm9yIGV4YW1wbGU6CgogICAgYHIgY2h1bmtge3Igbm9tYnJlLWRlbC1jaHVuaywgZWNobyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0V9CiAgICAKICAgIGByIGNodW5rYAoKQSBwYXJ0aWN1bGFybHkgaW1wb3J0YW50IHNldCBvZiBvcHRpb25zIGlzIHRoZSBvbmUgdGhhdCBjb250cm9scyB3aGV0aGVyIHRoZSBjb2RlIGlzIGV4ZWN1dGVkIGFuZCB3aGV0aGVyIHRoZSByZXN1bHQgb2YgdGhlIGNvZGUgd2lsbCByZW1haW4gaW4gdGhlIHJlcG9ydCBvciBub3Q6CgoqIGBldmFsID0gRkFMU0VgIHByZXZlbnRzIHRoZSBjaHVuayBjb2RlIGZyb20gYmVpbmcgcnVuLCBzbyBpdCB3aWxsIG5vdCBkaXNwbGF5IHJlc3VsdHMgZWl0aGVyLiBJdCBpcyB1c2VmdWwgZm9yIGRpc3BsYXlpbmcgZXhhbXBsZSBjb2RlIGlmIHlvdSBhcmUgd3JpdGluZywgZm9yIGV4YW1wbGUsIGEgZG9jdW1lbnQgdG8gdGVhY2ggUi4KCiogYGVjaG8gPSBGQUxTRWAgcnVucyB0aGUgY2h1bmsgY29kZSBhbmQgZGlzcGxheXMgdGhlIHJlc3VsdHMsIGJ1dCBoaWRlcyB0aGUgY29kZSBpbiB0aGUgcmVwb3J0LiBUaGlzIGlzIHVzZWZ1bCBmb3Igd3JpdGluZyByZXBvcnRzIGZvciBwZW9wbGUgd2hvIGRvIG5vdCBuZWVkIHRvIHNlZSB0aGUgUiBjb2RlIHRoYXQgZ2VuZXJhdGVkIHRoZSBncmFwaCBvciB0YWJsZS4KCiogYGluY2x1ZGUgPSBGQUxTRWAgcnVucyB0aGUgY29kZSBidXQgaGlkZXMgYm90aCB0aGUgY29kZSBhbmQgdGhlIHJlc3VsdHMuIEl0IGlzIHVzZWZ1bCB0byB1c2UgaW4gZ2VuZXJhbCBjb25maWd1cmF0aW9uIGNodW5rcyB3aGVyZSB5b3UgbG9hZCBsaWJyYXJpZXMuCgpJZiB5b3UgYXJlIHdyaXRpbmcgYSByZXBvcnQgd2hlcmUgeW91IGRvbid0IHdhbnQgYW55IGNvZGUgdG8gYmUgc2hvd24sIGFkZGluZyBgZWNobyA9IEZBTFNFYCB0byBlYWNoIG5ldyBjaHVuayBiZWNvbWVzIHRlZGlvdXMuIFRoZSBzb2x1dGlvbiBpcyB0byBjaGFuZ2UgdGhlIG9wdGlvbiBnbG9iYWxseSBzbyB0aGF0IGl0IGFwcGxpZXMgdG8gYWxsIGNodW5rcy4gVGhpcyBpcyBkb25lIGJ5IHRoZSBga25pdHI6Om9wdHNfY2h1bmskc2V0KClgIGZ1bmN0aW9uLCB3aGljaCBzZXRzIHRoZSBnbG9iYWwgb3B0aW9ucyBvZiB0aGUgY2h1bmtzIHRoYXQgZm9sbG93IGl0LiBZb3UnbGwgZmluZCB0aGlzIGZ1bmN0aW9uIG9uIHRoZSBmaXJzdCAic2V0dXAiIGNodW5rLgoKICAgIGByIGNodW5rYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CiAgICBrbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IEZBTFNFLCAKICAgICAgICAgICAgICAgICAgICAgIG1lc3NhZ2UgPSBGQUxTRSwKICAgICAgICAgICAgICAgICAgICAgIHdhcm5pbmcgPSBGQUxTRSkKICAgIGByIGNodW5rYAogICAgCj4gQ3VyaW91cyBhYm91dCBob3cgdGhlIG9wdGlvbnMgd29ya3M/IENoYW5nZSBvbiBhdCBhIHRpbWUgYW5kIGtuaXQgdGhlIGZpbGUgYWdhaW4uIAoKIyMgQXV0b21hdGl6YXRpb24KCkF0IHRoZSBiZWdpbm5pbmcgb2YgdGhpcyB3b3Jrc2hvcCB3ZSBhc2sgeW91IHRvIGNoYW5nZSB0aGUgcGVuZ3VpbiBzcGVjaWVzIGluIHRoZSBleGFtcGxlIHJlcG9ydC4gVGhlIHRhc2sgaXMgbm90IGVhc3kgYmVjYXVzZSAiR2VudG9vIiBhcHBlYXJzIG1hbnkgdGltZXMgYW5kIGl0IGlzIGVhc3kgdG8gbWFrZSBhIG1pc3Rha2UuIFBhcmFtZXRlcml6aW5nIGEgcmVwb3J0IGFsbG93cyB1cyB0byBjaGFuZ2UgcGFyYW1ldGVycyIgaW4gb25lIHBsYWNlIGFuZCBnZXQgZGlmZmVyZW50IGFuYWx5c2VzIGZyb20gdGhlIHNhbWUgZmlsZS4gCgpUbyBnZW5lcmF0ZSBhIHBhcmFtZXRlcml6ZWQgcmVwb3J0IHlvdSBoYXZlIHRvIGFkZCBhbiBlbGVtZW50IGNhbGxlZCBgcGFyYW1zYCB0byB0aGUgaGVhZGVyIHdpdGggdGhlIGxpc3Qgb2YgcGFyYW1ldGVycyBhbmQgdGhlaXIgZGVmYXVsdCB2YWx1ZXMuCgpgYGB5YW1sCnBhcmFtczoKICBzcGVjaWU6IGdlbnRvbwpgYGAKCmBgYHtyLCBpbmNsdWRlPUZBTFNFfQpwYXJhbXMgPC0gbGlzdChzcGVjaWUgPSAiR2VudG9vIikKYGBgCgpGcm9tIG5vdyBvbiwgeW91J2xsIGhhdmUgYWNjZXNzIHRvIGEgdmFyaWFibGUgY2FsbGVkIGBwYXJhbXNgIHdoaWNoIGlzIGEgbGlzdCBjb250YWluaW5nIHRoZSBwYXJhbWV0ZXJzIGFuZCB0aGVpciB2YWx1ZS4gVG8gYWNjZXNzIHRoZSB2YWx1ZSBvZiBlYWNoIHBhcmFtZXRlciB5b3UgdXNlIHRoZSBgJGAgb3BlcmF0b3IgYXMgZm9sbG93czoKCmBgYHtyfQpwYXJhbXMkc3BlY2llCmBgYAoKSW4gdGhpcyB3YXksIHRoZSBvcmlnaW5hbCBjb2RlIGNhbiBiZSBtb2RpZmllZCB0byB1c2UgdGhlIHZhbHVlIG9mIHRoZSBzcGVjaWUgc3RvcmVkIGluIGBwYXJhbXMkc3BlY2llYC4KCmBgYHtyIGV2YWw9RkFMU0V9CnBlbmd1aW5zICU+JSAKICBmaWx0ZXIoc3BlY2llcyA9PSBwYXJhbXMkc3BlY2llKSAlPiUgCiAgZ2dwbG90KGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tKSkgKwogIGdlb21fcG9pbnQoY29sb3IgPSAiZGFya29yYW5nZSIsCiAgICAgICAgICAgICBzaXplID0gMywKICAgICAgICAgICAgIGFscGhhID0gMC44KSArCiAgZ2VvbV9zbW9vdGgobWV0aG9kID0gImxtIiwgc2UgPSBGQUxTRSwgY29sb3IgPSAiZGFya29yYW5nZSIpICsKICB0aGVtZV9taW5pbWFsKCkgKwogIGxhYnModGl0bGUgPSAiUGVuZ3VpbiBiaWxsIGRpbWVuc2lvbnMiLAogICAgICAgc3VidGl0bGUgPSBwYXN0ZSgiQmlsbCBsZW5ndGggYW5kIGRlcHRoIGZvciIsIHBhcmFtcyRzcGVjaWUsICJQZW5ndWlucyBhdCBQYWxtZXIgU3RhdGlvbiBMVEVSIiksCiAgICAgICB4ID0gIkJpbGwgbGVuZ3RoIChtbSkiLAogICAgICAgeSA9ICJCaWxsIGRlcHRoIChtbSkiLAogICAgICAgY29sb3IgPSAiUGVuZ3VpbiBzcGVjaWVzIikgCmBgYAoKSGVyZSB3ZSBjaGFuZ2VkIHRoZSBzdWJ0aXRsZSB0byBjb25jYXRlbmF0ZSB3b3JkcyB3aXRoIHRoZSB2YWx1ZSBzdG9yZWQgaW4gYHBhcmFtcyRzcGVjaWVgLCB0aGlzIHdheSB3ZSBjYW4gY29uc3RydWN0IHRoZSBzdWJ0aXRsZSBwcmFnbWF0aWNhbGx5LgoKTm93IHRoZSByZXBvcnQgaXMgcmVhZHkgdG8gZnVuY3Rpb24gYXMgYSBwYXJhbWV0ZXJpemVkIHJlcG9ydCEKCj4gRmluYWxseSwgY2hhbmdlICJHZW50b28iIG9uIHRoZSB5YW1sIHRvIGdlbmVyYXRlIGEgbmV3IHJlcG9ydCBmb3Igb25lIG9mIHRoZSBvdGhlciBzcGVjaWVzLiA=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJlcG9ydGluZyB5b3VyIHdvcmsiDQpvdXRwdXQ6IA0KICBodG1sX2RvY3VtZW50Og0KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUNCiAgICB0b2M6IHRydWUNCiAgICB0b2NfZmxvYXQ6IGZhbHNlDQogICAgaGlnaGxpZ2h0OiB0YW5nbw0KLS0tDQoNCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQ0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQ0KDQpjaHVuayA8LSAiYGBgIg0KYGBgDQoNCg0KVGhlIGZpcnN0IGV4YW1wbGUgcmVwb3J0IHdlIHNhdyB3YXMgcmVuZGVyZWQgaW50byBhbiBodG1sIGZpbGUuIEJ1dCB3aGF0IGFib3V0IFdvcmQgb3IgUERGIGZpbGVzLCB3aGljaCBjYW4gYmUgbW9yZSB1c2VmdWxsIG9yIGV4cGVjdGVkIGluIHNvbWUgc2l0dWF0aW9ucz8uIFJNYXJrZG93biwgYW5kIGEgd2hvbGUgZWNvc3lzdGVtIG9mIG90aGVyIHBhY2thZ2VzLCBhbGxvd3MgeW91IHRvIGdlbmVyYXRlIGRvY3VtZW50cyBpbiBtdWx0aXBsZSBmb3JtYXRzIHVzaW5nIHRoZSBzYW1lIHBsYWluIHRleHQgZmlsZS4NCg0KVGhlIHdheSB5b3UgZ2VuZXJhdGUgdGhlIG91dHB1dCBmaWxlIGZvcm1hdCBpcyBieSBjaGFuZ2luZyB0aGUgYG91dHB1dGAgb3B0aW9uIG9uIHRoZSBoZWFkZXIuDQoNCj4gR28gYmFjayB0byB0aGUgZXhhbXBsZSByZXBvcnQgYW5kIGZpbmQgdGhlIGxpbmUgdGhhdCBzdGFydHMgd2l0aCBgb3V0cHV0OmAuIENoYW5nZSBgaHRtbF9kb2N1bWVudGAgdG8gYHBkZl9kb2N1bWVudGAuDQoNCllvdSBjYW4gYWxzbyB1c2UgdGhlICJrbml0IiBidXR0b24sIGNsaWNraW5nIG9uIHRoZSBsaXR0bGUgYXJyb3cgb24gdGhlIHJpZ2h0IHRvIHNlZSBhbGwgdGhlIG9wdGlvbnMuIA0KDQo+IE5vdyBzZSB0aGUgYnV0dG9uIHRvIGdlbmVyYXRlIGEgd29yZCBkb2N1bWVudC4gV2hhdCBjaGFuZ2VzIGRvIHlvdSBzZWUgb24gdGhlIGhlYXRoZXIgb2YgdGhlIGZpbGU/DQoNCiMjIENvZGUgY29udHJvbA0KDQpPdXIgZXhhbXBsZSBsb29rcyBxdWl0ZSB0aWR5LiBXZSd2ZSBoaWRkZW4gYWxsIHRoZSBjb2RlIGFuZCBSIG1lc3NhZ2VzIHNvIHlvdSBjYW4gY29uY2VudHJhdGUgeW91ciBhdHRlbnRpb24gb24gdGhlIHRhYmxlIGFuZCBmaWd1cmVzLiBCdXQgdGhpcyBpcyBub3QgdGhlIGRlZmF1bHQgYmVoYXZpb3VyIG9mIGFuIFJtZCBmaWxlLiBVc3VhbGx5IHRoZSBvdXRwdXQgd2lsbCBoYXZlIGJvdGggY29kZSBhbmQgb3V0cHV0LCB3aGljaCBpcyBmaW5lIHdoZW4geW91IG9yIHRoZSBwZXJzb24gdGhhdCB3aWxsIHJlYWQgdGhlIHJlcG9ydCB3YW50cyB0byBzZWUgdGhlIGNvZGUgdGhhdCBnZW5lcmF0ZXMgdGhvc2UgcmVzdWx0cywgYnV0IGl0IG1pZ2h0IG5vdCBiZSB3aGF0IHRoZSBmaW5hbCBhdWRpZW5jZSBvZiB0aGUgcmVwb3J0IG1pZ2h0IG5lZWQuIEl0J3MgdXAgdG8geW91IHRvIGRlY2lkZSBpZiB5b3Ugd2FudCB0byBzaG93IHRoZSBjb2RlIG9yIG5vdC4gDQoNClRvIGNoYW5nZSB0aGUgb3B0aW9ucyBvZiBhIGNodW5rIGNvZGUsIGFsbCB5b3UgaGF2ZSB0byBkbyBpcyBsaXN0IHRoZSBvcHRpb25zIGluc2lkZSB0aGUgc3F1YXJlIGJyYWNrZXRzLiBGb3IgZXhhbXBsZToNCg0KICAgIGByIGNodW5rYHtyIG5vbWJyZS1kZWwtY2h1bmssIGVjaG8gPSBGQUxTRSwgbWVzc2FnZSA9IEZBTFNFfQ0KICAgIA0KICAgIGByIGNodW5rYA0KDQpBIHBhcnRpY3VsYXJseSBpbXBvcnRhbnQgc2V0IG9mIG9wdGlvbnMgYXJlIHRoZSBvbmVzIHRoYXQgY29udHJvbCB3aGV0aGVyIHRoZSBjb2RlIGlzIGV4ZWN1dGVkIGFuZCB3aGV0aGVyIHRoZSByZXN1bHQgb2YgdGhlIGNvZGUgd2lsbCByZW1haW4gaW4gdGhlIHJlcG9ydCBvciBub3Q6DQoNCiogYGV2YWwgPSBGQUxTRWAgcHJldmVudHMgdGhlIGNodW5rIGNvZGUgZnJvbSBiZWluZyBydW4sIHNvIGl0IHdpbGwgbm90IGRpc3BsYXkgcmVzdWx0cyBlaXRoZXIuIEl0IGlzIHVzZWZ1bCBmb3IgZGlzcGxheWluZyBleGFtcGxlIGNvZGUgaWYgeW91IGFyZSB3cml0aW5nLCBmb3IgZXhhbXBsZSwgYSBkb2N1bWVudCB0byB0ZWFjaCBSLg0KDQoqIGBlY2hvID0gRkFMU0VgIHJ1bnMgdGhlIGNodW5rIGNvZGUgYW5kIGRpc3BsYXlzIHRoZSByZXN1bHRzLCBidXQgaGlkZXMgdGhlIGNvZGUgaW4gdGhlIHJlcG9ydC4gVGhpcyBpcyB1c2VmdWwgZm9yIHdyaXRpbmcgcmVwb3J0cyBmb3IgcGVvcGxlIHdobyBkbyBub3QgbmVlZCB0byBzZWUgdGhlIFIgY29kZSB0aGF0IGdlbmVyYXRlZCB0aGUgZ3JhcGggb3IgdGFibGUuDQoNCiogYGluY2x1ZGUgPSBGQUxTRWAgcnVucyB0aGUgY29kZSBidXQgaGlkZXMgYm90aCB0aGUgY29kZSBhbmQgdGhlIHJlc3VsdHMuIEl0IGlzIHVzZWZ1bCB0byB1c2UgaW4gZ2VuZXJhbCBjb25maWd1cmF0aW9uIGNodW5rcyB3aGVyZSB5b3UgbG9hZCBsaWJyYXJpZXMuDQoNCklmIHlvdSBhcmUgd3JpdGluZyBhIHJlcG9ydCB3aGVyZSB5b3UgZG9uJ3Qgd2FudCBhbnkgY29kZSB0byBiZSBzaG93biwgYWRkaW5nIGBlY2hvID0gRkFMU0VgIHRvIGVhY2ggbmV3IGNodW5rIGJlY29tZXMgdGVkaW91cy4gVGhlIHNvbHV0aW9uIGlzIHRvIGNoYW5nZSB0aGUgb3B0aW9uIGdsb2JhbGx5IHNvIHRoYXQgaXQgYXBwbGllcyB0byBhbGwgY2h1bmtzLiBUaGlzIGlzIGRvbmUgYnkgdGhlIGBrbml0cjo6b3B0c19jaHVuayRzZXQoKWAgZnVuY3Rpb24sIHdoaWNoIHNldHMgdGhlIGdsb2JhbCBvcHRpb25zIG9mIHRoZSBjaHVua3MgdGhhdCBmb2xsb3cgaXQuIFlvdSdsbCBmaW5kIHRoaXMgZnVuY3Rpb24gb24gdGhlIGZpcnN0ICJzZXR1cCIgY2h1bmsuDQoNCiAgICBgciBjaHVua2B7ciBzZXR1cCwgaW5jbHVkZSA9IEZBTFNFfQ0KICAgIGtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gRkFMU0UsIA0KICAgICAgICAgICAgICAgICAgICAgIG1lc3NhZ2UgPSBGQUxTRSwNCiAgICAgICAgICAgICAgICAgICAgICB3YXJuaW5nID0gRkFMU0UpDQogICAgYHIgY2h1bmtgDQogICAgDQo+IEN1cmlvdXMgYWJvdXQgaG93IHRoZSBvcHRpb25zIHdvcmtzPyBDaGFuZ2UgdGhlbSBvbmUgYXQgYSB0aW1lIGFuZCBrbml0IHRoZSBmaWxlIGVhY2ggdGltZSB0byBzZWUgd2hhdCBjaGFuZ2VzLg0KDQojIyBBdXRvbWF0aXNhdGlvbg0KDQpBdCB0aGUgYmVnaW5uaW5nIG9mIHRoaXMgd29ya3Nob3Agd2UgYXNrZWQgeW91IHRvIGNoYW5nZSB0aGUgcGVuZ3VpbiBzcGVjaWVzIGluIHRoZSBleGFtcGxlIHJlcG9ydC4gVGhlIHRhc2sgd2FzIG5vdCBlYXN5IGJlY2F1c2UgIkdlbnRvbyIgYXBwZWFycyBzZXZlcmFsIHRpbWVzIGFuZCBpdCBpcyBlYXN5IHRvIG1ha2UgYSBtaXN0YWtlLiBQYXJhbWV0ZXJpc2luZyBhIHJlcG9ydCBhbGxvd3MgdXMgdG8gZGVmaW5lIHRob3NlIGtpbmQgb2YgcGFyYW1ldGVycyBpbiBqdXN0IG9uZSBwbGFjZSBhbmQgZ2V0IGRpZmZlcmVudCBhbmFseXNlcyBmcm9tIHRoZSBzYW1lIGZpbGUuIA0KDQpUbyBnZW5lcmF0ZSBhIHBhcmFtZXRlcmlzZWQgcmVwb3J0IHlvdSBoYXZlIHRvIGFkZCBhbiBlbGVtZW50IGNhbGxlZCBgcGFyYW1zYCB0byB0aGUgaGVhZGVyIHdpdGggdGhlIGxpc3Qgb2YgcGFyYW1ldGVycyBhbmQgdGhlaXIgZGVmYXVsdCB2YWx1ZXMuDQoNCmBgYHlhbWwNCnBhcmFtczoNCiAgc3BlY2llczogZ2VudG9vDQpgYGANCg0KYGBge3IsIGluY2x1ZGU9RkFMU0V9DQpwYXJhbXMgPC0gbGlzdChzcGVjaWVzID0gIkdlbnRvbyIpDQpgYGANCg0KRnJvbSBub3cgb24sIHlvdSdsbCBoYXZlIGFjY2VzcyB0byBhIHZhcmlhYmxlIGNhbGxlZCBgcGFyYW1zYCB3aGljaCBpcyBhIGxpc3QgY29udGFpbmluZyB0aGUgcGFyYW1ldGVycyBhbmQgdGhlaXIgdmFsdWUuIFRvIGFjY2VzcyB0aGUgdmFsdWUgb2YgZWFjaCBwYXJhbWV0ZXIgeW91IHVzZSB0aGUgYCRgIG9wZXJhdG9yIGFzIGZvbGxvd3M6DQoNCmBgYHtyfQ0KcGFyYW1zJHNwZWNpZXMNCmBgYA0KDQpJbiB0aGlzIHdheSwgdGhlIG9yaWdpbmFsIGNvZGUgY2FuIGJlIG1vZGlmaWVkIHRvIHVzZSB0aGUgdmFsdWUgb2YgdGhlIHNwZWNpZSBzdG9yZWQgaW4gYHBhcmFtcyRzcGVjaWVzYC4NCg0KYGBge3IgZXZhbD1GQUxTRX0NCnBlbmd1aW5zICU+JSANCiAgZmlsdGVyKHNwZWNpZXMgPT0gcGFyYW1zJHNwZWNpZXMpICU+JSANCiAgZ2dwbG90KGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tKSkgKw0KICBnZW9tX3BvaW50KGNvbG9yID0gImRhcmtvcmFuZ2UiLA0KICAgICAgICAgICAgIHNpemUgPSAzLA0KICAgICAgICAgICAgIGFscGhhID0gMC44KSArDQogIGdlb21fc21vb3RoKG1ldGhvZCA9ICJsbSIsIHNlID0gRkFMU0UsIGNvbG9yID0gImRhcmtvcmFuZ2UiKSArDQogIHRoZW1lX21pbmltYWwoKSArDQogIGxhYnModGl0bGUgPSAiUGVuZ3VpbiBiaWxsIGRpbWVuc2lvbnMiLA0KICAgICAgIHN1YnRpdGxlID0gcGFzdGUoIkJpbGwgbGVuZ3RoIGFuZCBkZXB0aCBmb3IiLCBwYXJhbXMkc3BlY2llLCAiUGVuZ3VpbnMgYXQgUGFsbWVyIFN0YXRpb24gTFRFUiIpLA0KICAgICAgIHggPSAiQmlsbCBsZW5ndGggKG1tKSIsDQogICAgICAgeSA9ICJCaWxsIGRlcHRoIChtbSkiLA0KICAgICAgIGNvbG9yID0gIlBlbmd1aW4gc3BlY2llcyIpIA0KYGBgDQoNCkhlcmUgd2UgY2hhbmdlZCB0aGUgc3VidGl0bGUgdG8gY29uY2F0ZW5hdGUgd29yZHMgd2l0aCB0aGUgdmFsdWUgc3RvcmVkIGluIGBwYXJhbXMkc3BlY2llc2AsIHRoaXMgd2F5IHdlIGNhbiBjb25zdHJ1Y3QgdGhlIHN1YnRpdGxlIHByYWdtYXRpY2FsbHkuDQoNCk5vdyB0aGUgcmVwb3J0IGlzIHJlYWR5IHRvIGZ1bmN0aW9uIGFzIGEgcGFyYW1ldGVyaXNlZCByZXBvcnQhDQoNCj4gRmluYWxseSwgY2hhbmdlICJHZW50b28iIG9uIHRoZSB5YW1sIHRvIGdlbmVyYXRlIGEgbmV3IHJlcG9ydCBmb3Igb25lIG9mIHRoZSBvdGhlciBzcGVjaWVzLiA=</div>
 
 
 

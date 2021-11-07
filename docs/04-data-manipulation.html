@@ -13,8 +13,7 @@
 
 <title>Data manipulation</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -32,6 +31,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -52,19 +52,19 @@
   }
 </style>
 <style type="text/css" data-origin="pandoc">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +84,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {  background-color: #f8f8f8; }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -393,63 +393,65 @@ $(document).ready(function () {
 <ul>
 <li><a href="#creating-summary-tables">Creating summary tables</a></li>
 <li><a href="#formatig-the-table">Formatig the table</a></li>
+<li><a href="#creating-new-variables">Creating new variables</a></li>
+<li><a href="#filtering-data">Filtering data</a></li>
 </ul>
 </div>
 
 <div id="creating-summary-tables" class="section level2">
 <h2>Creating summary tables</h2>
-<p>In spreadsheet pivot tables or dinamic tables are powerful tools for summarizing data in different ways. We can create these tables using the <code>group_by</code> and <code>summarize</code> functions from the Tidyverse.</p>
-<p>Let’s take a look to our report, right after we read the data, we create a summary with the number of cases and the average body mass for each specie in our dataset.</p>
+<p>In spreadsheet, pivot tables or dynamic tables are powerful tools for summarizing data in different ways. We can create these tables using the <code>group_by</code> and <code>summarize</code> functions from the tidyverse package.</p>
+<p>Let’s take a look at our report, right after we read the data, we create a summary table with the number of cases and the average body mass for each specie in our dataset.</p>
 <p>We can use <code>group_by()</code> to group our data by <strong>species</strong> and <code>summarize()</code> to calculate the number of cases and the average <strong>body_mass_g</strong> for each grouping.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(),</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_body_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 3
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>penguins <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="st">  </span><span class="kw">group_by</span>(species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">count =</span> <span class="kw">n</span>(),</span>
+<span id="cb1-4"><a href="#cb1-4"></a>            <span class="dt">mean_body_mass =</span> <span class="kw">mean</span>(body_mass_g, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
 ##   species   count mean_body_mass
 ##   &lt;chr&gt;     &lt;int&gt;          &lt;dbl&gt;
 ## 1 Adelie      152          3701.
 ## 2 Chinstrap    68          3733.
 ## 3 Gentoo      124          5076.</code></pre>
-<p>The function <code>n()</code> return the number of cases and the function <code>mean</code> calculate the average. The parameter <code>na.rm = TRUE</code> tells the function that remove the empty values, the <code>NA</code> values before made the calculation.</p>
+<p>The function <code>n()</code> returns the number of cases and the function <code>mean</code> computes the average. The parameter <code>na.rm = TRUE</code> tells the function to remove non available values (<code>NA</code>) before performing the calculation.</p>
 <blockquote>
-<p>Question: What if you don’t group_by first? Let’s try it and discuss what’s going on.</p>
+<p>Question: What if you don’t use <code>group_by()</code> before <code>summarise()</code>? Let’s try it and discuss what’s going on.</p>
 </blockquote>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_body_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 2
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>penguins <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">count =</span> <span class="kw">n</span>(),</span>
+<span id="cb3-3"><a href="#cb3-3"></a>            <span class="dt">mean_body_mass =</span> <span class="kw">mean</span>(body_mass_g, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
 ##   count mean_body_mass
 ##   &lt;int&gt;          &lt;dbl&gt;
 ## 1   344          4202.</code></pre>
 <p>So if we don’t group_by first, we will get a single summary statistic (n and mean in this case) for the whole dataset.</p>
-<p>Now, we want to have the average of the body mass in kilograms and with two decimals. We can change our summarise to get that calculation.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_body_mass =</span> <span class="fu">round</span>(<span class="fu">mean</span>(body_mass_g<span class="sc">/</span><span class="dv">1000</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">2</span>))</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 3
+<p>Now, we want the average of the body mass in kilograms and with two decimals. We can change our <code>summarise()</code> call to get that calculation.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>penguins <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw">group_by</span>(species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">count =</span> <span class="kw">n</span>(),</span>
+<span id="cb5-4"><a href="#cb5-4"></a>            <span class="dt">mean_body_mass =</span> <span class="kw">round</span>(<span class="kw">mean</span>(body_mass_g<span class="op">/</span><span class="dv">1000</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
 ##   species   count mean_body_mass
 ##   &lt;chr&gt;     &lt;int&gt;          &lt;dbl&gt;
 ## 1 Adelie      152           3.7 
 ## 2 Chinstrap    68           3.73
 ## 3 Gentoo      124           5.08</code></pre>
-<p>First we divide body mass by 1000 to transform from grams to kilograms and then we use the function <code>round</code> to get only two decimals.</p>
+<p>First we divide body mass by 1000 to transform from grams to kilograms and then we use the function <code>round()</code> to get only two decimals.</p>
 <p>Now we are at the point where we actually want to save this summary information as a variable so we can use it in further analyses and formatting.</p>
 <p>So let’s add a variable assignment to that first line:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_body_mass =</span> <span class="fu">round</span>(<span class="fu">mean</span>(body_mass_g<span class="sc">/</span><span class="dv">1000</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>summary &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw">group_by</span>(species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">count =</span> <span class="kw">n</span>(),</span>
+<span id="cb7-4"><a href="#cb7-4"></a>            <span class="dt">mean_body_mass =</span> <span class="kw">round</span>(<span class="kw">mean</span>(body_mass_g<span class="op">/</span><span class="dv">1000</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dv">2</span>))</span></code></pre></div>
 </div>
 <div id="formatig-the-table" class="section level2">
 <h2>Formatig the table</h2>
-<p>To make our table look better in a report, we have to change some of its elements. For example, the name of the variables should be informative for a person (at the moment they are useful names for a computer), we can add a title to it and change the alignment of the data.</p>
+<p>To make our table look better in a report, we have to change some of its elements. For example, the name of the variables should be informative for a person (at the moment they are useful names for a computer), and we can add a title to it and change the alignment of the numbers.</p>
 <p>We can do that with the <code>kable</code> function.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>summary <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Specie&quot;</span>, <span class="st">&quot;Count&quot;</span>, <span class="st">&quot;Mean Body Mass&quot;</span>),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">align =</span> <span class="st">&quot;lcc&quot;</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">caption =</span> <span class="st">&quot;Summary of penguins on the data set by specie.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>summary <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Specie&quot;</span>, <span class="st">&quot;Count&quot;</span>, <span class="st">&quot;Mean Body Mass&quot;</span>),</span>
+<span id="cb8-3"><a href="#cb8-3"></a>               <span class="dt">align =</span> <span class="st">&quot;lcc&quot;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4"></a>               <span class="dt">caption =</span> <span class="st">&quot;Summary of penguins on the data set by specie.&quot;</span>)</span></code></pre></div>
 <table>
 <caption>Summary of penguins on the data set by specie.</caption>
 <thead>
@@ -477,9 +479,53 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+<p>We can do a lot more with other functions (or “verbs”) of the tidyverse. Let’s see a couple more</p>
+</div>
+<div id="creating-new-variables" class="section level2">
+<h2>Creating new variables</h2>
+<p>There are a lot of times in which we want to operate beyond the original data. This is often done by adding a column. We do this with the <code>mutate()</code> function.</p>
+<p>We can add a new variable (called <code>prop</code>) representing the proportion of penguins in each <strong>species</strong> with by using <code>mutate()</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>penguins <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span><span class="kw">group_by</span>(species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">count =</span> <span class="kw">n</span>(),</span>
+<span id="cb9-4"><a href="#cb9-4"></a>            <span class="dt">mean_body_mass =</span> <span class="kw">round</span>(<span class="kw">mean</span>(body_mass_g<span class="op">/</span><span class="dv">1000</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dv">2</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> count<span class="op">/</span><span class="kw">nrow</span>(penguins))</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 4
+##   species   count mean_body_mass  prop
+##   &lt;chr&gt;     &lt;int&gt;          &lt;dbl&gt; &lt;dbl&gt;
+## 1 Adelie      152           3.7  0.442
+## 2 Chinstrap    68           3.73 0.198
+## 3 Gentoo      124           5.08 0.360</code></pre>
+</div>
+<div id="filtering-data" class="section level2">
+<h2>Filtering data</h2>
+<p>In our report we also make plot by species. To do this we need to keep only the data of the species we want to analyse. We use the <code>filter()</code> function to filter data frames, this function returns a new data frame with only the rows that satisfy some conditions.</p>
+<p>We can use logical operators (<code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>==</code>) to create conditions from numeric variables These operators are also useful for dates and text strings. Look at the code to see a condition for text type of data.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>penguins <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">filter</span>(species <span class="op">==</span><span class="st"> &quot;Gentoo&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 124 x 8
+##    species island bill_length_mm bill_depth_mm flipper_length_~ body_mass_g
+##    &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Gentoo  Biscoe           46.1          13.2              211        4500
+##  2 Gentoo  Biscoe           50            16.3              230        5700
+##  3 Gentoo  Biscoe           48.7          14.1              210        4450
+##  4 Gentoo  Biscoe           50            15.2              218        5700
+##  5 Gentoo  Biscoe           47.6          14.5              215        5400
+##  6 Gentoo  Biscoe           46.5          13.5              210        4550
+##  7 Gentoo  Biscoe           45.4          14.6              211        4800
+##  8 Gentoo  Biscoe           46.7          15.3              219        5200
+##  9 Gentoo  Biscoe           43.3          13.4              209        4400
+## 10 Gentoo  Biscoe           46.8          15.4              215        5150
+## # ... with 114 more rows, and 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+<blockquote>
+<p>Activity: Write code to filter all the penguins in the Torgersen island.</p>
+</blockquote>
+<blockquote>
+<p>Activity: Now write the code to filter all the penguins with flipper lenght greater than 200</p>
+</blockquote>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBtYW5pcHVsYXRpb24iCm91dHB1dDogCiAgaHRtbF9kb2N1bWVudDoKICAgIGNvZGVfZG93bmxvYWQ6IHRydWUKICAgIHRvYzogdHJ1ZQogICAgdG9jX2Zsb2F0OiBmYWxzZQogICAgaGlnaGxpZ2h0OiB0YW5nbwotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoCgllY2hvID0gVFJVRSwKCW1lc3NhZ2UgPSBGQUxTRSwKCXdhcm5pbmcgPSBGQUxTRQopCgpsaWJyYXJ5KHRpZHl2ZXJzZSkKcGVuZ3VpbnMgPC0gcmVhZF9jc3YoImRhdGEvcGVuZ3VpbnMuY3N2IikKYGBgCgojIyBDcmVhdGluZyBzdW1tYXJ5IHRhYmxlcwoKSW4gc3ByZWFkc2hlZXQgcGl2b3QgdGFibGVzIG9yIGRpbmFtaWMgdGFibGVzIGFyZSBwb3dlcmZ1bCB0b29scyBmb3Igc3VtbWFyaXppbmcgZGF0YSBpbiBkaWZmZXJlbnQgd2F5cy4gV2UgY2FuIGNyZWF0ZSB0aGVzZSB0YWJsZXMgdXNpbmcgdGhlIGBncm91cF9ieWAgYW5kIGBzdW1tYXJpemVgIGZ1bmN0aW9ucyBmcm9tIHRoZSBUaWR5dmVyc2UuIAoKTGV0J3MgdGFrZSBhIGxvb2sgdG8gb3VyIHJlcG9ydCwgcmlnaHQgYWZ0ZXIgd2UgcmVhZCB0aGUgZGF0YSwgd2UgY3JlYXRlIGEgc3VtbWFyeSB3aXRoIHRoZSBudW1iZXIgb2YgY2FzZXMgYW5kIHRoZSBhdmVyYWdlIGJvZHkgbWFzcyBmb3IgZWFjaCBzcGVjaWUgaW4gb3VyIGRhdGFzZXQuCgpXZSBjYW4gdXNlIGBncm91cF9ieSgpYCB0byBncm91cCBvdXIgZGF0YSBieSAqKnNwZWNpZXMqKiBhbmQgYHN1bW1hcml6ZSgpYCB0byBjYWxjdWxhdGUgdGhlIG51bWJlciBvZiBjYXNlcyBhbmQgdGhlIGF2ZXJhZ2UgKipib2R5X21hc3NfZyoqIGZvciBlYWNoIGdyb3VwaW5nLgoKYGBge3J9CgpwZW5ndWlucyAlPiUgCiAgZ3JvdXBfYnkoc3BlY2llcykgJT4lIAogIHN1bW1hcmlzZShjb3VudCA9IG4oKSwKICAgICAgICAgICAgbWVhbl9ib2R5X21hc3MgPSBtZWFuKGJvZHlfbWFzc19nLCBuYS5ybSA9IFRSVUUpKQoKYGBgClRoZSBmdW5jdGlvbiBgbigpYCByZXR1cm4gdGhlIG51bWJlciBvZiBjYXNlcyBhbmQgdGhlIGZ1bmN0aW9uIGBtZWFuYCBjYWxjdWxhdGUgdGhlIGF2ZXJhZ2UuIFRoZSBwYXJhbWV0ZXIgYG5hLnJtID0gVFJVRWAgdGVsbHMgdGhlIGZ1bmN0aW9uIHRoYXQgcmVtb3ZlIHRoZSBlbXB0eSB2YWx1ZXMsIHRoZSBgTkFgIHZhbHVlcyBiZWZvcmUgbWFkZSB0aGUgY2FsY3VsYXRpb24uCgoKPiBRdWVzdGlvbjogV2hhdCBpZiB5b3UgZG9u4oCZdCBncm91cF9ieSBmaXJzdD8gTGV04oCZcyB0cnkgaXQgYW5kIGRpc2N1c3Mgd2hhdOKAmXMgZ29pbmcgb24uCgpgYGB7cn0KcGVuZ3VpbnMgJT4lIAogIHN1bW1hcmlzZShjb3VudCA9IG4oKSwKICAgICAgICAgICAgbWVhbl9ib2R5X21hc3MgPSBtZWFuKGJvZHlfbWFzc19nLCBuYS5ybSA9IFRSVUUpKQpgYGAKClNvIGlmIHdlIGRvbuKAmXQgZ3JvdXBfYnkgZmlyc3QsIHdlIHdpbGwgZ2V0IGEgc2luZ2xlIHN1bW1hcnkgc3RhdGlzdGljIChuIGFuZCBtZWFuIGluIHRoaXMgY2FzZSkgZm9yIHRoZSB3aG9sZSBkYXRhc2V0LgoKTm93LCB3ZSB3YW50IHRvIGhhdmUgdGhlIGF2ZXJhZ2Ugb2YgdGhlIGJvZHkgbWFzcyBpbiBraWxvZ3JhbXMgYW5kIHdpdGggdHdvIGRlY2ltYWxzLiAgV2UgY2FuIGNoYW5nZSBvdXIgc3VtbWFyaXNlIHRvIGdldCB0aGF0IGNhbGN1bGF0aW9uLiAgCgpgYGB7cn0KcGVuZ3VpbnMgJT4lIAogIGdyb3VwX2J5KHNwZWNpZXMpICU+JSAKICBzdW1tYXJpc2UoY291bnQgPSBuKCksCiAgICAgICAgICAgIG1lYW5fYm9keV9tYXNzID0gcm91bmQobWVhbihib2R5X21hc3NfZy8xMDAwLCBuYS5ybSA9IFRSVUUpLCAyKSkKYGBgCgpGaXJzdCB3ZSBkaXZpZGUgYm9keSBtYXNzIGJ5IDEwMDAgdG8gdHJhbnNmb3JtIGZyb20gZ3JhbXMgdG8ga2lsb2dyYW1zIGFuZCB0aGVuIHdlIHVzZSB0aGUgZnVuY3Rpb24gYHJvdW5kYCB0byBnZXQgb25seSB0d28gZGVjaW1hbHMuCgpOb3cgd2UgYXJlIGF0IHRoZSBwb2ludCB3aGVyZSB3ZSBhY3R1YWxseSB3YW50IHRvIHNhdmUgdGhpcyBzdW1tYXJ5IGluZm9ybWF0aW9uIGFzIGEgdmFyaWFibGUgc28gd2UgY2FuIHVzZSBpdCBpbiBmdXJ0aGVyIGFuYWx5c2VzIGFuZCBmb3JtYXR0aW5nLgoKU28gbGV04oCZcyBhZGQgYSB2YXJpYWJsZSBhc3NpZ25tZW50IHRvIHRoYXQgZmlyc3QgbGluZToKCmBgYHtyfQpzdW1tYXJ5IDwtIHBlbmd1aW5zICU+JSAKICBncm91cF9ieShzcGVjaWVzKSAlPiUgCiAgc3VtbWFyaXNlKGNvdW50ID0gbigpLAogICAgICAgICAgICBtZWFuX2JvZHlfbWFzcyA9IHJvdW5kKG1lYW4oYm9keV9tYXNzX2cvMTAwMCwgbmEucm0gPSBUUlVFKSwgMikpCmBgYAoKIyMgRm9ybWF0aWcgdGhlIHRhYmxlCgpUbyBtYWtlIG91ciB0YWJsZSBsb29rIGJldHRlciBpbiBhIHJlcG9ydCwgd2UgaGF2ZSB0byBjaGFuZ2Ugc29tZSBvZiBpdHMgZWxlbWVudHMuIEZvciBleGFtcGxlLCB0aGUgbmFtZSBvZiB0aGUgdmFyaWFibGVzIHNob3VsZCBiZSBpbmZvcm1hdGl2ZSBmb3IgYSBwZXJzb24gKGF0IHRoZSBtb21lbnQgdGhleSBhcmUgdXNlZnVsIG5hbWVzIGZvciBhIGNvbXB1dGVyKSwgd2UgY2FuIGFkZCBhIHRpdGxlIHRvIGl0IGFuZCBjaGFuZ2UgdGhlIGFsaWdubWVudCBvZiB0aGUgZGF0YS4KCldlIGNhbiBkbyB0aGF0IHdpdGggdGhlIGBrYWJsZWAgZnVuY3Rpb24uCgpgYGB7cn0Kc3VtbWFyeSAlPiUgCiAga25pdHI6OmthYmxlKGNvbC5uYW1lcyA9IGMoIlNwZWNpZSIsICJDb3VudCIsICJNZWFuIEJvZHkgTWFzcyIpLAogICAgICAgICAgICAgICBhbGlnbiA9ICJsY2MiLAogICAgICAgICAgICAgICBjYXB0aW9uID0gIlN1bW1hcnkgb2YgcGVuZ3VpbnMgb24gdGhlIGRhdGEgc2V0IGJ5IHNwZWNpZS4iKQpgYGAKCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRhdGEgbWFuaXB1bGF0aW9uIg0Kb3V0cHV0OiANCiAgaHRtbF9kb2N1bWVudDoNCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlDQogICAgdG9jOiB0cnVlDQogICAgdG9jX2Zsb2F0OiBmYWxzZQ0KICAgIGhpZ2hsaWdodDogdGFuZ28NCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldCgNCgllY2hvID0gVFJVRSwNCgltZXNzYWdlID0gRkFMU0UsDQoJd2FybmluZyA9IEZBTFNFDQopDQoNCmxpYnJhcnkodGlkeXZlcnNlKQ0KcGVuZ3VpbnMgPC0gcmVhZF9jc3YoImRhdGEvcGVuZ3VpbnMuY3N2IikNCmBgYA0KDQojIyBDcmVhdGluZyBzdW1tYXJ5IHRhYmxlcw0KDQpJbiBzcHJlYWRzaGVldCwgcGl2b3QgdGFibGVzIG9yIGR5bmFtaWMgdGFibGVzIGFyZSBwb3dlcmZ1bCB0b29scyBmb3Igc3VtbWFyaXppbmcgZGF0YSBpbiBkaWZmZXJlbnQgd2F5cy4gV2UgY2FuIGNyZWF0ZSB0aGVzZSB0YWJsZXMgdXNpbmcgdGhlIGBncm91cF9ieWAgYW5kIGBzdW1tYXJpemVgIGZ1bmN0aW9ucyBmcm9tIHRoZSB0aWR5dmVyc2UgcGFja2FnZS4gDQoNCkxldCdzIHRha2UgYSBsb29rIGF0IG91ciByZXBvcnQsIHJpZ2h0IGFmdGVyIHdlIHJlYWQgdGhlIGRhdGEsIHdlIGNyZWF0ZSBhIHN1bW1hcnkgdGFibGUgd2l0aCB0aGUgbnVtYmVyIG9mIGNhc2VzIGFuZCB0aGUgYXZlcmFnZSBib2R5IG1hc3MgZm9yIGVhY2ggc3BlY2llIGluIG91ciBkYXRhc2V0Lg0KDQpXZSBjYW4gdXNlIGBncm91cF9ieSgpYCB0byBncm91cCBvdXIgZGF0YSBieSAqKnNwZWNpZXMqKiBhbmQgYHN1bW1hcml6ZSgpYCB0byBjYWxjdWxhdGUgdGhlIG51bWJlciBvZiBjYXNlcyBhbmQgdGhlIGF2ZXJhZ2UgKipib2R5X21hc3NfZyoqIGZvciBlYWNoIGdyb3VwaW5nLg0KDQpgYGB7cn0NCg0KcGVuZ3VpbnMgJT4lIA0KICBncm91cF9ieShzcGVjaWVzKSAlPiUgDQogIHN1bW1hcmlzZShjb3VudCA9IG4oKSwNCiAgICAgICAgICAgIG1lYW5fYm9keV9tYXNzID0gbWVhbihib2R5X21hc3NfZywgbmEucm0gPSBUUlVFKSkNCg0KYGBgDQoNClRoZSBmdW5jdGlvbiBgbigpYCByZXR1cm5zIHRoZSBudW1iZXIgb2YgY2FzZXMgYW5kIHRoZSBmdW5jdGlvbiBgbWVhbmAgY29tcHV0ZXMgdGhlIGF2ZXJhZ2UuIFRoZSBwYXJhbWV0ZXIgYG5hLnJtID0gVFJVRWAgdGVsbHMgdGhlIGZ1bmN0aW9uIHRvIHJlbW92ZSBub24gYXZhaWxhYmxlIHZhbHVlcyAoYE5BYCkgYmVmb3JlIHBlcmZvcm1pbmcgdGhlIGNhbGN1bGF0aW9uLg0KDQo+IFF1ZXN0aW9uOiBXaGF0IGlmIHlvdSBkb27igJl0IHVzZSBgZ3JvdXBfYnkoKWAgYmVmb3JlIGBzdW1tYXJpc2UoKWA/IExldOKAmXMgdHJ5IGl0IGFuZCBkaXNjdXNzIHdoYXTigJlzIGdvaW5nIG9uLg0KDQpgYGB7cn0NCnBlbmd1aW5zICU+JSANCiAgc3VtbWFyaXNlKGNvdW50ID0gbigpLA0KICAgICAgICAgICAgbWVhbl9ib2R5X21hc3MgPSBtZWFuKGJvZHlfbWFzc19nLCBuYS5ybSA9IFRSVUUpKQ0KYGBgDQoNClNvIGlmIHdlIGRvbid0IGdyb3VwX2J5IGZpcnN0LCB3ZSB3aWxsIGdldCBhIHNpbmdsZSBzdW1tYXJ5IHN0YXRpc3RpYyAobiBhbmQgbWVhbiBpbiB0aGlzIGNhc2UpIGZvciB0aGUgd2hvbGUgZGF0YXNldC4NCg0KTm93LCB3ZSB3YW50IHRoZSBhdmVyYWdlIG9mIHRoZSBib2R5IG1hc3MgaW4ga2lsb2dyYW1zIGFuZCB3aXRoIHR3byBkZWNpbWFscy4gV2UgY2FuIGNoYW5nZSBvdXIgYHN1bW1hcmlzZSgpYCBjYWxsIHRvIGdldCB0aGF0IGNhbGN1bGF0aW9uLiAgDQoNCmBgYHtyfQ0KcGVuZ3VpbnMgJT4lIA0KICBncm91cF9ieShzcGVjaWVzKSAlPiUgDQogIHN1bW1hcmlzZShjb3VudCA9IG4oKSwNCiAgICAgICAgICAgIG1lYW5fYm9keV9tYXNzID0gcm91bmQobWVhbihib2R5X21hc3NfZy8xMDAwLCBuYS5ybSA9IFRSVUUpLCAyKSkNCmBgYA0KDQpGaXJzdCB3ZSBkaXZpZGUgYm9keSBtYXNzIGJ5IDEwMDAgdG8gdHJhbnNmb3JtIGZyb20gZ3JhbXMgdG8ga2lsb2dyYW1zIGFuZCB0aGVuIHdlIHVzZSB0aGUgZnVuY3Rpb24gYHJvdW5kKClgIHRvIGdldCBvbmx5IHR3byBkZWNpbWFscy4NCg0KTm93IHdlIGFyZSBhdCB0aGUgcG9pbnQgd2hlcmUgd2UgYWN0dWFsbHkgd2FudCB0byBzYXZlIHRoaXMgc3VtbWFyeSBpbmZvcm1hdGlvbiBhcyBhIHZhcmlhYmxlIHNvIHdlIGNhbiB1c2UgaXQgaW4gZnVydGhlciBhbmFseXNlcyBhbmQgZm9ybWF0dGluZy4NCg0KU28gbGV0J3MgYWRkIGEgdmFyaWFibGUgYXNzaWdubWVudCB0byB0aGF0IGZpcnN0IGxpbmU6DQoNCmBgYHtyfQ0Kc3VtbWFyeSA8LSBwZW5ndWlucyAlPiUgDQogIGdyb3VwX2J5KHNwZWNpZXMpICU+JSANCiAgc3VtbWFyaXNlKGNvdW50ID0gbigpLA0KICAgICAgICAgICAgbWVhbl9ib2R5X21hc3MgPSByb3VuZChtZWFuKGJvZHlfbWFzc19nLzEwMDAsIG5hLnJtID0gVFJVRSksIDIpKQ0KYGBgDQoNCiMjIEZvcm1hdGlnIHRoZSB0YWJsZQ0KDQpUbyBtYWtlIG91ciB0YWJsZSBsb29rIGJldHRlciBpbiBhIHJlcG9ydCwgd2UgaGF2ZSB0byBjaGFuZ2Ugc29tZSBvZiBpdHMgZWxlbWVudHMuIEZvciBleGFtcGxlLCB0aGUgbmFtZSBvZiB0aGUgdmFyaWFibGVzIHNob3VsZCBiZSBpbmZvcm1hdGl2ZSBmb3IgYSBwZXJzb24gKGF0IHRoZSBtb21lbnQgdGhleSBhcmUgdXNlZnVsIG5hbWVzIGZvciBhIGNvbXB1dGVyKSwgYW5kIHdlIGNhbiBhZGQgYSB0aXRsZSB0byBpdCBhbmQgY2hhbmdlIHRoZSBhbGlnbm1lbnQgb2YgdGhlIG51bWJlcnMuDQoNCldlIGNhbiBkbyB0aGF0IHdpdGggdGhlIGBrYWJsZWAgZnVuY3Rpb24uDQoNCmBgYHtyfQ0Kc3VtbWFyeSAlPiUgDQogIGtuaXRyOjprYWJsZShjb2wubmFtZXMgPSBjKCJTcGVjaWUiLCAiQ291bnQiLCAiTWVhbiBCb2R5IE1hc3MiKSwNCiAgICAgICAgICAgICAgIGFsaWduID0gImxjYyIsDQogICAgICAgICAgICAgICBjYXB0aW9uID0gIlN1bW1hcnkgb2YgcGVuZ3VpbnMgb24gdGhlIGRhdGEgc2V0IGJ5IHNwZWNpZS4iKQ0KYGBgDQoNCldlIGNhbiBkbyBhIGxvdCBtb3JlIHdpdGggb3RoZXIgZnVuY3Rpb25zIChvciAidmVyYnMiKSBvZiB0aGUgdGlkeXZlcnNlLiBMZXQncyBzZWUgYSBjb3VwbGUgbW9yZQ0KDQojIyBDcmVhdGluZyBuZXcgdmFyaWFibGVzDQoNClRoZXJlIGFyZSBhIGxvdCBvZiB0aW1lcyBpbiB3aGljaCB3ZSB3YW50IHRvIG9wZXJhdGUgYmV5b25kIHRoZSBvcmlnaW5hbCBkYXRhLiBUaGlzIGlzIG9mdGVuIGRvbmUgYnkgYWRkaW5nIGEgY29sdW1uLiBXZSBkbyB0aGlzIHdpdGggdGhlIGBtdXRhdGUoKWAgZnVuY3Rpb24uDQoNCldlIGNhbiBhZGQgYSBuZXcgdmFyaWFibGUgKGNhbGxlZCBgcHJvcGApIHJlcHJlc2VudGluZyB0aGUgcHJvcG9ydGlvbiBvZiBwZW5ndWlucyBpbiBlYWNoICoqc3BlY2llcyoqIHdpdGggYnkgdXNpbmcgYG11dGF0ZSgpYC4gDQoNCmBgYHtyfQ0KcGVuZ3VpbnMgJT4lIA0KICBncm91cF9ieShzcGVjaWVzKSAlPiUgDQogIHN1bW1hcmlzZShjb3VudCA9IG4oKSwNCiAgICAgICAgICAgIG1lYW5fYm9keV9tYXNzID0gcm91bmQobWVhbihib2R5X21hc3NfZy8xMDAwLCBuYS5ybSA9IFRSVUUpLCAyKSkgJT4lDQogIG11dGF0ZShwcm9wID0gY291bnQvbnJvdyhwZW5ndWlucykpDQoNCmBgYA0KDQojIyBGaWx0ZXJpbmcgZGF0YQ0KDQpJbiBvdXIgcmVwb3J0IHdlIGFsc28gbWFrZSBwbG90IGJ5IHNwZWNpZXMuIFRvIGRvIHRoaXMgd2UgbmVlZCB0byBrZWVwIG9ubHkgdGhlIGRhdGEgb2YgdGhlIHNwZWNpZXMgd2Ugd2FudCB0byBhbmFseXNlLiAgV2UgdXNlIHRoZSBgZmlsdGVyKClgIGZ1bmN0aW9uIHRvIGZpbHRlciBkYXRhIGZyYW1lcywgdGhpcyBmdW5jdGlvbiByZXR1cm5zIGEgbmV3IGRhdGEgZnJhbWUgd2l0aCBvbmx5IHRoZSByb3dzIHRoYXQgc2F0aXNmeSBzb21lIGNvbmRpdGlvbnMuDQoNCldlIGNhbiB1c2UgbG9naWNhbCBvcGVyYXRvcnMgKGA+YCwgYDxgLCBgPj1gLCBgPD1gLCBgPT1gKSB0byBjcmVhdGUgY29uZGl0aW9ucyBmcm9tIG51bWVyaWMgdmFyaWFibGVzICBUaGVzZSBvcGVyYXRvcnMgYXJlIGFsc28gdXNlZnVsIGZvciBkYXRlcyBhbmQgdGV4dCBzdHJpbmdzLiBMb29rIGF0IHRoZSBjb2RlIHRvIHNlZSBhIGNvbmRpdGlvbiBmb3IgdGV4dCB0eXBlIG9mIGRhdGEuDQoNCmBgYHtyfQ0KcGVuZ3VpbnMgJT4lIA0KICBmaWx0ZXIoc3BlY2llcyA9PSAiR2VudG9vIikNCmBgYA0KDQo+IEFjdGl2aXR5OiBXcml0ZSBjb2RlIHRvIGZpbHRlciBhbGwgdGhlIHBlbmd1aW5zIGluIHRoZSBUb3JnZXJzZW4gaXNsYW5kLg0KDQo+IEFjdGl2aXR5OiBOb3cgd3JpdGUgdGhlIGNvZGUgdG8gZmlsdGVyIGFsbCB0aGUgcGVuZ3VpbnMgd2l0aCBmbGlwcGVyIGxlbmdodCBncmVhdGVyIHRoYW4gMjAwDQoNCg==</div>
 
 
 
