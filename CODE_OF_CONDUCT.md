@@ -1,5 +1,10 @@
 # Code of conduct
 
+- [English](#Code of conduct)
+- [Spanish](#Código de conducta)
+
+## Code of conduct
+
 Those of us who organize MetaDocencia are committed to fostering an open, safe and friendly environment and to guaranteeing the participation of all people in our activities and virtual spaces regardless of age, gender, sexual orientation, disability, physical appearance, nationality, race, ethnicity, religion (or lack thereof), ideology or technological choices. 
 
 All persons participating in MetaDocencia, including members of the coordinating team, collaborators, advisory team and participants must accept and respect the following code of conduct. 
