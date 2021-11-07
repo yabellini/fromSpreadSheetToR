@@ -14,7 +14,7 @@ In each section we include activities along with examples. We want these exercis
 
 ### Before we start
 
-During this workshop we will use R and RStudio. Please [follow these instructions to prepare for the workshop](prepare.html).
+During this workshop we will use RStudio Cloud.  If you want to use your computer we will use R and RStudio. Please [follow these instructions to prepare for the workshop](prepare.html).
 
 ### Schedule
 
