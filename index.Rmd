@@ -10,7 +10,7 @@ We propose to work with R in an orderly and reproducible way. For this reason, w
 
 Whenever we can, we will mention how what we propose to solve with R can also be done with spreadsheets and the advantages and disadvantages of each approach.
 
-In each section we include exercises and challenges along with examples. We make use various data sets for the problems we want to solve. We want these data to be realistic so that anyone can find similarities in their own data and can apply what they have learned to other situations.
+In each section we include activities along with examples. We want these exercises to be realistic so that anyone can find similarities in their own data and can apply what they have learned to other situations.
 
 ### Before we start
 
