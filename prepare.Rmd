@@ -2,19 +2,19 @@
 title: "Before we start"
 ---
 
-To participate on the workshop you can either install R (>4.0) and Rstudio (see instructions bellow) or use and instance of R at RStudio Cloud.
+To participate on the workshop you can either install R (>4.0) and Rstudio (see instructions bellow) or use an instance of R at RStudio Cloud.
 
 #### Using RStudio Cloud
 
-If you want to use RStudio Cloud you will need a free account. Go to [rstudio.cloud/](https://rstudio.cloud/) and follow de instructions. Keep in mind that the free account has a 15 hours per month restrictions and you don't want to use it all before the workshop.
+If you want to use RStudio Cloud you will need a free account. Go to [rstudio.cloud/](https://rstudio.cloud/) and follow de instructions to register. Keep in mind that the free account is limited to 15 hours per month and you don't want to use it all before the workshop.
 
 We'll provide a link to a pre-configured RStudio project during the workshop. You don't have to do anything else. 
 
 #### Installing R and RStudio
 
-To install R and RStudio you can follow these instructions or [these videos](https://www.youtube.com/playlist?list=PLRPB0ZzEYegOZivdelOuEn-R-XUN-DOjd) by Danielle Navarro to install both software on your computer.
+To install R and RStudio follow the instructions in [these videos](https://www.youtube.com/playlist?list=PLRPB0ZzEYegOZivdelOuEn-R-XUN-DOjd) by [Danielle Navarro](https://djnavarro.net/).
 
-When we have everything installed we'll ask you to install a few packages to work during the workshop. 
+After you have everything installed, you'll need to install a few packages required for the workshop. Follow these instructions:
 
 1. Open RStudio
 2. On the console (the panel on the left) type the following commands

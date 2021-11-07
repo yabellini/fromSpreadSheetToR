@@ -21,9 +21,9 @@ penguins <- read_csv("data/penguins.csv")
 
 ## Creating summary tables
 
-In spreadsheet pivot tables or dinamic tables are powerful tools for summarizing data in different ways. We can create these tables using the `group_by` and `summarize` functions from the Tidyverse. 
+In spreadsheet, pivot tables or dynamic tables are powerful tools for summarizing data in different ways. We can create these tables using the `group_by` and `summarize` functions from the tidyverse package. 
 
-Let's take a look to our report, right after we read the data, we create a summary with the number of cases and the average body mass for each specie in our dataset.
+Let's take a look at our report, right after we read the data, we create a summary table with the number of cases and the average body mass for each specie in our dataset.
 
 We can use `group_by()` to group our data by **species** and `summarize()` to calculate the number of cases and the average **body_mass_g** for each grouping.
 
@@ -35,10 +35,10 @@ penguins %>%
             mean_body_mass = mean(body_mass_g, na.rm = TRUE))
 
 ```
-The function `n()` return the number of cases and the function `mean` calculate the average. The parameter `na.rm = TRUE` tells the function that remove the empty values, the `NA` values before made the calculation.
 
+The function `n()` returns the number of cases and the function `mean` computes the average. The parameter `na.rm = TRUE` tells the function to remove non available values (`NA`) before performing the calculation.
 
-> Question: What if you don’t group_by first? Let’s try it and discuss what’s going on.
+> Question: What if you don’t use `group_by()` before `summarise()`? Let’s try it and discuss what’s going on.
 
 ```{r}
 penguins %>% 
@@ -46,9 +46,9 @@ penguins %>%
             mean_body_mass = mean(body_mass_g, na.rm = TRUE))
 ```
 
-So if we don’t group_by first, we will get a single summary statistic (n and mean in this case) for the whole dataset.
+So if we don't group_by first, we will get a single summary statistic (n and mean in this case) for the whole dataset.
 
-Now, we want to have the average of the body mass in kilograms and with two decimals.  We can change our summarise to get that calculation.  
+Now, we want the average of the body mass in kilograms and with two decimals. We can change our `summarise()` call to get that calculation.  
 
 ```{r}
 penguins %>% 
@@ -57,11 +57,11 @@ penguins %>%
             mean_body_mass = round(mean(body_mass_g/1000, na.rm = TRUE), 2))
 ```
 
-First we divide body mass by 1000 to transform from grams to kilograms and then we use the function `round` to get only two decimals.
+First we divide body mass by 1000 to transform from grams to kilograms and then we use the function `round()` to get only two decimals.
 
 Now we are at the point where we actually want to save this summary information as a variable so we can use it in further analyses and formatting.
 
-So let’s add a variable assignment to that first line:
+So let's add a variable assignment to that first line:
 
 ```{r}
 summary <- penguins %>% 
@@ -72,7 +72,7 @@ summary <- penguins %>%
 
 ## Formatig the table
 
-To make our table look better in a report, we have to change some of its elements. For example, the name of the variables should be informative for a person (at the moment they are useful names for a computer), we can add a title to it and change the alignment of the data.
+To make our table look better in a report, we have to change some of its elements. For example, the name of the variables should be informative for a person (at the moment they are useful names for a computer), and we can add a title to it and change the alignment of the numbers.
 
 We can do that with the `kable` function.
 
@@ -83,13 +83,13 @@ summary %>%
                caption = "Summary of penguins on the data set by specie.")
 ```
 
-We can do a lot more action with functions or verbs of the tidyverse.  Let's see a couple more
+We can do a lot more with other functions (or "verbs") of the tidyverse. Let's see a couple more
 
 ## Creating new variables
 
-There are a lot of times where we want to operate beyond the original data. This is often done by adding a column. We do this with the `mutate()` function.
+There are a lot of times in which we want to operate beyond the original data. This is often done by adding a column. We do this with the `mutate()` function.
 
-We can add to our counting example by using `mutate()` to create a new variable **prop**, which represents the proportion of penguins of each **species**
+We can add a new variable (called `prop`) representing the proportion of penguins in each **species** with by using `mutate()`. 
 
 ```{r}
 penguins %>% 
@@ -102,16 +102,16 @@ penguins %>%
 
 ## Filtering data
 
-In our report we make plot by species. To do this we need to keep only the data of the specie we want to analyze.  We use the `filter` function to subset data frames, this functions return the rows that satisfy variable conditions.
+In our report we also make plot by species. To do this we need to keep only the data of the species we want to analyse.  We use the `filter()` function to filter data frames, this function returns a new data frame with only the rows that satisfy some conditions.
 
-We use expected operators (>, <, >=, <=, ==) to set conditions for a numeric variable when filtering.  This operwtor are also useful for date and character types of data.  Look at the code to see a condition for text type of data.
+We can use logical operators (`>`, `<`, `>=`, `<=`, `==`) to create conditions from numeric variables  These operators are also useful for dates and text strings. Look at the code to see a condition for text type of data.
 
 ```{r}
 penguins %>% 
   filter(species == "Gentoo")
 ```
 
-> Activity: Write a sentence to filter all the penguins in the Torgersen island.
+> Activity: Write code to filter all the penguins in the Torgersen island.
 
-> Activity: Now write the code to filter all the penguins wich flipper lenght is greater than that 200
+> Activity: Now write the code to filter all the penguins with flipper lenght greater than 200
 

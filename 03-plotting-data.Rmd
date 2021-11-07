@@ -19,17 +19,17 @@ library(tidyverse)
 penguins <- read_csv("data/penguins.csv")
 ```
 
-Visualizing data is useful explore the data and identify the relationship between different variables but also to communicate the analysis of the data and results. The **ggplot2** package allows you to generate high quality plots in just a few steps. Any ggplot plot will have at least 3 components: the **data**, a **coordinate system** and a **geometry** (the visual representation of the data) and will be built in layers.
+Visualising data is useful not only to explore the data and identify the relationship between different variables, but also to communicate the result of the analysis. The **ggplot2** package allows us you to generate high quality plots in just a few lines of code. Any ggplot plot will have at least 3 components: the **data**, a **coordinate system** and a **geometry** (the visual representation of the data) and will be built in layers.
 
 Let's start by making plots!
 
 ## First layer: the area of the graphic
 
-The main function of ggplot2 is precisely `ggplot()` that allows us to start the graph and also define the global characteristics. The first argument of this function will be the data we want to visualize, always in a data.frame. In this case we use `penguins`.
+The main function of ggplot2 is precisely `ggplot()`, which allows us to start the graph and also to define the global characteristics. The first argument of this function will be the data we want to visualize, always in a data.frame. In this case we use `penguins`.
 
-The second argument is called mapping precisely because it maps or draws the axes of the graph and is always accompanied by the `aes()` function. The `aes()` function receives the aesthetic properties of the graph from the variables (or columns) of the data.frame we are using. In this case we indicate that in the x-axis we want to plot the variable `bill_length_mm` and in the y-axis the variable `bill_depth_mm`.
+The second argument is called `mapping` because it's where we define how columns of the data "map" to visual properties of the geometries. This mapping is defined by the `aes()` function. In this case we indicate that in the x axis we want to plot the variable `bill_length_mm` and in the y-axis the variable `bill_depth_mm`.
 
-But this function alone is not enough, it only generates the first layer: the area of the graph.
+But this alone is not enough, it only generates the first layer: the area of the graph.
 
 ```{r}
 ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) 
@@ -44,9 +44,9 @@ ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point()
 ```
 
-We have our first! 
+We have our first plot! 
 
-You may have noticed that the dots are arranged almost like in groups. Perhaps some other variable explains this behavior. 
+You may have noticed that the dots are clustered in groups. Perhaps some other variable explains this behaviour. 
 
 To include information from other variables in our plot we can take advantage of the aesthetic characteristics of the geometries. In this case, we can "paint" the points according to the penguin species. 
 
@@ -55,13 +55,13 @@ ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point(aes(color = species))
 ```
 
-Again, we use the `aes()` functions to map a variable in our data to an element of the plot. And aha! Each species of penguins has different characteristics!
+Again, we use the `aes()` function to map a variable in our data to an element of the plot. And aha! Each species of penguins has different characteristics!
 
 ## Adding geometries
 
 Very often it is not enough to look at the raw data to identify the relationship between variables; it is necessary to use some statistical transformation to highlight those relationships, either by fitting a model or calculating some statistics. 
 
-To solve this, ggplot2 has geoms that calculates and plot some common statistical transformations. Let's try with `geom_smoth()` to fit a linear model to each specie. 
+For this, ggplot2 has geoms that calculate some common statistical transformations. Let's try with `geom_smoth()` to fit a linear model to each species. 
 
 ```{r}
 ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
@@ -69,15 +69,15 @@ ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_smooth(aes(color = species), method = "lm")
 ```
 
-By default geom_smooth() fits the data using the loess method (local linear regression) when there are less than 1000 data. But it is very common that you want to fit a global linear regression. In that case, you have to set method = "lm".
+By default `geom_smooth()` fits the data using the loess method (local linear regression) when there are less than 1000 data. But it is very common that you want to fit a global linear regression. In that case, you have to set `method = "lm"`.
 
 ## Let's talk about the look of the plot  
 
-For now we used the default ggplot looks. We could change the looks of your plot to use the style of the institution where we work, of the journal where we are going to publish it or simply to make it more eye-catching. 
+For now we used the default ggplot look. We could change the look of your plot to match the style of the institution where we work, of the journal where we are going to publish it or simply to make it more eye-catching. 
 
-Let's start with the color. To change the aesthetic appearance of a plot element, we add a new layer with the `scale_*` function. In this case we'll use `scale_color_manual()` to choose the colors of the points manually. We could also use previously defined color palettes as Viridis or Color Brewer. 
+Let's start with colour. To change the aesthetic appearance of a plot element, we add a new layer with the `scale_*` function. In this case we'll use `scale_color_manual()` to choose the colours of the points manually. We could also use previously defined colour palettes like Viridis or Color Brewer. 
 
-We'll need 3 colors for the 3 species, let's use "darkorange", "purple" and "cyan4" following the beautiful visualizations made by Allison Horst.
+We'll need 3 colors for the 3 species, let's use `"darkorange"`, `"purple"` and `"cyan4"` following the beautiful visualizations made by Allison Horst.
 
 ```{r}
 ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
@@ -101,7 +101,7 @@ ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
        shape = "Penguin species") 
 ```
 
-Now the axes labels are more legible and we have a title and subtitle that explains what is the plot about. 
+Now the axes labels are more legible and we have a title and subtitle that explains what the plot is about. 
 
 We could keep changing this endlessly but we'll finish with the general look of your plot. 
 
@@ -121,4 +121,4 @@ ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
   theme_minimal()
 ```
 
-> Now it's your turn. Choose a theme you like and try it out. Also, if you can think of a better title modify it!
+> Now it's your turn. Choose a theme you like and try it out. Also, if you can think of a better title, modify it!
