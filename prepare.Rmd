@@ -26,4 +26,8 @@ install.packages("palmerpenguins")
 
 4. Go to File -> New File -> R Markdown. Click on "Ok" to create a new file. RStudio will ask your permission to install several packages. Go ahead and do it. 
 
-5. That's it. You can remove the file you just created.
+5. You can remove the file you just created.
+
+6. Download [this project](rstudio-project-penguins.zip) to work with during the workshop and extrat the files on the .zip.
+
+7. That's it. 
