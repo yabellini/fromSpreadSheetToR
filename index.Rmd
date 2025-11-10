@@ -36,10 +36,14 @@ This is a tentative time table.
 
 <img src="img/yani_circle.png" alt="Foto de Yani" width="100" height="100" align="left" style="margin:10px"/>
 
-Yanina Bellini Saibene, MS. She is the community manager of rOpenSci. She also develops software to support research and education. She is a professor at undergraduate and graduate levels in several universities in Argentina and Uruguay, teaching applied Data Science and developed open courses and tutorials to teach technical skills in data management. She is a trainer and instructor for [The Carpentries](https://carpentries.org/) and an [RStudio](https://education.rstudio.com/trainers/people/bellini_saibene+yanina/) certified instructor. She has trained teachers since 1996 through the Federal Network of Continuous Teacher Training (National Ministry of Education, Argentina). She is co-founder of [MetaDocencia](http://metadocencia.org/). She is part of the R-Ladies Global team, chair of several international conferences (user! 2021, LatinR, JAIIO), and an international keynote speaker. She also leads and participates in community translation of educational and technical material into Spanish, like Teaching Tech Together, R4DS, and The Carpentries Lessons. 
+Yanina Bellini Saibene, MS, is the Community Manager at [rOpenSci](https://ropensci.org), where she helps build and support open science communities. She develops open-source software and educational resources that make research and data science more accessible.
 
+Based in Argentina, Yani teaches applied data science and package development at universities across Argentina and Uruguay, and creates open courses and tutorials to strengthen technical and data management skills. She is a long-time educator — training teachers since 1996 through Argentina’s National Ministry of Education — and a certified instructor with both The Carpentries and RStudio.
+
+A leader in the global R community, Yani serves on the R-Ladies Global Leadership Team and chairs its Board of Directors. She has chaired international conferences such as useR!, LatinR, and JAIIO, and is a frequent keynote speaker around the world. She also leads collaborative translation projects that bring key technical and educational materials — including rOpenSci’s books, Teaching Tech Together, R for Data Science, and The Carpentries Lessons — to Spanish-speaking communities.
+ 
 [yabellini.netlify.com](https://yabellini.netlify.com/) |
-[fosstodon.org/@yabellini](https://fosstodon.org/@yabellini)
+[rstats.me/@yabellini](https://rstats.me/@yabellini)
 
 **Pao Corrales**
 
