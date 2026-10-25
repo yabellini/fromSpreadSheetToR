@@ -1,4 +1,4 @@
-name: Build RMarkdown website
+name: Build website
 
 on:
   push:
@@ -15,6 +15,9 @@ jobs:
       
       - uses: r-lib/actions/setup-pandoc@v1
 
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
       - name: Setup R
         uses: r-lib/actions/setup-r@v1
         
@@ -29,6 +32,11 @@ jobs:
      
       - name: Build site
         run: Rscript -e 'rmarkdown::render_site(encoding = 'UTF-8')'
+
+      - name: Render example Quarto report
+        run: |
+          quarto render penguins_report.qmd -M embed-resources:true
+          mv penguins_report.html docs/penguins_report.html
         
       - name: Commit results
         run: |

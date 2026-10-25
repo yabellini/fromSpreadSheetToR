@@ -1,0 +1,55 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - prepare.qmd
+    - 01-introduction.qmd
+    - 02-reading-data.qmd
+    - 03-plotting-data.qmd
+    - 04-data-manipulation.qmd
+    - 05-reports.qmd
+    - penguins_report.qmd
+    - personas.qmd
+    - CODE_OF_CONDUCT.md
+    - CONTRIBUTING.md
+    - LICENSE.md
+  resources:
+    - rstudio-project-penguins.zip
+    - data/
+
+website:
+  title: "From Spreadsheet to R"
+  repo-url: https://github.com/yabellini/fromSpreadSheetToR
+  navbar:
+    left:
+      - href: prepare.qmd
+        text: Before we start
+      - text: Topics
+        menu:
+          - href: 01-introduction.qmd
+            text: Introduction and Reports
+          - href: 02-reading-data.qmd
+            text: Reading Data
+          - href: 03-plotting-data.qmd
+            text: Plotting Data
+          - href: 04-data-manipulation.qmd
+            text: Data manipulation
+          - href: 05-reports.qmd
+            text: Reporting your work
+      - href: penguins_report.qmd
+        text: Example
+    right:
+      - icon: github
+        href: https://github.com/yabellini/fromSpreadSheetToR
+        aria-label: Repo
+  page-footer:
+    center: "Materials under [CC BY-SA 4.0](LICENSE.md) · [Code of conduct](CODE_OF_CONDUCT.md)"
+
+format:
+  html:
+    theme:
+      - flatly
+      - styles.scss
+    toc: true
+    highlight-style: tango
