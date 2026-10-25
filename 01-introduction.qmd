@@ -14,7 +14,7 @@ If what you need are frequent and automatic reports, and data analysis with many
 
 ## How are we going to work?
 
-We are going to use R as a language and RStudio as an IDE, a Integrated Development Environment. If you don't have these installed on your computer don't worry, we have this [Posit Cloud project](https://posit.cloud/content/3174865) for you to work with.
+We are going to use R as a language and RStudio as an IDE, a Integrated Development Environment. If you don't have these installed on your computer don't worry, we have this [Posit Cloud project](https://posit.cloud/content/13224932) for you to work with.
 
 To launch RStudio, double-click on the RStudio icon. Launching RStudio also launches R (actually you will probably never open R by itself).
 
