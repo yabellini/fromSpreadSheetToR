@@ -27,7 +27,8 @@ jobs:
           packages: |
             any::rmarkdown
             any::knitr
-            any::ggplot2
+              any::readxl
+              any::tidyverse
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
