@@ -1,16 +1,8 @@
 ---
 title: "Reading data"
-output: 
-  html_document:
-    code_download: true
-    toc: true
-    toc_float: false
-    highlight: tango
+code-tools: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## About palmerpenguins
 
@@ -42,11 +34,15 @@ This output is different and give us information about the type of data in each 
 
 Sometimes our data is not so friendly and we need to give more information to the function to be able to read the data properly. You can find these options by looking into the function's documentation. 
 
-> Go ahead and write `?read_csv()` on the console. What is the name of the option to change the default delimitator?
+::: {.callout-tip}
+## Your turn
+
+Go ahead and write `?read_csv()` on the console. What is the name of the option to change the default delimitator?
+:::
 
 ## Reading xls files
 
-What about xls files? For that we'll need differnet R package, **readxl** that is already installed on the RStudio Cloud project. In this case the function is called `read_excel()`
+What about xls files? For that we'll need differnet R package, **readxl** that is already installed on the Posit Cloud project. In this case the function is called `read_excel()`
 
 ```{r}
 library(readxl)

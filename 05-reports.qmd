@@ -1,0 +1,176 @@
+---
+title: "Reporting your work"
+code-tools: true
+---
+
+
+The first example report we saw was rendered into an html file. But what about Word or PDF files, which can be more useful or expected in some situations? Quarto allows you to generate documents in multiple formats using the same plain text file.
+
+The way you choose the output file format is by changing the `format` option on the YAML header.
+
+::: {.callout-tip}
+## Your turn
+
+Go back to the example report and find the line that starts with `format:`. Change `html` to `docx` and render the document again. Now you have a Word document!
+:::
+
+The most common formats are:
+
+* `format: html` for a web page.
+* `format: docx` for a Word document.
+* `format: pdf` for a PDF file. To create PDF files Quarto needs a LaTeX installation. If you don't have one, the easiest way to get it is to go to the **Terminal** tab in RStudio (next to the Console) and run `quarto install tinytex`.
+
+You can also list several formats on the header, each one with its own options:
+
+```yaml
+format:
+  html:
+    toc: true
+  docx: default
+```
+
+When there is more than one format, the little arrow next to the **Render** button lets you choose which one to generate. 
+
+::: {.callout-tip}
+## Your turn
+
+Add both `html` and `docx` formats to the header of the example report. What do you see now when you click the arrow next to the Render button?
+:::
+
+## Code control
+
+Our example looks quite tidy. We've hidden all the code and R messages so you can concentrate your attention on the table and figures. But this is not the default behaviour of a Quarto document. Usually the output will have both code and output, which is fine when you or the person that will read the report wants to see the code that generates those results, but it might not be what the final audience of the report might need. It's up to you to decide if you want to show the code or not. 
+
+To change the options of a code chunk, you write them at the beginning of the chunk, in lines that start with `#|` (the "hash pipe"). Each option goes in its own line with the format `option: value`. For example:
+
+```{{r}}
+#| label: chunk-name
+#| echo: false
+#| message: false
+
+```
+
+A particularly important set of options are the ones that control whether the code is executed and whether the result of the code will remain in the report or not:
+
+* `eval: false` prevents the chunk code from being run, so it will not display results either. It is useful for displaying example code if you are writing, for example, a document to teach R.
+
+* `echo: false` runs the chunk code and displays the results, but hides the code in the report. This is useful for writing reports for people who do not need to see the R code that generated the graph or table.
+
+* `include: false` runs the code but hides both the code and the results. It is useful to use in general configuration chunks where you load libraries.
+
+* `message: false` and `warning: false` hide the messages and warnings that some functions print, like the ones you see when loading the tidyverse.
+
+If you are writing a report where you don't want any code to be shown, adding `#| echo: false` to each new chunk becomes tedious. The solution is to change the option globally so that it applies to all chunks. In Quarto this is done in the YAML header, under the `execute` option. You'll find it at the top of the example report:
+
+```yaml
+---
+title: "Gentoo Penguins"
+format: html
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+```
+
+Options written inside a chunk always win over the global ones. So, if you want to show the code of just one chunk, you can add `#| echo: true` to that chunk.
+    
+::: {.callout-tip}
+## Your turn
+
+Curious about how the options work? Change them one at a time and render the file each time to see what changes.
+:::
+
+## Automation
+
+At the beginning of this workshop we asked you to change the penguin species in the example report. The task was not easy because "Gentoo" appears several times and it is easy to make a mistake. Parameterising a report allows us to define those kind of parameters in just one place and get different analyses from the same file. 
+
+To generate a parameterised report you have to add an element called `params` to the YAML header with the list of parameters and their default values.
+
+```yaml
+params:
+  species: "Gentoo"
+```
+
+```{r}
+#| include: false
+params <- list(species = "Gentoo")
+```
+
+From now on, you'll have access to a variable called `params` which is a list containing the parameters and their value. To access the value of each parameter you use the `$` operator as follows:
+
+```{r}
+params$species
+```
+
+In this way, the original code can be modified to use the value of the species stored in `params$species`.
+
+```{r}
+#| eval: false
+penguins |> 
+  filter(species == params$species) |> 
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(color = "darkorange",
+             size = 3,
+             alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE, color = "darkorange") +
+  theme_minimal() +
+  labs(title = "Penguin bill dimensions",
+       subtitle = paste("Bill length and depth for", params$species, "Penguins at Palmer Station LTER"),
+       x = "Bill length (mm)",
+       y = "Bill depth (mm)",
+       color = "Penguin species") 
+```
+
+Here we changed the subtitle to concatenate words with the value stored in `params$species`, this way we can construct the subtitle programmatically.
+
+You can also use the parameter inside the text of the report with inline code. For example, writing <code>&#96;r params$species&#96; penguins</code> in the Markdown text will show "`r params$species` penguins" in the rendered document. Try it with the title of the section and of the report too!
+
+Now the report is ready to function as a parameterised report!
+
+::: {.callout-tip}
+## Your turn
+
+Finally, change "Gentoo" on the YAML header to generate a new report for one of the other species. Remember that the species names start with a capital letter: "Adelie", "Chinstrap" or "Gentoo".
+:::
+
+### Rendering from the console
+
+Changing the YAML by hand works, but you can also render the report and choose the value of the parameters from R code, using the `quarto` package (install it with `install.packages("quarto")`):
+
+```{r}
+#| eval: false
+quarto::quarto_render("penguins_report.qmd",
+                      execute_params = list(species = "Adelie"),
+                      output_file = "adelie_report.html")
+```
+
+This opens the door to generate one report per species (or per site, or per month...) with just a few lines of code, without having to touch the report itself.
+
+## Publishing
+
+You want to share your results and you have a Quarto file you've been working on. You could share the project folder or a link to a repository, but ideally anyone should be able to see those beautiful results without having to run any code. Another alternative is to render the document (with the **Render** button) to share a PDF or a Word file. But the options don't end there: Quarto opens up a world of possibilities to work with R code (or Python, Julia or Observable!), text, and to share the results (and anything else!).
+
+### Single page website
+
+If you know how to generate a report in html format using Quarto, you already know everything you need to publish a simple website! All you need is a service that hosts the file and shows it to visitors. One of them is [Netlify](https://www.netlify.com/), which lets you create a website just by dragging and dropping a folder.
+
+A small detail: your report (your Quarto file) probably has a descriptive name that matches its content. To turn it into a web page, the file needs a special name: "index.html". Go ahead, name your document `index.qmd` and click **Render** to generate the HTML as usual.
+
+You should now have a file called "index.html" in your project folder. Congratulations! You've created your first web page.
+
+### Publishing your page
+
+The only thing left is to publish your web page so it doesn't live only on your computer. Let's see how to do it with Netlify.
+
+Go to <https://app.netlify.com/drop> and drag the folder that contains the `index.html` file into the box. Netlify will create a website with a random and probably unpronounceable name, but it's published!
+
+[Here is a video with the steps to follow](https://www.youtube.com/watch?v=hZ8TpfcL1l8).
+
+You may have noticed that Netlify deletes these websites after 24 hours. To make your site permanent you need to create a Netlify account. This will also let you change the name of your page, for example to `penguinreport.netlify.app`.
+
+::: {.callout-tip}
+## Your turn
+
+Let's publish our report on the web! Share the link to your web page :-)
+:::

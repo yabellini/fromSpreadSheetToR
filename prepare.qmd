@@ -1,0 +1,38 @@
+---
+title: "Before we start"
+---
+
+
+To participate on the workshop you can either install R (>4.0) and Rstudio (see instructions bellow) or use an instance of R at Posit Cloud.
+
+#### Using Posit Cloud
+
+If you want to use Posit Cloud you will need a free account. Go to [posit.cloud](https://posit.cloud/) and follow the instructions to register. Keep in mind that the free account has a limited number of hours per month and you don't want to use them all before the workshop.
+
+We'll provide a link to a pre-configured RStudio project during the workshop. You don't have to do anything else. 
+
+#### Installing R and RStudio
+
+To install R and RStudio follow the instructions in [these videos](https://www.youtube.com/playlist?list=PLRPB0ZzEYegOZivdelOuEn-R-XUN-DOjd) by [Danielle Navarro](https://djnavarro.net/).
+
+After you have everything installed, you'll need to install a few packages required for the workshop. Follow these instructions:
+
+1. Open RStudio
+2. On the console (the panel on the left) type the following commands
+
+```{r}
+#| eval: false
+install.packages("tidyverse")
+install.packages("palmerpenguins")
+install.packages("quarto")
+```
+
+3. Check that you have a recent version of RStudio (2022.07 or later), which comes with [Quarto](https://quarto.org/) already installed. You can see your version in Help -> About RStudio. If your version is older, install the latest one from [posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop/).
+
+4. Go to File -> New File -> Quarto Document... Click on "Create" to create a new file and then click the **Render** button at the top of the file. If RStudio asks your permission to install some packages (like `rmarkdown`), go ahead and do it. 
+
+5. You can remove the file you just created.
+
+6. Download [this project](rstudio-project-penguins.zip) to work with during the workshop and extrat the files on the .zip.
+
+7. That's it. 

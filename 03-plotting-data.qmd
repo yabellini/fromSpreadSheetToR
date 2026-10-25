@@ -1,19 +1,15 @@
 ---
 title: "Plotting Data"
-output: 
-  html_document:
-    code_download: true
-    toc: true
-    toc_float: false
-    highlight: tango
+code-tools: true
+execute:
+  message: false
+  warning: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-	echo = TRUE,
-	message = FALSE,
-	warning = FALSE
-)
+
+```{r}
+#| label: setup
+#| include: false
 library(tidyverse)
 
 penguins <- read_csv("data/penguins.csv")
@@ -121,4 +117,8 @@ ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
   theme_minimal()
 ```
 
-> Now it's your turn. Choose a theme you like and try it out. Also, if you can think of a better title, modify it!
+::: {.callout-tip}
+## Your turn
+
+Choose a theme you like and try it out. Also, if you can think of a better title, modify it!
+:::
