@@ -1,10 +1,10 @@
 ---
-title: "Learner personas for the course"
+title: "Learner personas"
 toc: false
 ---
 
 
-_from Spreadsheet to R_ is intended for people who usespreadsheeets (Excel, Google sheets) for data manipulation and analysis but would like to learn how to use R. In particular we are thinking of:
+_from Spreadsheet to R_ is intended for people who use spreadsheeets (Excel, Google sheets) for data manipulation and analysis but would like to learn how to use R. In particular we are thinking of:
 
 
 * **Naomi:** she is doing a PhD in genetics. Has been analyzing data with Excel for almost ten years. Is going to run 300 experiments in the next six months. Doesn’t want to have to do all the analyses by hand. And wants nicer charts for her thesis than she can produce in Excel.
