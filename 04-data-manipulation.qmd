@@ -1,19 +1,15 @@
 ---
 title: "Data manipulation"
-output: 
-  html_document:
-    code_download: true
-    toc: true
-    toc_float: false
-    highlight: tango
+code-tools: true
+execute:
+  message: false
+  warning: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-	echo = TRUE,
-	message = FALSE,
-	warning = FALSE
-)
+
+```{r}
+#| label: setup
+#| include: false
 
 library(tidyverse)
 penguins <- read_csv("data/penguins.csv")
@@ -29,19 +25,31 @@ We can use `group_by()` to group our data by **species** and `summarize()` to ca
 
 ```{r}
 
-penguins %>% 
-  group_by(species) %>% 
+penguins |> 
+  group_by(species) |> 
   summarise(count = n(),
             mean_body_mass = mean(body_mass_g, na.rm = TRUE))
 
 ```
 
+::: {.callout-note}
+## The pipe `|>`
+
+The `|>` symbol is called the *pipe*. It takes the result of what is on its left and passes it as the first argument of the function on its right. So `penguins |> group_by(species)` is the same as `group_by(penguins, species)`. Chaining several steps with `|>` lets us read the code from top to bottom as a recipe: "take `penguins`, *then* group by species, *then* summarise".
+
+In RStudio you can write it with the `Ctrl + Shift + M` keyboard shortcut (`Cmd + Shift + M` on Mac). If you get `%>%` instead, go to Tools -> Global Options -> Code and check "Use native pipe operator, |>". You'll find `%>%` in a lot of code online: it is an older version of the pipe that works in the same way.
+:::
+
 The function `n()` returns the number of cases and the function `mean` computes the average. The parameter `na.rm = TRUE` tells the function to remove non available values (`NA`) before performing the calculation.
 
-> Question: What if you don’t use `group_by()` before `summarise()`? Let’s try it and discuss what’s going on.
+::: {.callout-tip}
+## Question
+
+What if you don’t use `group_by()` before `summarise()`? Let’s try it and discuss what’s going on.
+:::
 
 ```{r}
-penguins %>% 
+penguins |> 
   summarise(count = n(),
             mean_body_mass = mean(body_mass_g, na.rm = TRUE))
 ```
@@ -51,8 +59,8 @@ So if we don't group_by first, we will get a single summary statistic (n and mea
 Now, we want the average of the body mass in kilograms and with two decimals. We can change our `summarise()` call to get that calculation.  
 
 ```{r}
-penguins %>% 
-  group_by(species) %>% 
+penguins |> 
+  group_by(species) |> 
   summarise(count = n(),
             mean_body_mass = round(mean(body_mass_g/1000, na.rm = TRUE), 2))
 ```
@@ -64,8 +72,8 @@ Now we are at the point where we actually want to save this summary information 
 So let's add a variable assignment to that first line:
 
 ```{r}
-summary <- penguins %>% 
-  group_by(species) %>% 
+summary <- penguins |> 
+  group_by(species) |> 
   summarise(count = n(),
             mean_body_mass = round(mean(body_mass_g/1000, na.rm = TRUE), 2))
 ```
@@ -77,7 +85,7 @@ To make our table look better in a report, we have to change some of its element
 We can do that with the `kable` function.
 
 ```{r}
-summary %>% 
+summary |> 
   knitr::kable(col.names = c("Specie", "Count", "Mean Body Mass"),
                align = "lcc",
                caption = "Summary of penguins on the data set by specie.")
@@ -92,10 +100,10 @@ There are a lot of times in which we want to operate beyond the original data. T
 We can add a new variable (called `prop`) representing the proportion of penguins in each **species** with by using `mutate()`. 
 
 ```{r}
-penguins %>% 
-  group_by(species) %>% 
+penguins |> 
+  group_by(species) |> 
   summarise(count = n(),
-            mean_body_mass = round(mean(body_mass_g/1000, na.rm = TRUE), 2)) %>%
+            mean_body_mass = round(mean(body_mass_g/1000, na.rm = TRUE), 2)) |>
   mutate(prop = count/nrow(penguins))
 
 ```
@@ -107,11 +115,19 @@ In our report we also make plot by species. To do this we need to keep only the 
 We can use logical operators (`>`, `<`, `>=`, `<=`, `==`) to create conditions from numeric variables  These operators are also useful for dates and text strings. Look at the code to see a condition for text type of data.
 
 ```{r}
-penguins %>% 
+penguins |> 
   filter(species == "Gentoo")
 ```
 
-> Activity: Write code to filter all the penguins in the Torgersen island.
+::: {.callout-tip}
+## Activity
 
-> Activity: Now write the code to filter all the penguins with flipper lenght greater than 200
+Write code to filter all the penguins in the Torgersen island.
+:::
+
+::: {.callout-tip}
+## Activity
+
+Now write the code to filter all the penguins with flipper lenght greater than 200
+:::
 
