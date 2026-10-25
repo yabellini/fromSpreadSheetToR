@@ -1,0 +1,82 @@
+/*-- scss:defaults --*/
+$celeste-light: #D6EFFA;   // navbar and highlights
+$celeste:       #8FD0EE;   // borders and hover
+$blue-text:     #1B6A93;   // headings and links (readable on white)
+$blue-dark:     #0E3D57;   // text on light backgrounds
+$code-bg-light: #EEF8FD;
+
+$primary: $blue-text;
+$link-color: $blue-text;
+$navbar-bg: $celeste-light;
+$navbar-fg: $blue-dark;
+$navbar-hl: $blue-text;
+$code-color: $blue-dark;
+$code-bg: $code-bg-light;
+$font-family-sans-serif: Arial, Helvetica, sans-serif;
+
+/*-- scss:rules --*/
+h1, h2, h3, h4, h5 {
+  color: $blue-text;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: $blue-dark;
+  text-decoration: underline;
+}
+
+em {
+  color: #2b2b2b;
+}
+
+// Keep images inside the page width
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Small icons inside the text, like the Render button
+.inline-icon {
+  display: inline;
+  vertical-align: middle;
+  height: 1.5em;
+  width: auto;
+}
+
+// Round profile photos in "Who are we?"
+.profile-photo {
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin: 0 15px 10px 0;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+h3, p strong:only-child {
+  clear: both;
+}
+
+.navbar {
+  border-bottom: 1px solid $celeste;
+}
+
+.navbar .dropdown-menu {
+  background-color: $celeste-light;
+}
+
+.navbar .dropdown-menu .dropdown-item {
+  color: $blue-dark;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: $celeste;
+  color: $blue-dark;
+}
+
+blockquote {
+  border-left-color: $celeste;
+}
